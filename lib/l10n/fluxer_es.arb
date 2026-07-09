@@ -9099,5 +9099,9 @@
     "guildSettingsAuditLogFilterAction": "Filtrar por acción",
     "@guildSettingsAuditLogFilterAction": {
         "description": "Label of the action-type filter dropdown in the activity log tab."
+    },
+    "sessionExpiredToast": "Tu sesión ha expirado. Por favor inicia sesión de nuevo.",
+    "@sessionExpiredToast": {
+        "description": "Toast shown when the stored session is rejected by the server and the user is signed out to the login screen."
     }
 }
