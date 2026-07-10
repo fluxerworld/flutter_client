@@ -28,7 +28,7 @@ class SampleUploader {
     
     init(connection: SocketConnection) {
         self.connection = connection
-        self.serialQueue = DispatchQueue(label: "com.fluxer.broadcast.sampleUploader")
+        self.serialQueue = DispatchQueue(label: "org.fluxer.world.broadcast.sampleUploader")
       
         setupConnection()
     }

@@ -22,7 +22,7 @@ static void my_application_activate(GApplication* application) {
   GtkWindow* window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
 
-  gtk_window_set_title(window, "fluxer_app");
+  gtk_window_set_title(window, "Fluxerworld");
 
   // Use a zero-height CSD titlebar to prevent the Wayland compositor
   // (e.g. KDE/KWin) from adding server-side decorations.

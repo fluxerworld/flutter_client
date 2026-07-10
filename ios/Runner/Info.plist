@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Fluxer</string>
+	<string>Fluxerworld</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>fluxer</string>
+	<string>Fluxerworld</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -46,9 +46,9 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Share photos from your library in a chat.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Fluxer does not use your location. A bundled library references location APIs, which requires this entry for App Store submission.</string>
+	<string>Fluxerworld does not use your location. A bundled library references location APIs, which requires this entry for App Store submission.</string>
 	<key>RTCAppGroupIdentifier</key>
-	<string>group.com.fluxer</string>
+	<string>group.org.fluxer.world</string>
 	<key>RTCScreenSharingExtension</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER).BroadcastExtension</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
