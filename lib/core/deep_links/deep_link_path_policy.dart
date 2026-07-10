@@ -8,6 +8,7 @@ const String appProtocolScheme = 'fluxer';
 const Set<String> kInviteShortLinkHosts = <String>{'fluxer.gg'};
 
 const Set<String> kOfficialAppLinkHosts = <String>{
+  'fluxer.world',
   'web.fluxer.app',
   'web.canary.fluxer.app',
   'web.fluxer.com',

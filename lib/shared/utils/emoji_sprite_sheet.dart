@@ -5,12 +5,15 @@ import 'dart:ui' as ui;
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/shared/utils/emoji_utils.dart';
 
 const _kSpriteSize = 32;
 const _kNonDiversitySpritesPerRow = 42;
 const _kDiversitySpritesPerRow = 10;
-const _kSpriteBase = 'https://fluxerstatic.com/emoji';
+// Follow the instance's static CDN (Fluxerworld default + /.well-known/fluxer
+// override) rather than a hardcoded upstream host.
+String get _kSpriteBase => '${InstanceEndpoints.staticCdn}/emoji';
 const _kSpriteVersion = '3';
 
 const Map<String, String> _kSpriteSheetNames = {

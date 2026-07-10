@@ -2,6 +2,7 @@
 ///
 /// Should switch in the future to use well-known config
 const List<String> kOfficialInviteUrlBases = <String>[
+  'https://fluxer.world/invite',
   'https://fluxer.app/invite',
   'https://canary.fluxer.app/invite',
   'https://web.fluxer.app/invite',

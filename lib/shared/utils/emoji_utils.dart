@@ -1,6 +1,10 @@
+import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/shared/utils/emoji_registry.dart';
 
-const _kTwemojiCdn = 'https://fluxerstatic.com/emoji';
+// Follow the instance's own static CDN (resolved from /.well-known/fluxer, with
+// the Fluxerworld default in InstanceEndpoints) rather than hardcoding an
+// upstream host. Our webroot serves the twemoji set under /emoji.
+String get _kTwemojiCdn => '${InstanceEndpoints.staticCdn}/emoji';
 
 const int kCustomEmojiFetchSize = 96;
 

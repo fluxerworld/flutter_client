@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/ui/button/fluxer_button.dart';
 import 'package:fluxer_app/l10n/generated/fluxer_localizations.dart';
+import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-const String _kPlutoniumUrl = 'https://fluxer.app/plutonium';
+String get _kPlutoniumUrl => '${InstanceEndpoints.webApp}/plutonium';
 
 class FluxerPlutoniumUpsell extends StatelessWidget {
   const FluxerPlutoniumUpsell({

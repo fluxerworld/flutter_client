@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/auth/providers/login_error_l10n.dart';
 import 'package:fluxer_app/features/auth/providers/login_view_model.dart';
@@ -496,7 +497,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       baseline: TextBaseline.alphabetic,
                       child: FluxerTextLink(
                         text: l10n.registerConsentTerms,
-                        url: 'https://fluxer.app/terms',
+                        url: '${InstanceEndpoints.webApp}/terms',
                         style: textStyles.bodySmall,
                       ),
                     ),
@@ -506,7 +507,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       baseline: TextBaseline.alphabetic,
                       child: FluxerTextLink(
                         text: l10n.registerConsentPrivacy,
-                        url: 'https://fluxer.app/privacy',
+                        url: '${InstanceEndpoints.webApp}/privacy',
                         style: textStyles.bodySmall,
                       ),
                     ),

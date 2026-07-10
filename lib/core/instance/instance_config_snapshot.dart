@@ -38,7 +38,7 @@ class InstanceConfigSnapshot {
     return const InstanceConfigSnapshot(
       apiBaseUrl: InstanceConstants.defaultApiBaseUrl,
       gatewayUrl: '',
-      displayDomain: 'fluxer.app',
+      displayDomain: 'fluxer.world',
     );
   }
 

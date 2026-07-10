@@ -1,21 +1,14 @@
 abstract final class InstanceConstants {
   static const int apiCodeVersion = 1;
-  static const String defaultApiBaseUrl = 'https://api.fluxer.app/v1';
-  static const String defaultInstanceInputUrl = 'api.fluxer.app/v1';
+  // Fluxerworld build: this instance's own endpoints. The API is served under
+  // /api (no /v1 segment — that suffix is only for the upstream official hosts,
+  // handled in InstanceConfigSnapshot._resolveApiBaseUrl). Runtime discovery
+  // via /.well-known/fluxer overrides these once the app reaches the server.
+  static const String defaultApiBaseUrl = 'https://fluxer.world/api';
+  static const String defaultInstanceInputUrl = 'fluxer.world';
   static const int maxRecentInstances = 5;
 
   static const Set<String> officialInstanceHosts = <String>{
-    'fluxer.app',
-    'web.fluxer.app',
-    'api.fluxer.app',
-    'canary.fluxer.app',
-    'web.canary.fluxer.app',
-    'api.canary.fluxer.app',
-    'fluxer.com',
-    'web.fluxer.com',
-    'api.fluxer.com',
-    'canary.fluxer.com',
-    'web.canary.fluxer.com',
-    'api.canary.fluxer.com',
+    'fluxer.world',
   };
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluxer_app/core/deep_links/deep_link_path_policy.dart';
+import 'package:fluxer_app/core/instance/instance_endpoints.dart';
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
 import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/core/utils/channel_jump_link.dart';
@@ -32,15 +33,16 @@ String? _normalizeSpoilerSyncUrl(String url) {
 }
 
 String _fluxerAppLinkToHttps(String href) {
+  final String webApp = InstanceEndpoints.webApp;
   if (href.startsWith('fluxer://')) {
     final Uri uri = Uri.parse(href);
-    return 'https://fluxer.app${uri.path}';
+    return '$webApp${uri.path}';
   }
   if (href.startsWith('fluxer:/')) {
-    return 'https://fluxer.app/${href.substring('fluxer:/'.length)}';
+    return '$webApp/${href.substring('fluxer:/'.length)}';
   }
   if (href.startsWith('fluxer:')) {
-    return 'https://fluxer.app/${href.substring('fluxer:'.length)}';
+    return '$webApp/${href.substring('fluxer:'.length)}';
   }
   return href;
 }
