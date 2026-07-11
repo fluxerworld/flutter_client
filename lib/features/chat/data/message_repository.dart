@@ -613,6 +613,7 @@ class MessageRepository {
     String? favoriteMemeId,
     List<ApiAttachmentMetadata>? attachmentMetadata,
     List<XFile>? attachmentFiles,
+    List<Map<String, Object?>>? encryptedAttachmentEntries,
     int? messageFlags,
     bool tts = false,
   }) async {
@@ -634,6 +635,7 @@ class MessageRepository {
         content: content,
         clientNonce: clientNonce,
         body: body,
+        attachments: encryptedAttachmentEntries ?? const [],
       );
 
       if (attachmentFiles != null && attachmentFiles.isNotEmpty) {
@@ -679,6 +681,7 @@ class MessageRepository {
             messageId: message.id,
             nonce: clientNonce,
             channelId: channelId,
+            attachments: encryptedAttachmentEntries ?? const [],
           );
         }
         await _db.messageDao.upsertMessage(message.toCompanion());
@@ -696,6 +699,7 @@ class MessageRepository {
           messageId: sent.id,
           nonce: clientNonce,
           channelId: channelId,
+          attachments: encryptedAttachmentEntries ?? const [],
         );
       }
       return sent;
@@ -769,6 +773,7 @@ class MessageRepository {
     required String content,
     required String? clientNonce,
     required Map<String, dynamic> body,
+    List<Map<String, Object?>> attachments = const [],
   }) async {
     final String? userId = _currentUserId;
     if (userId == null) {
@@ -806,6 +811,7 @@ class MessageRepository {
       channelType: dm.type,
       recipientUserIds: recipients,
       plaintext: content,
+      attachments: attachments,
     );
     if (payload == null) {
       // FAIL CLOSED: this is an always-on-E2EE channel but we could not produce
@@ -823,6 +829,7 @@ class MessageRepository {
       text: content,
       nonce: clientNonce,
       channelId: channelId,
+      attachments: attachments,
     );
     return true;
   }

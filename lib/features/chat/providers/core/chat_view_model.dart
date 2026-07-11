@@ -2374,6 +2374,7 @@ class ChatViewModel extends _$ChatViewModel {
             favoriteMemeId: favoriteMemeId,
             attachmentMetadata: prepared.attachmentMetadata,
             attachmentFiles: prepared.attachmentFiles,
+            encryptedAttachmentEntries: prepared.encryptedAttachmentEntries,
             messageFlags: messageFlags,
             tts: tts,
           );

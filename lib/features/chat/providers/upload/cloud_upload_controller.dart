@@ -3,7 +3,10 @@ import 'dart:typed_data';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
+import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/talker.dart';
+import 'package:fluxer_app/e2ee/e2ee_attachments.dart';
+import 'package:fluxer_app/e2ee/e2ee_wire.dart';
 import 'package:fluxer_app/features/chat/data/attachment_upload_client.dart';
 import 'package:fluxer_app/features/chat/data/prepared_attachments.dart';
 import 'package:fluxer_app/features/chat/domain/api_attachment_metadata.dart';
@@ -213,6 +216,12 @@ class CloudUploadController extends _$CloudUploadController {
             .toList(),
       );
     }
+    // For an E2EE channel, encrypt every file IN PLACE before any upload so that
+    // whichever upload path runs below (presigned or the multipart fallback)
+    // sends only ciphertext. Fail-closed by construction: a throw here aborts the
+    // send with no plaintext uploaded.
+    final List<Map<String, Object?>>? encryptedEntries =
+        await _encryptE2eeAttachments(nonce);
     try {
       ref
           .read(messageUploadSessionsProvider.notifier)
@@ -236,7 +245,10 @@ class CloudUploadController extends _$CloudUploadController {
         );
       }
       final List<PendingAttachment> ready = _requireSessionAttachments(nonce);
-      return PreparedAttachments(attachmentMetadata: _mapApi(ready));
+      return PreparedAttachments(
+        attachmentMetadata: _mapApi(ready),
+        encryptedAttachmentEntries: encryptedEntries,
+      );
     } on MessageUploadSendCancelledException {
       rethrow;
     } on Object catch (e, st) {
@@ -251,8 +263,82 @@ class CloudUploadController extends _$CloudUploadController {
       return PreparedAttachments(
         attachmentMetadata: _mapApi(reset),
         attachmentFiles: reset.map((PendingAttachment e) => e.file).toList(),
+        encryptedAttachmentEntries: encryptedEntries,
       );
     }
+  }
+
+  /// For an E2EE DM/Group-DM channel, encrypt each session attachment IN PLACE
+  /// (replace its file with the ciphertext + opaque metadata) so every upload
+  /// path below sends ciphertext, and return the per-file `{key,iv,mime,name,
+  /// width?,height?}` entries to seal in the message envelope. Returns null for
+  /// a normal channel (no change).
+  Future<List<Map<String, Object?>>?> _encryptE2eeAttachments(
+    String nonce,
+  ) async {
+    final dm = await ref
+        .read(fluxerDatabaseProvider)
+        .dmChannelDao
+        .getDmChannelById(_channelId);
+    if (dm == null || !isEncryptedChannelType(dm.type)) {
+      return null;
+    }
+    final MessageUploadSession? session = ref.read(
+      messageUploadSessionsProvider,
+    )[nonce];
+    if (session == null || session.attachments.isEmpty) {
+      return null;
+    }
+    final E2eeAttachments e2ee = E2eeAttachments();
+    final Directory tmpDir = await getTemporaryDirectory();
+    final List<PendingAttachment> originals = List<PendingAttachment>.from(
+      session.attachments,
+    );
+    // Phase 1: encrypt + write every ciphertext temp file WITHOUT mutating the
+    // session, so a read/write failure leaves the plaintext files untouched for a
+    // clean retry — never a half-encrypted session a retry would double-encrypt.
+    final List<({int id, String path, int size, Map<String, Object?> entry})>
+    prepared = <({int id, String path, int size, Map<String, Object?> entry})>[];
+    for (final PendingAttachment a in originals) {
+      final Uint8List bytes = await a.file.readAsBytes();
+      final EncryptedAttachment enc = e2ee.encryptFile(
+        plaintext: bytes,
+        mime: a.contentType,
+        name: a.filename,
+        width: a.width,
+        height: a.height,
+      );
+      final File tmp = await File(
+        path_lib.join(tmpDir.path, 'e2ee_${nonce}_${a.id}.bin'),
+      ).writeAsBytes(enc.ciphertext, flush: true);
+      prepared.add((
+        id: a.id,
+        path: tmp.path,
+        size: enc.ciphertext.length,
+        entry: enc.envelopeEntry,
+      ));
+    }
+    // Phase 2: swap each file to its ciphertext + opaque metadata. The real
+    // name/mime/duration live only in the sealed envelope entry; the server sees
+    // encrypted.bin / octet-stream.
+    final List<Map<String, Object?>> entries = <Map<String, Object?>>[];
+    for (final p in prepared) {
+      _patchSessionAttachment(
+        nonce,
+        p.id,
+        (PendingAttachment att) => att.copyWith(
+          file: XFile(p.path),
+          filename: 'encrypted.bin',
+          contentType: 'application/octet-stream',
+          size: p.size,
+          description: null,
+          duration: null,
+          waveform: null,
+        ),
+      );
+      entries.add(p.entry);
+    }
+    return entries;
   }
 
   MessageUploadSession _requireSession(String nonce) {
