@@ -47,7 +47,8 @@ typedef InviteDeleteCallback = void Function(String code);
 typedef ReadyCallback = void Function();
 typedef GuildCallback = void Function(String guildId);
 typedef MessageCreateCallback = void Function(MessageCreateDispatch dispatch);
-typedef MessageUpdateCallback = void Function(MessageUpdateEvent event);
+typedef MessageUpdateCallback =
+    void Function(MessageUpdateEvent event, String? decryptedContent);
 typedef MessageDeleteCallback = void Function(MessageDeleteEvent event);
 typedef MessageDeleteBulkCallback = void Function(MessageDeleteBulkEvent event);
 typedef MessageReactionChangeCallback =
@@ -1281,37 +1282,9 @@ class GatewayEventHandler {
     // success the plaintext replaces the (empty) server content for BOTH the DB
     // row and the live-view dispatch (the live UI rebuilds from the event, not
     // the row, so the decrypted text also rides on the snapshot below).
-    String? decryptedContent;
-    final E2eeManager? e2ee = e2eeManager;
-    if (e2ee != null &&
-        (msg.flags & kMessageFlagEncrypted) != 0 &&
-        event.message.encryptedPayload != null) {
-      // Make sure the identity is loaded before decrypting, so a message that
-      // arrives in the brief window after gateway READY but before bootstrap
-      // finishes doesn't fall into the "not ready" transient. ensureBootstrapped
-      // is de-duped, so all early messages await the one in-flight bootstrap.
-      final String? uid = currentUserId;
-      if (uid != null) {
-        try {
-          await e2ee.ensureBootstrapped(uid);
-        } on Object catch (_) {
-          // Proceed; decrypt returns transient if still not ready.
-        }
-      }
-      final DecryptionOutcome outcome = await e2ee.tryDecryptForCurrentDevice(
-        senderUserId: event.message.author.id,
-        encryptedPayloadRaw: event.message.encryptedPayload,
-        channelId: msg.channelId,
-        messageId: msg.id,
-        nonce: msg.clientNonce,
-      );
-      if (outcome is DecryptionOk) {
-        decryptedContent = outcome.text;
-        msg = msg.copyWith(content: outcome.text);
-      }
-      // Transient/Permanent: leave the empty server content for now (a retry +
-      // placeholder is a follow-up slice); this is no worse than pre-decrypt.
-    }
+    final (Message decryptedMsg, String? decryptedContent) =
+        await _decryptGatewayMessage(msg, event.message);
+    msg = decryptedMsg;
 
     onTypingClear?.call(msg.channelId, msg.authorId);
 
@@ -1636,8 +1609,49 @@ class GatewayEventHandler {
     );
   }
 
+  /// Decrypt an encrypted gateway message. Returns the message with its
+  /// decrypted content (on success) plus the plaintext to thread to the live
+  /// view, or the original message + null when it isn't encrypted / can't be
+  /// decrypted. Bootstrap is awaited first so a message arriving just after
+  /// READY doesn't miss on a not-yet-ready identity.
+  Future<(Message, String?)> _decryptGatewayMessage(
+    Message msg,
+    MessageResponseSchema sdkMessage,
+  ) async {
+    final E2eeManager? e2ee = e2eeManager;
+    if (e2ee == null ||
+        (msg.flags & kMessageFlagEncrypted) == 0 ||
+        sdkMessage.encryptedPayload == null) {
+      return (msg, null);
+    }
+    final String? uid = currentUserId;
+    if (uid != null) {
+      try {
+        await e2ee.ensureBootstrapped(uid);
+      } on Object catch (_) {
+        // Proceed; decrypt returns transient if still not ready.
+      }
+    }
+    final DecryptionOutcome outcome = await e2ee.tryDecryptForCurrentDevice(
+      senderUserId: sdkMessage.author.id,
+      encryptedPayloadRaw: sdkMessage.encryptedPayload,
+      channelId: msg.channelId,
+      messageId: msg.id,
+      nonce: msg.clientNonce,
+    );
+    if (outcome is DecryptionOk) {
+      return (msg.copyWith(content: outcome.text), outcome.text);
+    }
+    // Transient/Permanent: leave the empty server content (a placeholder is
+    // rendered from the ENCRYPTED flag); no worse than pre-decrypt.
+    return (msg, null);
+  }
+
   Future<void> _handleMessageUpdate(MessageUpdateEvent event) async {
-    final msg = Message.fromSdk(event.message, currentUserId: currentUserId);
+    var msg = Message.fromSdk(event.message, currentUserId: currentUserId);
+    final (Message decryptedMsg, String? decryptedContent) =
+        await _decryptGatewayMessage(msg, event.message);
+    msg = decryptedMsg;
     final mentionsCurrentUser = await resolveMessageMentionsUser(
       database,
       currentUserId: currentUserId,
@@ -1666,7 +1680,7 @@ class GatewayEventHandler {
         msg.timestamp,
       );
     }
-    onMessageUpdate?.call(event);
+    onMessageUpdate?.call(event, decryptedContent);
   }
 
   Future<void> _handleMessageDelete(MessageDeleteEvent event) async {

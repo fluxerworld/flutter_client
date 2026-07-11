@@ -44,7 +44,11 @@ class MessageCreated extends MessageRealtimeEvent {
 class MessageUpdated extends MessageRealtimeEvent {
   final MessageUpdateEvent event;
 
-  const MessageUpdated(this.event);
+  /// Decrypted plaintext for an edited E2EE message (null when not encrypted or
+  /// undecryptable) — the live view must prefer this over the empty edit body.
+  final String? decryptedContent;
+
+  const MessageUpdated(this.event, {this.decryptedContent});
 }
 
 class MessageDeleted extends MessageRealtimeEvent {

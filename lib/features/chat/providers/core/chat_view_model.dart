@@ -522,7 +522,7 @@ class ChatViewModel extends _$ChatViewModel {
         }
         _extendNewer(msg.id);
         return <Message>[...messages, msg];
-      case MessageUpdated(:final event):
+      case MessageUpdated(:final event, :final decryptedContent):
         if (event.message.channelId != state.channelId) {
           return null;
         }
@@ -530,10 +530,13 @@ class ChatViewModel extends _$ChatViewModel {
         final int idx = state.messages.indexWhere((m) => m.id == messageId);
         final String? currentUserId = ref.read(currentUserIdProvider);
         if (idx != -1) {
-          final Message merged = state.messages[idx].applyGatewayUpdate(
+          Message merged = state.messages[idx].applyGatewayUpdate(
             event.message,
             currentUserId: currentUserId,
           );
+          if (decryptedContent != null) {
+            merged = merged.copyWith(content: decryptedContent);
+          }
           return _replaceById(state.messages, merged);
         }
         if (!_isMessageInLoadedWindow(messageId)) {

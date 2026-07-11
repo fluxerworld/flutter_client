@@ -460,6 +460,11 @@ class MessageRepository {
             flags: (map['flags'] as int?) ?? 0,
           ),
         );
+        messages[messages.length - 1] = await _decryptRawIncoming(
+          messages.last,
+          senderUserId: author['id'] as String,
+          encryptedPayload: map['encrypted_payload'],
+        );
 
         final String? webhookId = map['webhook_id'] as String?;
         if (webhookId == null) {
@@ -690,14 +695,24 @@ class MessageRepository {
   /// replaces the empty server content; otherwise the message is returned
   /// unchanged (the manager's plaintext cache keeps a message decrypted once it
   /// has been read live, so re-renders stay consistent).
-  Future<Message> _decryptIncoming(Message msg, MessageResponseSchema sdk) async {
-    if ((msg.flags & kMessageFlagEncrypted) == 0 ||
-        sdk.encryptedPayload == null) {
+  Future<Message> _decryptIncoming(Message msg, MessageResponseSchema sdk) =>
+      _decryptRawIncoming(
+        msg,
+        senderUserId: sdk.author.id,
+        encryptedPayload: sdk.encryptedPayload,
+      );
+
+  Future<Message> _decryptRawIncoming(
+    Message msg, {
+    required String senderUserId,
+    required Object? encryptedPayload,
+  }) async {
+    if ((msg.flags & kMessageFlagEncrypted) == 0 || encryptedPayload == null) {
       return msg;
     }
     final DecryptionOutcome outcome = await _e2ee.tryDecryptForCurrentDevice(
-      senderUserId: sdk.author.id,
-      encryptedPayloadRaw: sdk.encryptedPayload,
+      senderUserId: senderUserId,
+      encryptedPayloadRaw: encryptedPayload,
       channelId: msg.channelId,
       messageId: msg.id,
       nonce: msg.clientNonce,
