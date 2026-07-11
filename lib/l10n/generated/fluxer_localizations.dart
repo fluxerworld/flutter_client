@@ -3337,6 +3337,108 @@ abstract class FluxerLocalizations {
   /// **'Encryption keys restored.'**
   String get e2eeRestoreSuccess;
 
+  /// Title of the device-fingerprint verification sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify encryption'**
+  String get e2eeVerifyTitle;
+
+  /// Explanation at the top of the verification sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare the fingerprints below with {name} over a separate channel (in person, a call, and so on). If they match exactly, your messages are end-to-end encrypted with the right keys.'**
+  String e2eeVerifyDescription(String name);
+
+  /// Header for the current user's own device list.
+  ///
+  /// In en, this message translates to:
+  /// **'Your devices'**
+  String get e2eeVerifyYourDevices;
+
+  /// Header for the peer's device list.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s devices'**
+  String e2eeVerifyTheirDevices(String name);
+
+  /// Shown when a device list is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No registered devices.'**
+  String get e2eeVerifyNoDevices;
+
+  /// Fallback name for a device with no name.
+  ///
+  /// In en, this message translates to:
+  /// **'Unnamed device'**
+  String get e2eeVerifyUnnamedDevice;
+
+  /// Badge for a verified device.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get e2eeVerifyStatusVerified;
+
+  /// Badge when a verified device's identity key has rotated.
+  ///
+  /// In en, this message translates to:
+  /// **'Key changed — re-verify'**
+  String get e2eeVerifyStatusChanged;
+
+  /// Badge for an unverified device.
+  ///
+  /// In en, this message translates to:
+  /// **'Not verified'**
+  String get e2eeVerifyStatusUnverified;
+
+  /// Relative time a device was verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified {time}'**
+  String e2eeVerifyVerifiedAt(String time);
+
+  /// Button to mark a peer device as verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark verified'**
+  String get e2eeVerifyMarkVerified;
+
+  /// Button to clear a device verification.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get e2eeVerifyClear;
+
+  /// Button to drop and rebuild Olm sessions with the peer.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset encryption sessions'**
+  String get e2eeVerifyReset;
+
+  /// Confirmation after resetting encryption sessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Sessions reset'**
+  String get e2eeVerifyResetDone;
+
+  /// Error when the device fingerprints fail to load.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load encryption fingerprints. Try again in a moment.'**
+  String get e2eeVerifyLoadError;
+
+  /// Retry button in the verification sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get e2eeVerifyRetry;
+
+  /// Error when there is no current user in the verification sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not signed in.'**
+  String get e2eeVerifyNotSignedIn;
+
   /// Error shown when new password and confirmation don't match.
   ///
   /// In en, this message translates to:

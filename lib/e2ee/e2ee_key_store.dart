@@ -91,6 +91,23 @@ class E2eePeerIdentities extends Table {
   Set<Column> get primaryKey => {peerUserId, peerDeviceId};
 }
 
+/// Manual device-verification records. A row means the local user confirmed
+/// (out-of-band fingerprint comparison) that a peer device's published identity
+/// key is genuine. Keyed by (remote user, remote device). The verified identity
+/// key is captured so a later rotation reads as "changed — re-verify" rather
+/// than silently staying "verified". Local trust only — never sent on the wire.
+@DataClassName('StoredE2eeVerification')
+class E2eeVerifications extends Table {
+  TextColumn get remoteUserId => text()();
+  TextColumn get remoteDeviceId => text()();
+  TextColumn get identityKey => text()();
+  DateTimeColumn get verifiedAt => dateTime().withDefault(currentDateAndTime)();
+  TextColumn get source => text().withDefault(const Constant('manual'))();
+
+  @override
+  Set<Column> get primaryKey => {remoteUserId, remoteDeviceId};
+}
+
 /// Decrypted-plaintext cache. Olm/Megolm consume per-message material on
 /// decrypt, so a re-fetched ciphertext can't be re-decrypted — this cache is the
 /// only way to re-render encrypted history after a reload. Keyed by message id;
@@ -119,6 +136,7 @@ class E2eeMessagePlaintexts extends Table {
     E2eeOutboundGroupSessions,
     E2eeInboundGroupSessions,
     E2eePeerIdentities,
+    E2eeVerifications,
     E2eeMessagePlaintexts,
   ],
 )
@@ -129,7 +147,7 @@ class E2eeKeyStore extends _$E2eeKeyStore {
   E2eeKeyStore.forTesting(super.e);
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -139,6 +157,9 @@ class E2eeKeyStore extends _$E2eeKeyStore {
               e2eeMessagePlaintexts,
               e2eeMessagePlaintexts.attachmentsJson,
             );
+          }
+          if (from < 3) {
+            await m.createTable(e2eeVerifications);
           }
         },
       );
@@ -212,6 +233,38 @@ class E2eeKeyStore extends _$E2eeKeyStore {
 
   Future<void> writePeerIdentity(E2eePeerIdentitiesCompanion identity) =>
       into(e2eePeerIdentities).insertOnConflictUpdate(identity);
+
+  // ── Device verifications (Phase 3c) ──────────────────────────────────────
+
+  Future<StoredE2eeVerification?> readVerification(
+    String remoteUserId,
+    String remoteDeviceId,
+  ) =>
+      (select(e2eeVerifications)
+            ..where((t) =>
+                t.remoteUserId.equals(remoteUserId) &
+                t.remoteDeviceId.equals(remoteDeviceId)))
+          .getSingleOrNull();
+
+  Future<List<StoredE2eeVerification>> verificationsForUser(
+    String remoteUserId,
+  ) =>
+      (select(e2eeVerifications)
+            ..where((t) => t.remoteUserId.equals(remoteUserId)))
+          .get();
+
+  Future<void> writeVerification(E2eeVerificationsCompanion verification) =>
+      into(e2eeVerifications).insertOnConflictUpdate(verification);
+
+  Future<void> deleteVerification(
+    String remoteUserId,
+    String remoteDeviceId,
+  ) =>
+      (delete(e2eeVerifications)
+            ..where((t) =>
+                t.remoteUserId.equals(remoteUserId) &
+                t.remoteDeviceId.equals(remoteDeviceId)))
+          .go();
 
   // ── Plaintext cache ──────────────────────────────────────────────────────
 
@@ -295,6 +348,7 @@ class E2eeKeyStore extends _$E2eeKeyStore {
         await delete(e2eeOutboundGroupSessions).go();
         await delete(e2eeInboundGroupSessions).go();
         await delete(e2eePeerIdentities).go();
+        await delete(e2eeVerifications).go();
         await delete(e2eeMessagePlaintexts).go();
       });
 }

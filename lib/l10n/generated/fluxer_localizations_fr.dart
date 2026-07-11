@@ -1829,6 +1829,64 @@ class FluxerLocalizationsFr extends FluxerLocalizations {
   String get e2eeRestoreSuccess => 'Encryption keys restored.';
 
   @override
+  String get e2eeVerifyTitle => 'Verify encryption';
+
+  @override
+  String e2eeVerifyDescription(String name) {
+    return 'Compare the fingerprints below with $name over a separate channel (in person, a call, and so on). If they match exactly, your messages are end-to-end encrypted with the right keys.';
+  }
+
+  @override
+  String get e2eeVerifyYourDevices => 'Your devices';
+
+  @override
+  String e2eeVerifyTheirDevices(String name) {
+    return '$name\'s devices';
+  }
+
+  @override
+  String get e2eeVerifyNoDevices => 'No registered devices.';
+
+  @override
+  String get e2eeVerifyUnnamedDevice => 'Unnamed device';
+
+  @override
+  String get e2eeVerifyStatusVerified => 'Verified';
+
+  @override
+  String get e2eeVerifyStatusChanged => 'Key changed — re-verify';
+
+  @override
+  String get e2eeVerifyStatusUnverified => 'Not verified';
+
+  @override
+  String e2eeVerifyVerifiedAt(String time) {
+    return 'Verified $time';
+  }
+
+  @override
+  String get e2eeVerifyMarkVerified => 'Mark verified';
+
+  @override
+  String get e2eeVerifyClear => 'Clear';
+
+  @override
+  String get e2eeVerifyReset => 'Reset encryption sessions';
+
+  @override
+  String get e2eeVerifyResetDone => 'Sessions reset';
+
+  @override
+  String get e2eeVerifyLoadError =>
+      'Couldn\'t load encryption fingerprints. Try again in a moment.';
+
+  @override
+  String get e2eeVerifyRetry => 'Retry';
+
+  @override
+  String get e2eeVerifyNotSignedIn => 'You\'re not signed in.';
+
+  @override
   String get passwordChangePasswordsDoNotMatch =>
       'Les mots de passe ne correspondent pas';
 

@@ -67,13 +67,43 @@ class E2eeRestoreResult {
     this.outcome, {
     this.sessionsRestored = 0,
     this.inboundGroupSessionsRestored = 0,
+    this.verificationsRestored = 0,
   });
 
   final E2eeRestoreOutcome outcome;
   final int sessionsRestored;
   final int inboundGroupSessionsRestored;
+  final int verificationsRestored;
 
   bool get isSuccess => outcome == E2eeRestoreOutcome.ok;
+}
+
+/// Per-device manual-verification state (Phase 3c).
+enum E2eeDeviceVerification {
+  /// A verification exists and matches the device's current identity key.
+  verified,
+
+  /// A verification exists but the device's identity key has since rotated —
+  /// the user must re-verify (a rotation is a potential MITM signal).
+  changed,
+
+  /// No verification for this device.
+  unverified,
+}
+
+/// Compute a device's verification state from its stored record (or null) and
+/// the identity key the server currently publishes for it. Pure so the UI can
+/// call it per device after loading verifications once.
+E2eeDeviceVerification e2eeDeviceVerificationStatus(
+  StoredE2eeVerification? entry,
+  String observedIdentityKey,
+) {
+  if (entry == null) {
+    return E2eeDeviceVerification.unverified;
+  }
+  return entry.identityKey == observedIdentityKey
+      ? E2eeDeviceVerification.verified
+      : E2eeDeviceVerification.changed;
 }
 
 /// The outcome of a decrypt attempt.
@@ -541,6 +571,26 @@ class E2eeManager {
       }
     }
 
+    // 8b. Import device verifications (local trust the original device recorded).
+    var verificationsRestored = 0;
+    for (final ve in payload.verifications) {
+      try {
+        await _store.writeVerification(
+          E2eeVerificationsCompanion.insert(
+            remoteUserId: ve.remoteUserId,
+            remoteDeviceId: ve.remoteDeviceId,
+            identityKey: ve.identityKey,
+            verifiedAt:
+                Value(DateTime.fromMillisecondsSinceEpoch(ve.verifiedAt)),
+            source: Value(ve.source),
+          ),
+        );
+        verificationsRestored++;
+      } on Object catch (_) {
+        // Skip a malformed verification entry.
+      }
+    }
+
     // 9. Reclaim the device slot: GC the prior bootstrap device (best-effort),
     // then re-publish the restored identity with fresh one-time keys.
     if (oldBreadcrumb != null && oldBreadcrumb != account.deviceId) {
@@ -562,7 +612,72 @@ class E2eeManager {
       E2eeRestoreOutcome.ok,
       sessionsRestored: sessionsRestored,
       inboundGroupSessionsRestored: inboundRestored,
+      verificationsRestored: verificationsRestored,
     );
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Device verification (Phase 3c)
+  // ───────────────────────────────────────────────────────────────────────────
+
+  /// This device's own Curve25519 identity key (the fingerprint others verify),
+  /// or null before bootstrap. Base64, matching what the server publishes.
+  String? get ownIdentityKey => _account?.identityKey;
+
+  /// The published devices for [userId] (id, identity key, name) for the
+  /// fingerprint-comparison UI. Throws on network failure.
+  Future<List<E2eeDeviceInfo>> fetchPublicDevices(String userId) =>
+      _api.listPublicDevices(userId);
+
+  /// All stored verifications for [userId], keyed by device id, so the UI can
+  /// compute per-device status against the live device list in one query.
+  Future<Map<String, StoredE2eeVerification>> verificationsForUser(
+    String userId,
+  ) async {
+    final rows = await _store.verificationsForUser(userId);
+    return {for (final r in rows) r.remoteDeviceId: r};
+  }
+
+  /// Record that the user verified [deviceId]'s [identityKey] out-of-band.
+  Future<void> markDeviceVerified({
+    required String userId,
+    required String deviceId,
+    required String identityKey,
+    String source = 'manual',
+  }) =>
+      _store.writeVerification(
+        E2eeVerificationsCompanion.insert(
+          remoteUserId: userId,
+          remoteDeviceId: deviceId,
+          identityKey: identityKey,
+          verifiedAt: Value(_now()),
+          source: Value(source),
+        ),
+      );
+
+  /// Remove a device verification (user un-verified, or clearing a rotated key).
+  Future<void> clearDeviceVerification({
+    required String userId,
+    required String deviceId,
+  }) =>
+      _store.deleteVerification(userId, deviceId);
+
+  /// "Encryption is broken with this peer" escape hatch: drop every stored Olm
+  /// session for the peer's devices and reset the cached identity keys to the
+  /// currently-published ones, so the next send builds a clean X3DH session
+  /// without the rotation guard double-firing. Mirrors the web reset button.
+  Future<void> resetSessionsForPeer(String userId) async {
+    final devices = await _api.listPublicDevices(userId);
+    for (final d in devices) {
+      await _store.deleteSessionsForDevice(userId, d.deviceId);
+      await _store.writePeerIdentity(
+        E2eePeerIdentitiesCompanion.insert(
+          peerUserId: userId,
+          peerDeviceId: d.deviceId,
+          identityKey: d.identityKey,
+        ),
+      );
+    }
   }
 
   /// After a load-existing bootstrap: confirm the server still lists our device

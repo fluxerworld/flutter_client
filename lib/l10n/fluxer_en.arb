@@ -2312,6 +2312,83 @@
   "@e2eeRestoreSuccess": {
     "description": "Toast shown after a successful restore."
   },
+  "e2eeVerifyTitle": "Verify encryption",
+  "@e2eeVerifyTitle": {
+    "description": "Title of the device-fingerprint verification sheet."
+  },
+  "e2eeVerifyDescription": "Compare the fingerprints below with {name} over a separate channel (in person, a call, and so on). If they match exactly, your messages are end-to-end encrypted with the right keys.",
+  "@e2eeVerifyDescription": {
+    "description": "Explanation at the top of the verification sheet.",
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "e2eeVerifyYourDevices": "Your devices",
+  "@e2eeVerifyYourDevices": {
+    "description": "Header for the current user's own device list."
+  },
+  "e2eeVerifyTheirDevices": "{name}'s devices",
+  "@e2eeVerifyTheirDevices": {
+    "description": "Header for the peer's device list.",
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "e2eeVerifyNoDevices": "No registered devices.",
+  "@e2eeVerifyNoDevices": {
+    "description": "Shown when a device list is empty."
+  },
+  "e2eeVerifyUnnamedDevice": "Unnamed device",
+  "@e2eeVerifyUnnamedDevice": {
+    "description": "Fallback name for a device with no name."
+  },
+  "e2eeVerifyStatusVerified": "Verified",
+  "@e2eeVerifyStatusVerified": {
+    "description": "Badge for a verified device."
+  },
+  "e2eeVerifyStatusChanged": "Key changed — re-verify",
+  "@e2eeVerifyStatusChanged": {
+    "description": "Badge when a verified device's identity key has rotated."
+  },
+  "e2eeVerifyStatusUnverified": "Not verified",
+  "@e2eeVerifyStatusUnverified": {
+    "description": "Badge for an unverified device."
+  },
+  "e2eeVerifyVerifiedAt": "Verified {time}",
+  "@e2eeVerifyVerifiedAt": {
+    "description": "Relative time a device was verified.",
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "e2eeVerifyMarkVerified": "Mark verified",
+  "@e2eeVerifyMarkVerified": {
+    "description": "Button to mark a peer device as verified."
+  },
+  "e2eeVerifyClear": "Clear",
+  "@e2eeVerifyClear": {
+    "description": "Button to clear a device verification."
+  },
+  "e2eeVerifyReset": "Reset encryption sessions",
+  "@e2eeVerifyReset": {
+    "description": "Button to drop and rebuild Olm sessions with the peer."
+  },
+  "e2eeVerifyResetDone": "Sessions reset",
+  "@e2eeVerifyResetDone": {
+    "description": "Confirmation after resetting encryption sessions."
+  },
+  "e2eeVerifyLoadError": "Couldn't load encryption fingerprints. Try again in a moment.",
+  "@e2eeVerifyLoadError": {
+    "description": "Error when the device fingerprints fail to load."
+  },
+  "e2eeVerifyRetry": "Retry",
+  "@e2eeVerifyRetry": {
+    "description": "Retry button in the verification sheet."
+  },
+  "e2eeVerifyNotSignedIn": "You're not signed in.",
+  "@e2eeVerifyNotSignedIn": {
+    "description": "Error when there is no current user in the verification sheet."
+  },
   "passwordChangePasswordsDoNotMatch": "Passwords do not match",
   "@passwordChangePasswordsDoNotMatch": {
     "description": "Error shown when new password and confirmation don't match."

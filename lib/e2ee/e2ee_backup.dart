@@ -85,11 +85,27 @@ class BackupPickledInboundGroup {
   final int createdAt; // epoch ms
 }
 
-/// The decrypted, parsed backup payload. Outbound group sessions and
-/// verifications are intentionally NOT modelled: outbound Megolm is minted fresh
-/// on the restoring device (importing it would resume a sender ratchet that a
-/// still-live original device could collide with), and there is no Flutter
-/// verifications table yet.
+/// A device-verification record inside the backup. Local trust (not crypto):
+/// the restoring device adopts the original device's verification decisions.
+class BackupVerificationEntry {
+  const BackupVerificationEntry({
+    required this.remoteUserId,
+    required this.remoteDeviceId,
+    required this.identityKey,
+    required this.verifiedAt,
+    required this.source,
+  });
+  final String remoteUserId;
+  final String remoteDeviceId;
+  final String identityKey;
+  final int verifiedAt; // epoch ms
+  final String source;
+}
+
+/// The decrypted, parsed backup payload. Outbound group sessions are
+/// intentionally NOT modelled: outbound Megolm is minted fresh on the restoring
+/// device (importing it would resume a sender ratchet that a still-live original
+/// device could collide with).
 class E2eeBackupPayload {
   const E2eeBackupPayload({
     required this.version,
@@ -97,6 +113,7 @@ class E2eeBackupPayload {
     required this.account,
     required this.sessions,
     required this.inboundGroupSessions,
+    required this.verifications,
   });
 
   final int version; // inner `v`: 1 or 2
@@ -104,6 +121,7 @@ class E2eeBackupPayload {
   final BackupPickledAccount? account;
   final List<BackupPickledSession> sessions;
   final List<BackupPickledInboundGroup> inboundGroupSessions; // v2 only
+  final List<BackupVerificationEntry> verifications;
 }
 
 Uint8List _b64(String s) {
@@ -226,6 +244,20 @@ E2eeBackupPayload _parsePayload(Map<String, dynamic> p) {
     }
   }
 
+  final verifications = <BackupVerificationEntry>[];
+  for (final e in _list(p['verifications'])) {
+    if (e is! Map<String, dynamic>) {
+      continue;
+    }
+    verifications.add(BackupVerificationEntry(
+      remoteUserId: _str(e, 'remote_user_id'),
+      remoteDeviceId: _str(e, 'remote_device_id'),
+      identityKey: _str(e, 'identity_key'),
+      verifiedAt: _int(e, 'verified_at'),
+      source: e['source'] is String ? e['source'] as String : 'manual',
+    ));
+  }
+
   final pickleKey = p['pickle_key'];
   return E2eeBackupPayload(
     version: v as int,
@@ -233,6 +265,7 @@ E2eeBackupPayload _parsePayload(Map<String, dynamic> p) {
     account: account,
     sessions: sessions,
     inboundGroupSessions: inbound,
+    verifications: verifications,
   );
 }
 
