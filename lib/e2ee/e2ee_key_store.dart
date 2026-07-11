@@ -254,6 +254,22 @@ class E2eeKeyStore extends _$E2eeKeyStore {
   ) =>
       into(e2eeInboundGroupSessions).insert(session, mode: InsertMode.insertOrIgnore);
 
+  /// Drop an inbound group session — used only to evict a corrupt/unreadable
+  /// pickle so a re-import can replace it.
+  Future<void> deleteInboundGroupSession(
+    String channelId,
+    String senderUserId,
+    String senderDeviceId,
+    String sessionId,
+  ) =>
+      (delete(e2eeInboundGroupSessions)
+            ..where((t) =>
+                t.channelId.equals(channelId) &
+                t.senderUserId.equals(senderUserId) &
+                t.senderDeviceId.equals(senderDeviceId) &
+                t.sessionId.equals(sessionId)))
+          .go();
+
   /// Wipe every store — called on logout so a different user signing in on the
   /// same install can't be linked to the previous user's material.
   Future<void> wipeAll() => transaction(() async {

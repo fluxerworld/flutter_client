@@ -11,6 +11,15 @@
 import 'dart:typed_data';
 
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as flutter_vodozemac;
+// Low-level bindings, imported ONLY to pin Megolm to session version 1. The
+// high-level GroupSession()/InboundGroupSession() constructors hardcode
+// vodozemac's default MegolmSessionConfig, which is version 2 (full-length MAC)
+// — incompatible with the libolm 3.2.15 that web/RN use (version 1, truncated
+// MAC), so group DMs would fail to decrypt cross-client. The public API exposes
+// no config override, so we drop to the generated bindings (which DO accept a
+// config) for the two group-session types. Mirrors the Olm path's version1 pin.
+// ignore: implementation_imports
+import 'package:vodozemac/src/generated/bindings.dart' as vzb;
 import 'package:vodozemac/vodozemac.dart' as vodozemac;
 
 /// The result of decrypting an inbound Olm pre-key message: a fresh session to
@@ -130,32 +139,39 @@ class E2eeOlmSession {
       ));
 }
 
+/// libolm-compatible Megolm session config (version 1, truncated MAC). Used for
+/// EVERY group session so the wire matches web/RN (see the import note above).
+vzb.VodozemacMegolmSessionConfig _megolmV1() =>
+    vzb.VodozemacMegolmSessionConfig.version1();
+
 /// An outbound Megolm group session (this device's sender ratchet for a group
 /// DM channel).
 class E2eeOutboundGroupSession {
   E2eeOutboundGroupSession._(this._session);
 
-  final vodozemac.GroupSession _session;
+  final vzb.VodozemacGroupSession _session;
 
-  factory E2eeOutboundGroupSession.create() =>
-      E2eeOutboundGroupSession._(vodozemac.GroupSession());
+  factory E2eeOutboundGroupSession.create() => E2eeOutboundGroupSession._(
+        vzb.VodozemacGroupSession(config: _megolmV1()),
+      );
 
   /// Stable id, byte-identical to libolm's — it routes the distribute/list/ack
   /// URLs, so it MUST match across clients (verified in the spike).
-  String get sessionId => _session.sessionId;
+  String get sessionId => _session.sessionId();
 
   /// The current session key to distribute to recipient devices (Olm-wrapped).
-  String get sessionKey => _session.sessionKey;
+  String get sessionKey => _session.sessionKey();
 
   /// Encrypt to a Megolm ciphertext (the wire `ciphertext` value).
-  String encrypt(String plaintext) => _session.encrypt(plaintext);
+  String encrypt(String plaintext) => _session.encrypt(plaintext: plaintext);
 
-  String toPickle(Uint8List pickleKey) => _session.toPickleEncrypted(pickleKey);
+  String toPickle(Uint8List pickleKey) =>
+      _session.pickleEncrypted(pickleKey: vzb.U8Array32(pickleKey));
 
   factory E2eeOutboundGroupSession.fromPickle(String pickle, Uint8List key) =>
-      E2eeOutboundGroupSession._(vodozemac.GroupSession.fromPickleEncrypted(
+      E2eeOutboundGroupSession._(vzb.VodozemacGroupSession.fromPickleEncrypted(
         pickle: pickle,
-        pickleKey: key,
+        pickleKey: vzb.U8Array32(key),
       ));
 }
 
@@ -163,26 +179,31 @@ class E2eeOutboundGroupSession {
 class E2eeInboundGroupSession {
   E2eeInboundGroupSession._(this._session);
 
-  final vodozemac.InboundGroupSession _session;
+  final vzb.VodozemacInboundGroupSession _session;
 
   /// Import from a session key distributed by the sender.
   factory E2eeInboundGroupSession.fromSessionKey(String sessionKey) =>
-      E2eeInboundGroupSession._(vodozemac.InboundGroupSession(sessionKey));
+      E2eeInboundGroupSession._(vzb.VodozemacInboundGroupSession(
+        sessionKey: sessionKey,
+        config: _megolmV1(),
+      ));
 
-  String get sessionId => _session.sessionId;
+  String get sessionId => _session.sessionId();
 
   /// Decrypt a Megolm ciphertext, returning the plaintext and its ratchet index.
   ({String plaintext, int messageIndex}) decrypt(String ciphertext) {
-    final r = _session.decrypt(ciphertext);
-    return (plaintext: r.plaintext, messageIndex: r.messageIndex);
+    final r = _session.decrypt(encrypted: ciphertext);
+    return (plaintext: r.field0, messageIndex: r.field1);
   }
 
-  String toPickle(Uint8List pickleKey) => _session.toPickleEncrypted(pickleKey);
+  String toPickle(Uint8List pickleKey) =>
+      _session.pickleEncrypted(pickleKey: vzb.U8Array32(pickleKey));
 
   factory E2eeInboundGroupSession.fromPickle(String pickle, Uint8List key) =>
       E2eeInboundGroupSession._(
-          vodozemac.InboundGroupSession.fromPickleEncrypted(
-        pickle: pickle,
-        pickleKey: key,
-      ));
+        vzb.VodozemacInboundGroupSession.fromPickleEncrypted(
+          pickle: pickle,
+          pickleKey: vzb.U8Array32(key),
+        ),
+      );
 }

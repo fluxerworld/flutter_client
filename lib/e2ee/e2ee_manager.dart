@@ -1006,26 +1006,14 @@ class E2eeManager {
     required String senderUserId,
     String? messageId,
   }) async {
-    // 1. Try an already-imported inbound session for (channel, sender, session).
-    final existing = await _store.readInboundGroupSession(
-      channelId,
-      senderUserId,
-      payload.senderDeviceId,
-      payload.sessionId,
-    );
-    if (existing != null) {
-      final text = _tryMegolmDecrypt(existing, payload.ciphertext);
-      if (text != null) {
-        return _finishMegolm(text, channelId, messageId);
-      }
-      // A stored session that can't read this ciphertext is corrupt/tampered or
-      // past its window — unrecoverable for this device.
-      return const DecryptionPermanent(
-        'megolm decrypt failed on stored session',
-      );
+    // 1. Try the currently-stored session (dropping it if its pickle is corrupt
+    // so the fetch below can re-import a good copy).
+    final firstTry = await _tryStoredMegolm(channelId, senderUserId, payload);
+    if (firstTry != null) {
+      return _finishMegolm(firstTry, channelId, messageId);
     }
 
-    // 2. No session yet — fetch + import the distributed session-key blobs.
+    // 2. No readable+matching session — fetch + import the distributed key blobs.
     final result = await _fetchAndImportGroupSessions(
       channelId: channelId,
       senderUserId: senderUserId,
@@ -1034,43 +1022,59 @@ class E2eeManager {
     if (result == _GroupImportResult.networkError) {
       return const DecryptionTransient('group session listing failed');
     }
-    if (result == _GroupImportResult.noBlob) {
-      // No key blob targets this device (joined after the message, or forward
-      // secrecy) — never decryptable here.
-      return const DecryptionPermanent('no group session key for this device');
+
+    // 3. Retry with whatever we now hold.
+    final secondTry = await _tryStoredMegolm(channelId, senderUserId, payload);
+    if (secondTry != null) {
+      return _finishMegolm(secondTry, channelId, messageId);
     }
 
-    // 3. Imported — decrypt.
-    final imported = await _store.readInboundGroupSession(
+    // Unrecoverable for this device: no key blob was addressed to us (joined
+    // after the message / forward secrecy) OR the message predates the session's
+    // first-known index. Megolm decrypt has no transient failure mode, so this
+    // is permanent (never retry).
+    return const DecryptionPermanent('no readable group session for this message');
+  }
+
+  /// Decrypt with the stored inbound session, WITHOUT re-pickling it (the stored
+  /// session must stay at its first-known index so earlier history re-derives).
+  /// Returns the plaintext, or null if there's no session, the message is below
+  /// its first-known index, or the pickle is corrupt — in which case the corrupt
+  /// row is dropped so a subsequent re-import can replace it.
+  Future<String?> _tryStoredMegolm(
+    String channelId,
+    String senderUserId,
+    MegolmPayload payload,
+  ) async {
+    final stored = await _store.readInboundGroupSession(
       channelId,
       senderUserId,
       payload.senderDeviceId,
       payload.sessionId,
     );
-    if (imported == null) {
-      return const DecryptionTransient('group session missing after import');
+    if (stored == null) {
+      return null;
     }
-    final text = _tryMegolmDecrypt(imported, payload.ciphertext);
-    if (text == null) {
-      return const DecryptionTransient('megolm decrypt failed after import');
-    }
-    return _finishMegolm(text, channelId, messageId);
-  }
-
-  /// Decrypt a Megolm ciphertext with a stored inbound session WITHOUT
-  /// re-pickling it: the stored session must stay at its first-known index so
-  /// earlier history can still be re-derived. Returns null on failure.
-  String? _tryMegolmDecrypt(
-    StoredInboundGroupSession stored,
-    String ciphertext,
-  ) {
+    final E2eeInboundGroupSession session;
     try {
-      final session = E2eeInboundGroupSession.fromPickle(
+      session = E2eeInboundGroupSession.fromPickle(
         stored.sessionPickle,
         _pickleKey!,
       );
-      return session.decrypt(ciphertext).plaintext;
     } on Object catch (_) {
+      // Corrupt/unreadable pickle — evict it so a re-import can repair.
+      await _store.deleteInboundGroupSession(
+        channelId,
+        senderUserId,
+        payload.senderDeviceId,
+        payload.sessionId,
+      );
+      return null;
+    }
+    try {
+      return session.decrypt(payload.ciphertext).plaintext;
+    } on Object catch (_) {
+      // Below first-known index / bad ciphertext — unrecoverable, not corrupt.
       return null;
     }
   }
