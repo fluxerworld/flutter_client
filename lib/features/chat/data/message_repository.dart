@@ -7,6 +7,8 @@ import 'package:fluxer_app/core/api/dio_error_message.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/utils/message_mention_resolver.dart';
+import 'package:fluxer_app/e2ee/e2ee_manager.dart';
+import 'package:fluxer_app/e2ee/e2ee_wire.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/chat/domain/api_attachment_metadata.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
@@ -114,10 +116,17 @@ class MessageRepository {
   final Dio _dio;
   final db.FluxerDatabase _db;
   final String? _currentUserId;
+  final E2eeManager _e2ee;
   final Map<String, Future<MessageListLoadResult>> _inFlightPages =
       <String, Future<MessageListLoadResult>>{};
 
-  MessageRepository(this._client, this._dio, this._db, this._currentUserId);
+  MessageRepository(
+    this._client,
+    this._dio,
+    this._db,
+    this._currentUserId,
+    this._e2ee,
+  );
 
   Stream<List<Message>> watchMessages(String channelId) {
     return _db.messageDao
@@ -585,6 +594,13 @@ class MessageRepository {
         tts: tts,
       );
 
+      final bool encrypted = await _maybeEncryptBody(
+        channelId: channelId,
+        content: content,
+        clientNonce: clientNonce,
+        body: body,
+      );
+
       if (attachmentFiles != null && attachmentFiles.isNotEmpty) {
         final FormData formData = FormData();
         formData.fields.add(MapEntry('payload_json', jsonEncode(body)));
@@ -618,15 +634,94 @@ class MessageRepository {
           schema,
           currentUserId: _currentUserId,
         ).copyWith(isMentioned: false);
+        if (encrypted) {
+          _e2ee.recordSentPlaintext(
+            text: content,
+            messageId: message.id,
+            nonce: clientNonce,
+            channelId: channelId,
+          );
+        }
         await _db.messageDao.upsertMessage(message.toCompanion());
         return message;
       }
 
       final Message sent = await _postMessage(channelId, body);
+      if (encrypted) {
+        _e2ee.recordSentPlaintext(
+          text: content,
+          messageId: sent.id,
+          nonce: clientNonce,
+          channelId: channelId,
+        );
+      }
       return sent;
     } on DioException {
       rethrow;
     }
+  }
+
+  /// Encrypt [body] in place for an E2EE DM/Group-DM channel: replaces the
+  /// plaintext content with an `encrypted_payload` and sets the ENCRYPTED flag.
+  /// Returns true when the body was encrypted (so the caller records the sent
+  /// plaintext for its own echo). Falls back to plaintext (returns false) for
+  /// non-encrypted channels, or when the manager isn't ready / has no reachable
+  /// recipient device — the same safe degrade the web/RN clients use.
+  Future<bool> _maybeEncryptBody({
+    required String channelId,
+    required String content,
+    required String? clientNonce,
+    required Map<String, dynamic> body,
+  }) async {
+    final String? userId = _currentUserId;
+    if (userId == null) {
+      return false;
+    }
+    final db.DmChannel? dm = await _db.dmChannelDao.getDmChannelById(channelId);
+    if (dm == null || !isEncryptedChannelType(dm.type)) {
+      return false;
+    }
+    // Ensure the identity is ready before deciding to encrypt, so a send that
+    // races startup doesn't silently downgrade an E2EE DM to plaintext.
+    try {
+      await _e2ee.ensureBootstrapped(userId);
+    } on Object {
+      // Bootstrap failed; tryEncryptForChannel returns null below → plaintext.
+    }
+
+    final List<String> recipients = <String>[];
+    try {
+      final Object? decoded = jsonDecode(dm.recipientIds);
+      if (decoded is List) {
+        for (final Object? e in decoded) {
+          final String s = e.toString();
+          if (s.isNotEmpty) {
+            recipients.add(s);
+          }
+        }
+      }
+    } on Object {
+      // Malformed recipient list → manager gets an empty set and returns null.
+    }
+
+    final Map<String, Object?>? payload = await _e2ee.tryEncryptForChannel(
+      channelType: dm.type,
+      recipientUserIds: recipients,
+      plaintext: content,
+    );
+    if (payload == null) {
+      return false;
+    }
+    body.remove('content');
+    body['flags'] = ((body['flags'] as int?) ?? 0) | kMessageFlagEncrypted;
+    body['encrypted_payload'] = payload;
+    // Pre-id echo cache (before the server assigns a message id).
+    _e2ee.recordSentPlaintext(
+      text: content,
+      nonce: clientNonce,
+      channelId: channelId,
+    );
+    return true;
   }
 
   Future<Message> _postMessage(

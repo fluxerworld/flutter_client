@@ -8,6 +8,7 @@ import 'package:fluxer_app/core/push/push_notification_clear.dart';
 import 'package:fluxer_app/core/push/services/unified_push_service.dart';
 import 'package:fluxer_app/core/push/unified_push/unified_push_mobile_device_registration.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/e2ee/e2ee_provider.dart';
 
 enum LeavePushAccountMode { switchAccount, signOut }
 
@@ -23,6 +24,10 @@ final class PushAccountLifecycle {
     if (userId == null || !isAuthenticated) {
       return;
     }
+    // Wipe this install's E2EE state (cache-db + secure-storage identity) so a
+    // different user signing in here can't be linked to the leaving user's
+    // decrypted messages or Olm identity.
+    await ref.read(e2eeManagerProvider).onLogout();
     ref.read(pendingPushNotificationPathProvider.notifier).clear();
     await AppIconBadgeService.clear();
     await PushNotificationClear.clearAllDelivered();

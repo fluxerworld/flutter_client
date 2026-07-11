@@ -1,6 +1,7 @@
 import 'package:fluxer_app/core/api/fluxer_client_provider.dart';
 import 'package:fluxer_app/core/providers/database_provider.dart';
 import 'package:fluxer_app/core/router/fluxer_router.dart';
+import 'package:fluxer_app/e2ee/e2ee_provider.dart';
 import 'package:fluxer_app/features/chat/data/message_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,5 +13,6 @@ MessageRepository messageRepository(Ref ref) {
   final dio = ref.watch(fluxerDioProvider);
   final db = ref.watch(fluxerDatabaseProvider);
   final currentUserId = ref.watch(currentUserIdProvider);
-  return MessageRepository(client, dio, db, currentUserId);
+  final e2ee = ref.watch(e2eeManagerProvider);
+  return MessageRepository(client, dio, db, currentUserId, e2ee);
 }

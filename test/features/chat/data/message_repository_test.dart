@@ -3,13 +3,26 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart' show Value;
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' hide Message;
+import 'package:fluxer_app/e2ee/e2ee_api.dart';
+import 'package:fluxer_app/e2ee/e2ee_key_store.dart';
+import 'package:fluxer_app/e2ee/e2ee_manager.dart';
+import 'package:fluxer_app/e2ee/e2ee_secure_store.dart';
 import 'package:fluxer_app/features/chat/data/message_repository.dart';
 import 'package:fluxer_app/features/chat/domain/message.dart';
 import 'package:fluxer_dart/export.dart';
 
 import '../../../helpers/open_test_database.dart';
+
+// A constructible manager for repository tests that don't exercise encryption
+// (their channels aren't E2EE DMs, so the key store is never queried).
+E2eeManager _testE2ee(Dio dio) => E2eeManager(
+  api: E2eeApi(dio),
+  store: E2eeKeyStore.forTesting(NativeDatabase.memory()),
+  secure: MapE2eeSecureStore(),
+);
 
 void main() {
   test('buildMessageCreateBody sends favorite meme ids compactly', () {
@@ -98,7 +111,7 @@ void main() {
     final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
       ..httpClientAdapter = adapter;
     final client = FluxerClient(dio, baseUrl: 'https://api.fluxer.app/v1');
-    final repo = MessageRepository(client, dio, db, 'me');
+    final repo = MessageRepository(client, dio, db, 'me', _testE2ee(dio));
 
     // Two concurrent identical loads share one network round-trip.
     await Future.wait([
@@ -164,7 +177,7 @@ void main() {
     final dio = Dio(BaseOptions(baseUrl: 'https://api.fluxer.app/v1'))
       ..httpClientAdapter = adapter;
     final client = FluxerClient(dio, baseUrl: 'https://api.fluxer.app/v1');
-    final repo = MessageRepository(client, dio, db, 'me');
+    final repo = MessageRepository(client, dio, db, 'me', _testE2ee(dio));
 
     await repo.loadMessagePage(channelId: 'channel-1');
 

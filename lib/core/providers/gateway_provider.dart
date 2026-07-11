@@ -17,6 +17,7 @@ import 'package:fluxer_app/core/synced_preferences/engine/synced_preferences_sto
 import 'package:fluxer_app/core/synced_preferences/synced_theme_hydration.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/theme/providers/theme_preference_provider.dart';
+import 'package:fluxer_app/e2ee/e2ee_provider.dart';
 import 'package:fluxer_app/features/auth/providers/current_auth_session_provider.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/providers/read_state_write_batcher_provider.dart';
@@ -97,6 +98,10 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
         ref.read(activeReadChannelProvider.notifier).isAutoAckActive(channelId),
     onReady: () {
       talker.info('[Gateway] Setting gatewayReady = true');
+      final String? e2eeUserId = ref.read(currentUserIdProvider);
+      if (e2eeUserId != null) {
+        unawaited(ref.read(e2eeManagerProvider).onGatewayReady(e2eeUserId));
+      }
       unawaited(ref.read(channelPermissionCacheProvider.notifier).rebuildAll());
       ref
         ..invalidate(effectiveGuildChannelPermissionBitsProvider)
