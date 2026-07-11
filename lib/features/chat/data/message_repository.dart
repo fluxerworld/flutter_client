@@ -21,6 +21,20 @@ import 'package:fluxer_dart/export.dart';
 
 const int kMessageFlagCompactAttachments = 1 << 17;
 
+/// Thrown when a message can't be sent to an always-on-E2EE channel because it
+/// couldn't be encrypted (Group DM Megolm not yet supported, identity not ready,
+/// or the recipient has no device). The send is refused rather than leaked as
+/// plaintext; the UI shows it as a failed send.
+class E2eeEncryptionUnavailableException implements Exception {
+  const E2eeEncryptionUnavailableException(this.channelType);
+
+  final int channelType;
+
+  @override
+  String toString() =>
+      'E2eeEncryptionUnavailableException(channelType: $channelType)';
+}
+
 class MessageListLoadResult {
   const MessageListLoadResult({
     required this.messages,
@@ -389,6 +403,19 @@ class MessageRepository {
       currentUserId: _currentUserId,
       channelId: channelId,
     );
+    // Bootstrap once before decrypting (mirrors _fetchMessagePage) so a page
+    // fetched during the cold-start bootstrap race doesn't persist empty rows.
+    final String? uid = _currentUserId;
+    if (uid != null &&
+        data.any(
+          (json) => json is Map && json['encrypted_payload'] != null,
+        )) {
+      try {
+        await _e2ee.ensureBootstrapped(uid);
+      } on Object {
+        // Proceed; decrypt returns transient if still not ready.
+      }
+    }
     for (final json in data.reversed) {
       try {
         final map = json as Map<String, dynamic>;
@@ -638,11 +665,15 @@ class MessageRepository {
         final MessageResponseSchema schema = MessageResponseSchema.fromJson(
           data,
         );
-        final Message message = Message.fromSdk(
+        Message message = Message.fromSdk(
           schema,
           currentUserId: _currentUserId,
         ).copyWith(isMentioned: false);
         if (encrypted) {
+          // The server echoes empty content for an encrypted message; reapply
+          // the plaintext so our own just-sent message renders the text, not the
+          // lock placeholder, and the persisted row matches the gateway echo.
+          message = message.copyWith(content: content);
           _e2ee.recordSentPlaintext(
             text: content,
             messageId: message.id,
@@ -654,7 +685,11 @@ class MessageRepository {
         return message;
       }
 
-      final Message sent = await _postMessage(channelId, body);
+      final Message sent = await _postMessage(
+        channelId,
+        body,
+        plaintextOverride: encrypted ? content : null,
+      );
       if (encrypted) {
         _e2ee.recordSentPlaintext(
           text: content,
@@ -744,11 +779,11 @@ class MessageRepository {
       return false;
     }
     // Ensure the identity is ready before deciding to encrypt, so a send that
-    // races startup doesn't silently downgrade an E2EE DM to plaintext.
+    // races startup doesn't fail to encrypt an E2EE DM.
     try {
       await _e2ee.ensureBootstrapped(userId);
     } on Object {
-      // Bootstrap failed; tryEncryptForChannel returns null below → plaintext.
+      // Bootstrap failed; handled by the fail-closed check below.
     }
 
     final List<String> recipients = <String>[];
@@ -772,7 +807,12 @@ class MessageRepository {
       plaintext: content,
     );
     if (payload == null) {
-      return false;
+      // FAIL CLOSED: this is an always-on-E2EE channel but we could not produce
+      // an encrypted payload (Group DM Megolm isn't implemented yet, or the
+      // identity isn't ready / the recipient has no device). Never fall back to
+      // plaintext on an encrypted channel — refuse the send so the UI surfaces a
+      // failure instead of leaking cleartext.
+      throw E2eeEncryptionUnavailableException(dm.type);
     }
     body.remove('content');
     body['flags'] = ((body['flags'] as int?) ?? 0) | kMessageFlagEncrypted;
@@ -788,8 +828,9 @@ class MessageRepository {
 
   Future<Message> _postMessage(
     String channelId,
-    Map<String, dynamic> body,
-  ) async {
+    Map<String, dynamic> body, {
+    String? plaintextOverride,
+  }) async {
     final Response<Map<String, dynamic>> response = await _dio
         .post<Map<String, dynamic>>(
           '/channels/$channelId/messages',
@@ -804,10 +845,14 @@ class MessageRepository {
       throw Exception('Empty response from sendMessage');
     }
     final MessageResponseSchema schema = MessageResponseSchema.fromJson(data);
-    final Message message = Message.fromSdk(
+    Message message = Message.fromSdk(
       schema,
       currentUserId: _currentUserId,
     ).copyWith(isMentioned: false);
+    if (plaintextOverride != null) {
+      // Reapply our own plaintext over the server's empty encrypted echo.
+      message = message.copyWith(content: plaintextOverride);
+    }
     await _db.messageDao.upsertMessage(message.toCompanion());
     return message;
   }
@@ -828,6 +873,18 @@ class MessageRepository {
   }) async {
     final String? trimmedComment = comment?.trim();
     final bool hasComment = trimmedComment != null && trimmedComment.isNotEmpty;
+    // A forward posts a server-assembled snapshot of the source message plus an
+    // optional comment, neither of which is E2EE-encrypted. Forwarding into an
+    // always-on-E2EE channel would leak cleartext, so refuse it up front (before
+    // sending to any destination) rather than partially leaking.
+    for (final String destinationId in destinationChannelIds) {
+      final db.DmChannel? dm = await _db.dmChannelDao.getDmChannelById(
+        destinationId,
+      );
+      if (dm != null && isEncryptedChannelType(dm.type)) {
+        throw E2eeEncryptionUnavailableException(dm.type);
+      }
+    }
     try {
       for (final String destinationId in destinationChannelIds) {
         await _postMessage(
