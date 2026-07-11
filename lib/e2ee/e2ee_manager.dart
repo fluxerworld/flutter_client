@@ -786,7 +786,15 @@ class E2eeManager {
     if (messageId != null) {
       _sentByMessageId[messageId] = entry;
       unawaited(_store
-          .writePlaintext(_plaintextRow(messageId, channelId, text, 'verified'))
+          .writePlaintext(
+            _plaintextRow(
+              messageId,
+              channelId,
+              text,
+              'verified',
+              entry.attachments,
+            ),
+          )
           .catchError((Object _) {}));
     }
   }
@@ -813,6 +821,7 @@ class E2eeManager {
         if (cached != null) {
           return DecryptionOk(
             text: cached.plaintext,
+            attachments: _decodeAttachments(cached.attachmentsJson),
             verificationStatus: cached.verificationStatus ?? 'unverified',
           );
         }
@@ -875,7 +884,13 @@ class E2eeManager {
       if (messageId != null) {
         try {
           await _store.writePlaintext(
-            _plaintextRow(messageId, channelId, env.text, 'unverified'),
+            _plaintextRow(
+              messageId,
+              channelId,
+              env.text,
+              'unverified',
+              env.attachments,
+            ),
           );
         } on Object catch (_) {
           // caching is best-effort
@@ -1088,7 +1103,13 @@ class E2eeManager {
     if (messageId != null) {
       try {
         await _store.writePlaintext(
-          _plaintextRow(messageId, channelId, env.text, 'unverified'),
+          _plaintextRow(
+            messageId,
+            channelId,
+            env.text,
+            'unverified',
+            env.attachments,
+          ),
         );
       } on Object catch (_) {
         // best-effort
@@ -1318,13 +1339,37 @@ class E2eeManager {
     String? channelId,
     String text,
     String verification,
+    List<Map<String, Object?>> attachments,
   ) =>
       E2eeMessagePlaintextsCompanion.insert(
         messageId: messageId,
         plaintext: text,
         channelId: Value(channelId),
         verificationStatus: Value(verification),
+        attachmentsJson: Value(
+          attachments.isEmpty ? null : jsonEncode(attachments),
+        ),
       );
+
+  /// Decode the persisted attachment envelope entries back into the list the
+  /// renderer needs (with per-file keys), or empty if none/malformed.
+  List<Map<String, Object?>> _decodeAttachments(String? json) {
+    if (json == null || json.isEmpty) {
+      return const [];
+    }
+    try {
+      final decoded = jsonDecode(json);
+      if (decoded is List) {
+        return decoded
+            .whereType<Map<Object?, Object?>>()
+            .map((e) => e.cast<String, Object?>())
+            .toList();
+      }
+    } on Object catch (_) {
+      // malformed cache row — treat as no attachments
+    }
+    return const [];
+  }
 
   Uint8List _generatePickleKey() =>
       Uint8List.fromList(List<int>.generate(32, (_) => _random.nextInt(256)));

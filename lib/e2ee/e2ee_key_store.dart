@@ -101,6 +101,11 @@ class E2eeMessagePlaintexts extends Table {
   TextColumn get channelId => text().nullable()();
   TextColumn get plaintext => text()();
   TextColumn get verificationStatus => text().nullable()();
+  /// JSON array of the decrypted attachment envelope entries ({key,iv,mime,name,
+  /// ...}). Persisted because Olm/Megolm are single-use: after a reload the
+  /// message envelope can't be re-decrypted, so without the per-file AES keys
+  /// here, encrypted attachments would become permanently unopenable.
+  TextColumn get attachmentsJson => text().nullable()();
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 
   @override
@@ -124,7 +129,19 @@ class E2eeKeyStore extends _$E2eeKeyStore {
   E2eeKeyStore.forTesting(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onUpgrade: (m, from, to) async {
+          if (from < 2) {
+            await m.addColumn(
+              e2eeMessagePlaintexts,
+              e2eeMessagePlaintexts.attachmentsJson,
+            );
+          }
+        },
+      );
 
   static QueryExecutor _open() => driftDatabase(name: 'fluxer_e2ee');
 
