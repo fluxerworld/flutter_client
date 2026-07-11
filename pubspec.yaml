@@ -22,6 +22,7 @@ dependencies:
   device_info_plus: ^12.4.0
   dio: ^5.10.0
   drift: ^2.34.0
+  pointycastle: ^4.0.0
   drift_flutter: ^0.3.0
   file_picker: ^11.0.2
   fixnum: ^1.1.1
