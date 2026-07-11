@@ -5193,6 +5193,9 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get chatMessageEdited => '(upraveno)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Toto byla @silent zpráva.';
 
   @override

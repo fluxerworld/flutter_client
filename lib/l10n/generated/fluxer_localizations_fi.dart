@@ -5203,6 +5203,9 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get chatMessageEdited => '(muokattu)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Tämä oli @silent-viesti.';
 
   @override

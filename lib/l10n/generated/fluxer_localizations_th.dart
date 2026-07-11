@@ -5150,6 +5150,9 @@ class FluxerLocalizationsTh extends FluxerLocalizations {
   String get chatMessageEdited => '(แก้ไข)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'นี่คือข้อความ @silent';
 
   @override

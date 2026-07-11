@@ -6557,6 +6557,10 @@
   "@chatMessageEdited": {
     "description": "Message metadata label displayed after edited messages."
   },
+  "chatMessageEncrypted": "Encrypted message",
+  "@chatMessageEncrypted": {
+    "description": "Placeholder shown for an end-to-end encrypted message that this device could not decrypt (not addressed to this device, or awaiting the establishing key)."
+  },
   "chatMessageSilent": "This was a @silent message.",
   "@chatMessageSilent": {
     "description": "Tooltip on the bell-slash icon beside a silent message. \"@silent\" is the literal command keyword and must not be translated."

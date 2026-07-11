@@ -5180,6 +5180,9 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
   String get chatMessageEdited => '(ویرایش شده)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'این یک پیام @silent بود.';
 
   @override

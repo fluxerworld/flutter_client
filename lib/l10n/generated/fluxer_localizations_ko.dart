@@ -4968,6 +4968,9 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get chatMessageEdited => '(수정됨)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => '이 메시지는 @silent 메시지였습니다.';
 
   @override

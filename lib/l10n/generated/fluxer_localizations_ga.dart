@@ -5215,6 +5215,9 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get chatMessageEdited => '(eagarthóireacht)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Bhí seo ina @silent teachtaireacht.';
 
   @override

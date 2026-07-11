@@ -5205,6 +5205,9 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get chatMessageEdited => '(wedi\'i olygu)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Roedd hon yn neges @silent.';
 
   @override

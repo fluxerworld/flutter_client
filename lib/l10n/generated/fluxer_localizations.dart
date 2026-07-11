@@ -8771,6 +8771,12 @@ abstract class FluxerLocalizations {
   /// **'(edited)'**
   String get chatMessageEdited;
 
+  /// Placeholder shown for an end-to-end encrypted message that this device could not decrypt (not addressed to this device, or awaiting the establishing key).
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted message'**
+  String get chatMessageEncrypted;
+
   /// Tooltip on the bell-slash icon beside a silent message. "@silent" is the literal command keyword and must not be translated.
   ///
   /// In en, this message translates to:

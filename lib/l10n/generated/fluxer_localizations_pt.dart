@@ -5212,6 +5212,9 @@ class FluxerLocalizationsPt extends FluxerLocalizations {
   String get chatMessageEdited => '(editado)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Esta foi uma mensagem @silent.';
 
   @override

@@ -5216,6 +5216,9 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get chatMessageEdited => '(ред.)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent =>
       'Це було повідомлення @silent. \"@silent\" — це команда, її не слід перекладати.';
 

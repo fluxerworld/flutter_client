@@ -5202,6 +5202,9 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get chatMessageEdited => '(upravené)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Toto bola @silent správa.';
 
   @override

@@ -5194,6 +5194,9 @@ class FluxerLocalizationsAf extends FluxerLocalizations {
   String get chatMessageEdited => '(geredigeer)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Dit was \'n @silent boodskap.';
 
   @override

@@ -5224,6 +5224,9 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get chatMessageEdited => '(szerkesztve)';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'Ez egy @silent üzenet volt.';
 
   @override

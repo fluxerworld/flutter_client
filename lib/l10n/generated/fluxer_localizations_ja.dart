@@ -4980,6 +4980,9 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get chatMessageEdited => '（編集済み）';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => 'これは@silentメッセージです。';
 
   @override

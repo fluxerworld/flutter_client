@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/core/database/fluxer_database.dart' as db;
 import 'package:fluxer_app/core/media/fluxer_media_url.dart';
+import 'package:fluxer_app/e2ee/e2ee_wire.dart';
 import 'package:fluxer_app/features/chat/utils/url_sanitization_utils.dart';
 import 'package:fluxer_app/features/chat/utils/voice_message_constants.dart';
 import 'package:fluxer_app/shared/utils/guild_user_display.dart';
@@ -1398,6 +1399,7 @@ class Message {
   bool get hasCompactAttachments =>
       (flags & messageFlagCompactAttachments) != 0;
   bool get isVoiceMessage => (flags & kMessageFlagVoiceMessage) != 0;
+  bool get isEncrypted => (flags & kMessageFlagEncrypted) != 0;
 
   bool shouldHideContent({required bool renderEmbeds}) {
     if (!renderEmbeds || suppressEmbeds || embeds.isEmpty) {

@@ -4885,6 +4885,9 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get chatMessageEdited => '（已编辑）';
 
   @override
+  String get chatMessageEncrypted => 'Encrypted message';
+
+  @override
   String get chatMessageSilent => '这是一条 @silent 消息。';
 
   @override

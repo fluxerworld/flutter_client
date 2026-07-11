@@ -797,6 +797,8 @@ class _MessageItemState extends ConsumerState<MessageItem> {
             revealSpoilers: revealSpoilers,
           ),
         ),
+      if (msg.content.isEmpty && msg.isEncrypted)
+        wrapPart(_buildEncryptedPlaceholder(context)),
       if (msg.hasForwardSnapshots)
         wrapPart(
           ForwardedMessageContent(
@@ -1082,6 +1084,28 @@ class _MessageItemState extends ConsumerState<MessageItem> {
           color: context.textStyles.timestamp.color,
         ),
       ),
+    );
+  }
+
+  /// Placeholder for an encrypted message this device couldn't decrypt (empty
+  /// content + the ENCRYPTED flag). Kept deliberately generic — we don't
+  /// distinguish "awaiting key" from "not for this device" on the row itself.
+  Widget _buildEncryptedPlaceholder(BuildContext context) {
+    final Color? color = context.textStyles.timestamp.color;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.lock_outline, size: 14, color: color),
+        const SizedBox(width: 6),
+        Text(
+          FluxerLocalizations.of(context).chatMessageEncrypted,
+          style: TextStyle(
+            color: color,
+            fontStyle: FontStyle.italic,
+            fontSize: 14,
+          ),
+        ),
+      ],
     );
   }
 
