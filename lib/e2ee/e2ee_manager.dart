@@ -435,6 +435,7 @@ class E2eeManager {
   /// plaintext (unsupported channel type, not bootstrapped, no reachable
   /// recipient device, etc.). Never returns a black-hole payload.
   Future<Map<String, Object?>?> tryEncryptForChannel({
+    required String channelId,
     required int channelType,
     required List<String> recipientUserIds,
     required String plaintext,
@@ -455,7 +456,12 @@ class E2eeManager {
       return null;
     }
     if (channelType == kChannelTypeGroupDm) {
-      return null; // Megolm — Phase 2
+      return _encryptMegolm(
+        channelId: channelId,
+        recipientUserIds: recipientUserIds,
+        plaintext: plaintext,
+        attachments: attachments,
+      );
     }
 
     final peers = recipientUserIds.where((id) => id != selfUserId).toList();
@@ -556,6 +562,210 @@ class E2eeManager {
       senderIdentityKey: account.identityKey,
       ciphertexts: ciphertexts,
     ).toJson();
+  }
+
+  /// Encrypt a group-DM message with Megolm: reuse the channel's outbound group
+  /// session while the recipient device set is unchanged, rotating (and
+  /// redistributing the new session key) when it changes. Returns the Megolm
+  /// payload, or null to fall back (caller fails closed on an encrypted channel).
+  Future<Map<String, Object?>?> _encryptMegolm({
+    required String channelId,
+    required List<String> recipientUserIds,
+    required String plaintext,
+    required List<Map<String, Object?>> attachments,
+  }) async {
+    final account = _account!;
+    final ownDeviceId = _deviceId!;
+    final selfUserId = _accountUserId!;
+    final pickleKey = _pickleKey!;
+
+    final members = <String>{
+      selfUserId,
+      ...recipientUserIds.where((id) => id.isNotEmpty),
+    }.toList();
+    if (members.length < 2) {
+      return null; // no other members to send to
+    }
+
+    // Resolve every member's published devices.
+    final memberDevices = <String, List<E2eeDeviceInfo>>{};
+    try {
+      for (final uid in members) {
+        memberDevices[uid] = await _api.listPublicDevices(uid);
+      }
+    } on Object catch (_) {
+      return null;
+    }
+
+    final recipientSet = _computeRecipientSetString(memberDevices);
+
+    // Reuse the outbound session while the recipient device set is unchanged;
+    // rotate to a fresh session when it changes.
+    final stored = await _store.readOutboundGroupSession(channelId);
+    final E2eeOutboundGroupSession outbound;
+    final bool isNew;
+    if (stored != null && stored.recipientSetHash == recipientSet) {
+      outbound = E2eeOutboundGroupSession.fromPickle(
+        stored.sessionPickle,
+        pickleKey,
+      );
+      isNew = false;
+    } else {
+      if (stored != null) {
+        await _store.deleteOutboundGroupSession(channelId);
+      }
+      outbound = E2eeOutboundGroupSession.create();
+      isNew = true;
+    }
+    final sessionId = outbound.sessionId;
+
+    if (isNew) {
+      // Distribute the session key to every member device EXCEPT our own current
+      // device (which reads its own messages via the self-readback import below).
+      final targets = <(String, E2eeDeviceInfo)>[
+        for (final e in memberDevices.entries)
+          for (final d in e.value)
+            if (!(e.key == selfUserId && d.deviceId == ownDeviceId)) (e.key, d),
+      ];
+      // The session key is read at ratchet index 0 (before any encrypt), so both
+      // recipients and our own self-readback session start from the first message.
+      final keyBlob = jsonEncode(<String, Object?>{
+        'v': 1,
+        'channel_id': channelId,
+        'session_id': sessionId,
+        'session_key': outbound.sessionKey,
+      });
+      final blobs = await _olmEncryptToDevices(targets, keyBlob, pickleKey);
+      if (blobs.isEmpty) {
+        return null; // couldn't reach any recipient device — fail closed
+      }
+      try {
+        await _api.distributeGroupSession(
+          channelId: channelId,
+          sessionId: sessionId,
+          senderDeviceId: ownDeviceId,
+          senderIdentityKey: account.identityKey,
+          recipientBlobs: <E2eeGroupSessionBlobOut>[
+            for (final b in blobs)
+              E2eeGroupSessionBlobOut(
+                recipientUserId: b.userId,
+                recipientDeviceId: b.deviceId,
+                olmMessageType: b.type,
+                olmCiphertext: b.body,
+              ),
+          ],
+        );
+      } on Object catch (_) {
+        return null;
+      }
+
+      // Self-readback: import our own outbound session (still at index 0) as an
+      // inbound session so we can read our own messages after a reload.
+      await _store.writeInboundGroupSessionIfAbsent(
+        E2eeInboundGroupSessionsCompanion.insert(
+          channelId: channelId,
+          senderUserId: selfUserId,
+          senderDeviceId: ownDeviceId,
+          sessionId: sessionId,
+          sessionPickle:
+              E2eeInboundGroupSession.fromSessionKey(
+                outbound.sessionKey,
+              ).toPickle(pickleKey),
+          senderIdentityKey: account.identityKey,
+        ),
+      );
+    }
+
+    // Encrypt, then persist the advanced outbound session + recipient set.
+    final envelope = PlaintextEnvelope(
+      text: plaintext,
+      attachments: attachments,
+    ).encode();
+    final ciphertext = outbound.encrypt(envelope);
+    await _store.writeOutboundGroupSession(
+      E2eeOutboundGroupSessionsCompanion.insert(
+        channelId: channelId,
+        sessionId: sessionId,
+        sessionPickle: outbound.toPickle(pickleKey),
+        recipientSetHash: Value(recipientSet),
+      ),
+    );
+
+    scheduleReplenishCheck();
+
+    return MegolmPayload(
+      senderDeviceId: ownDeviceId,
+      senderIdentityKey: account.identityKey,
+      sessionId: sessionId,
+      ciphertext: ciphertext,
+    ).toJson();
+  }
+
+  /// Olm-encrypt [plaintext] to a set of recipient devices (used to distribute a
+  /// Megolm session key). Applies the identity-rotation guard, claims prekeys
+  /// only for devices without a stored session, and skips any device that can't
+  /// be reached. Returns one entry per reachable device.
+  Future<List<({String userId, String deviceId, int type, String body})>>
+  _olmEncryptToDevices(
+    List<(String, E2eeDeviceInfo)> targets,
+    String plaintext,
+    Uint8List pickleKey,
+  ) async {
+    await _applyRotationGuard(targets);
+
+    final byUser = <String, List<E2eeDeviceInfo>>{};
+    for (final (uid, d) in targets) {
+      (byUser[uid] ??= <E2eeDeviceInfo>[]).add(d);
+    }
+    final claims = <String, E2eePrekeyBundle>{};
+    for (final entry in byUser.entries) {
+      if (await _anyDeviceWithoutSession(entry.key, entry.value)) {
+        try {
+          claims.addAll(await _claimFor(entry.key));
+        } on Object catch (_) {
+          // Couldn't claim for this user; its session-less devices are skipped.
+        }
+      }
+    }
+
+    final out = <({String userId, String deviceId, int type, String body})>[];
+    for (final (uid, d) in targets) {
+      try {
+        final session = await _loadOrCreateOutboundSession(
+          _Target(uid, d, claims['$uid:${d.deviceId}']),
+          pickleKey,
+        );
+        final enc = session.encrypt(plaintext);
+        out.add(
+          (userId: uid, deviceId: d.deviceId, type: enc.type, body: enc.body),
+        );
+        await _store.writeSession(
+          E2eeOlmSessionsCompanion.insert(
+            remoteUserId: uid,
+            remoteDeviceId: d.deviceId,
+            sessionId: session.sessionId,
+            sessionPickle: session.toPickle(pickleKey),
+            lastUsedAt: Value(_now()),
+          ),
+        );
+      } on Object catch (_) {
+        // Unreachable device (no session, no claimable OTK): skip its blob.
+      }
+    }
+    return out;
+  }
+
+  /// A stable, exact representation of the channel's recipient device set, used
+  /// as the rotation trigger. Purely local (not cross-client), so the sorted
+  /// `userId|deviceId` list is compared directly rather than hashed.
+  String _computeRecipientSetString(
+    Map<String, List<E2eeDeviceInfo>> memberDevices,
+  ) {
+    final entries = <String>[
+      for (final e in memberDevices.entries)
+        for (final d in e.value) '${e.key}|${d.deviceId}',
+    ]..sort();
+    return entries.join('\n');
   }
 
   /// Record our own sent plaintext so our echo renders. [nonce] covers the

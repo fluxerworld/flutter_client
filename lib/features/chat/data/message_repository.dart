@@ -802,6 +802,7 @@ class MessageRepository {
     }
 
     final Map<String, Object?>? payload = await _e2ee.tryEncryptForChannel(
+      channelId: channelId,
       channelType: dm.type,
       recipientUserIds: recipients,
       plaintext: content,
