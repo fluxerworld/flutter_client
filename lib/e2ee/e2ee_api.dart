@@ -74,13 +74,15 @@ class E2eeSignedPrekey {
   final String signature;
 
   factory E2eeSignedPrekey.fromJson(Map<String, dynamic> j) => E2eeSignedPrekey(
-        keyId: (j['key_id'] as num).toInt(),
+        keyId: (j['id'] as num).toInt(),
         publicKey: j['public_key'] as String,
         signature: j['signature'] as String,
       );
 
+  // Wire field is `id` (server SignedPrekeyPayload), not `key_id` — must match
+  // the web/RN clients and the server zod schema exactly.
   Map<String, Object?> toJson() =>
-      {'key_id': keyId, 'public_key': publicKey, 'signature': signature};
+      {'id': keyId, 'public_key': publicKey, 'signature': signature};
 }
 
 class E2eeOneTimePrekey {
@@ -91,11 +93,12 @@ class E2eeOneTimePrekey {
 
   factory E2eeOneTimePrekey.fromJson(Map<String, dynamic> j) =>
       E2eeOneTimePrekey(
-        keyId: (j['key_id'] as num).toInt(),
+        keyId: (j['id'] as num).toInt(),
         publicKey: j['public_key'] as String,
       );
 
-  Map<String, Object?> toJson() => {'key_id': keyId, 'public_key': publicKey};
+  // Wire field is `id` (server OneTimePrekeyPayload), not `key_id`.
+  Map<String, Object?> toJson() => {'id': keyId, 'public_key': publicKey};
 }
 
 /// One recipient-device Olm blob carrying a Megolm session key (distribute).
@@ -211,7 +214,9 @@ class E2eeApi {
       '/users/@me/e2ee/devices/${Uri.encodeComponent(deviceId)}/one-time-prekeys',
       data: {'one_time_prekeys': oneTimePrekeys.map((k) => k.toJson()).toList()},
     );
-    return (res.data?['one_time_prekey_count'] as num?)?.toInt() ?? 0;
+    // Server responds {added, total_unclaimed}; the post-top-up unclaimed count
+    // is what the replenish loop compares against the threshold.
+    return (res.data?['total_unclaimed'] as num?)?.toInt() ?? 0;
   }
 
   // ── Peer keys ─────────────────────────────────────────────────────────────
