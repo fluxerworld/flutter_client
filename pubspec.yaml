@@ -40,6 +40,8 @@ dependencies:
   flutter_thumbhash: ^0.1.0+1
   flutter_web_auth_2: ^5.0.3
   flutter_webrtc: ^1.5.2
+  flutter_vodozemac: ^0.5.0
+  vodozemac: ^0.5.0
   fluxer_captcha:
     path: packages/fluxer_captcha
   fluxer_dart:
