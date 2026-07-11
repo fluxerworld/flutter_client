@@ -208,20 +208,20 @@ class CloudUploadController extends _$CloudUploadController {
     if (session.attachments.isEmpty) {
       return PreparedAttachments.empty;
     }
-    if (favoriteMemePayload) {
-      return PreparedAttachments(
-        attachmentMetadata: _mapApi(session.attachments),
-        attachmentFiles: session.attachments
-            .map((PendingAttachment e) => e.file)
-            .toList(),
-      );
-    }
-    // For an E2EE channel, encrypt every file IN PLACE before any upload so that
-    // whichever upload path runs below (presigned or the multipart fallback)
-    // sends only ciphertext. Fail-closed by construction: a throw here aborts the
-    // send with no plaintext uploaded.
+    // For an E2EE channel, encrypt every file IN PLACE before ANY branch that
+    // uploads files — including the favoriteMeme path below — so every path
+    // sends only ciphertext. Fail-closed by construction (a throw aborts with
+    // nothing uploaded) and idempotent (a retry reuses the existing ciphertext).
     final List<Map<String, Object?>>? encryptedEntries =
         await _encryptE2eeAttachments(nonce);
+    if (favoriteMemePayload) {
+      final List<PendingAttachment> current = _requireSessionAttachments(nonce);
+      return PreparedAttachments(
+        attachmentMetadata: _mapApi(current),
+        attachmentFiles: current.map((PendingAttachment e) => e.file).toList(),
+        encryptedAttachmentEntries: encryptedEntries,
+      );
+    }
     try {
       ref
           .read(messageUploadSessionsProvider.notifier)
@@ -242,6 +242,7 @@ class CloudUploadController extends _$CloudUploadController {
         return PreparedAttachments(
           attachmentMetadata: _mapApi(reset),
           attachmentFiles: reset.map((PendingAttachment e) => e.file).toList(),
+          encryptedAttachmentEntries: encryptedEntries,
         );
       }
       final List<PendingAttachment> ready = _requireSessionAttachments(nonce);
@@ -294,12 +295,17 @@ class CloudUploadController extends _$CloudUploadController {
     final List<PendingAttachment> originals = List<PendingAttachment>.from(
       session.attachments,
     );
-    // Phase 1: encrypt + write every ciphertext temp file WITHOUT mutating the
-    // session, so a read/write failure leaves the plaintext files untouched for a
-    // clean retry — never a half-encrypted session a retry would double-encrypt.
+    // Phase 1: encrypt + write a ciphertext temp for every NOT-yet-encrypted
+    // file, WITHOUT mutating the session, so a read/write failure leaves the
+    // plaintext files untouched for a clean retry. An attachment that already
+    // carries an encryptedEntry is a retry after a failed send — its file is
+    // already ciphertext, so it is reused as-is (never re-encrypted).
     final List<({int id, String path, int size, Map<String, Object?> entry})>
     prepared = <({int id, String path, int size, Map<String, Object?> entry})>[];
     for (final PendingAttachment a in originals) {
+      if (a.encryptedEntry != null) {
+        continue;
+      }
       final Uint8List bytes = await a.file.readAsBytes();
       final EncryptedAttachment enc = e2ee.encryptFile(
         plaintext: bytes,
@@ -318,10 +324,10 @@ class CloudUploadController extends _$CloudUploadController {
         entry: enc.envelopeEntry,
       ));
     }
-    // Phase 2: swap each file to its ciphertext + opaque metadata. The real
-    // name/mime/duration live only in the sealed envelope entry; the server sees
-    // encrypted.bin / octet-stream.
-    final List<Map<String, Object?>> entries = <Map<String, Object?>>[];
+    // Phase 2: swap each freshly-encrypted file to its ciphertext + opaque
+    // metadata, stashing the entry on the attachment so a retry after a failed
+    // send reuses it instead of re-encrypting the ciphertext. The real
+    // name/mime/duration live only in the sealed envelope entry.
     for (final p in prepared) {
       _patchSessionAttachment(
         nonce,
@@ -334,11 +340,19 @@ class CloudUploadController extends _$CloudUploadController {
           description: null,
           duration: null,
           waveform: null,
+          encryptedEntry: p.entry,
         ),
       );
-      entries.add(p.entry);
     }
-    return entries;
+    // Return every entry in ORIGINAL order (reused + freshly-encrypted) so they
+    // pair positionally with the wire attachments.
+    final Map<int, Map<String, Object?>> freshById = <int, Map<String, Object?>>{
+      for (final p in prepared) p.id: p.entry,
+    };
+    return <Map<String, Object?>>[
+      for (final PendingAttachment a in originals)
+        a.encryptedEntry ?? freshById[a.id]!,
+    ];
   }
 
   MessageUploadSession _requireSession(String nonce) {

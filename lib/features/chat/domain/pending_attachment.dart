@@ -25,6 +25,7 @@ class PendingAttachment {
     this.contentTypePlan,
     this.duration,
     this.waveform,
+    this.encryptedEntry,
   });
 
   final int id;
@@ -47,6 +48,12 @@ class PendingAttachment {
   final int? duration;
   final String? waveform;
 
+  /// When this file has already been E2EE-encrypted in place (its [file] is the
+  /// ciphertext and its metadata is opaque), the sealed envelope entry
+  /// (`{key,iv,mime,name,...}`) is kept here so a retry after a failed send
+  /// reuses it instead of re-encrypting the ciphertext (double-encryption).
+  final Map<String, Object?>? encryptedEntry;
+
   PendingAttachment copyWith({
     int? id,
     String? channelId,
@@ -67,6 +74,7 @@ class PendingAttachment {
     Object? contentTypePlan = _unset,
     Object? duration = _unset,
     Object? waveform = _unset,
+    Object? encryptedEntry = _unset,
   }) {
     return PendingAttachment(
       id: id ?? this.id,
@@ -100,6 +108,9 @@ class PendingAttachment {
           : contentTypePlan as String?,
       duration: duration == _unset ? this.duration : duration as int?,
       waveform: waveform == _unset ? this.waveform : waveform as String?,
+      encryptedEntry: encryptedEntry == _unset
+          ? this.encryptedEntry
+          : encryptedEntry as Map<String, Object?>?,
     );
   }
 }
