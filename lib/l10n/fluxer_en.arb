@@ -2240,6 +2240,78 @@
   "@passwordChangeSuccess": {
     "description": "Toast shown after successful password change."
   },
+  "e2eeSectionTitle": "End-to-end encryption",
+  "@e2eeSectionTitle": {
+    "description": "Settings section header for end-to-end encryption."
+  },
+  "e2eeSectionDescription": "Manage the encryption keys that let this device read your encrypted messages.",
+  "@e2eeSectionDescription": {
+    "description": "Settings section description for end-to-end encryption."
+  },
+  "e2eeRestoreTitle": "Restore encrypted backup",
+  "@e2eeRestoreTitle": {
+    "description": "Title of the restore-encrypted-backup sheet and subsection."
+  },
+  "e2eeRestoreSubsectionDescription": "Bring your encryption keys to this device from an encrypted backup you made on another device.",
+  "@e2eeRestoreSubsectionDescription": {
+    "description": "Subsection description for restoring an encrypted backup."
+  },
+  "e2eeRestoreOpenButton": "Restore from backup",
+  "@e2eeRestoreOpenButton": {
+    "description": "Button that opens the restore-encrypted-backup sheet."
+  },
+  "e2eeRestoreDescription": "Enter your backup passphrase to restore your encryption keys. This lets this device read your encrypted messages and history.",
+  "@e2eeRestoreDescription": {
+    "description": "Explanatory text at the top of the restore sheet."
+  },
+  "e2eeRestorePassphraseLabel": "Backup passphrase",
+  "@e2eeRestorePassphraseLabel": {
+    "description": "Label for the backup passphrase input."
+  },
+  "e2eeRestorePassphraseHint": "Your backup passphrase",
+  "@e2eeRestorePassphraseHint": {
+    "description": "Placeholder for the backup passphrase input."
+  },
+  "e2eeRestoreButton": "Restore",
+  "@e2eeRestoreButton": {
+    "description": "Confirm button in the restore sheet."
+  },
+  "e2eeRestorePassphraseRequired": "Enter your backup passphrase.",
+  "@e2eeRestorePassphraseRequired": {
+    "description": "Validation error when the passphrase field is empty."
+  },
+  "e2eeRestoreWrongPassphrase": "Wrong passphrase, or the backup is corrupted.",
+  "@e2eeRestoreWrongPassphrase": {
+    "description": "Error shown when the passphrase can't decrypt the backup."
+  },
+  "e2eeRestoreNoBackup": "No encrypted backup was found for your account.",
+  "@e2eeRestoreNoBackup": {
+    "description": "Error shown when no backup exists on the server."
+  },
+  "e2eeRestoreCorrupt": "This backup couldn't be read. It may be corrupted or from an unsupported version.",
+  "@e2eeRestoreCorrupt": {
+    "description": "Error shown when the backup is structurally invalid."
+  },
+  "e2eeRestoreNoAccount": "This backup doesn't contain a restorable identity.",
+  "@e2eeRestoreNoAccount": {
+    "description": "Error shown when the backup has no account to restore."
+  },
+  "e2eeRestoreWrongUser": "This backup belongs to a different account.",
+  "@e2eeRestoreWrongUser": {
+    "description": "Error shown when the backup belongs to another user."
+  },
+  "e2eeRestoreNotSignedIn": "You need to be signed in to restore a backup.",
+  "@e2eeRestoreNotSignedIn": {
+    "description": "Error shown when there is no current user."
+  },
+  "e2eeRestoreFailed": "Couldn't restore the backup. Please try again.",
+  "@e2eeRestoreFailed": {
+    "description": "Generic error shown when restore throws unexpectedly."
+  },
+  "e2eeRestoreSuccess": "Encryption keys restored.",
+  "@e2eeRestoreSuccess": {
+    "description": "Toast shown after a successful restore."
+  },
   "passwordChangePasswordsDoNotMatch": "Passwords do not match",
   "@passwordChangePasswordsDoNotMatch": {
     "description": "Error shown when new password and confirmation don't match."

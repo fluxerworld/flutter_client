@@ -137,6 +137,15 @@ class E2eeOlmSession {
         pickle: pickle,
         pickleKey: pickleKey,
       ));
+
+  /// Restore from a libolm-format session pickle (a backup produced by the
+  /// web/RN clients). The [pickleKey] is the raw bytes of the backup's pickle
+  /// key (NOT a fixed 32-byte local key), so it is passed unwrapped.
+  factory E2eeOlmSession.fromLibolmPickle(String pickle, Uint8List pickleKey) =>
+      E2eeOlmSession._(vodozemac.Session.fromOlmPickleEncrypted(
+        pickle: pickle,
+        pickleKey: pickleKey,
+      ));
 }
 
 /// libolm-compatible Megolm session config (version 1, truncated MAC). Used for
@@ -204,6 +213,19 @@ class E2eeInboundGroupSession {
         vzb.VodozemacInboundGroupSession.fromPickleEncrypted(
           pickle: pickle,
           pickleKey: vzb.U8Array32(key),
+        ),
+      );
+
+  /// Restore from a libolm-format inbound-group-session pickle (a backup
+  /// produced by the web/RN clients). The [key] is the raw bytes of the
+  /// backup's pickle key (variable length), passed unwrapped — unlike the
+  /// native path's fixed 32-byte [vzb.U8Array32]. The v1 (truncated-MAC) config
+  /// is carried inside the libolm pickle, so no config override is needed.
+  factory E2eeInboundGroupSession.fromLibolmPickle(String pickle, Uint8List key) =>
+      E2eeInboundGroupSession._(
+        vzb.VodozemacInboundGroupSession.fromOlmPickleEncrypted(
+          pickle: pickle,
+          pickleKey: key,
         ),
       );
 }

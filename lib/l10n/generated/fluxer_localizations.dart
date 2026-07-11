@@ -3229,6 +3229,114 @@ abstract class FluxerLocalizations {
   /// **'Password changed'**
   String get passwordChangeSuccess;
 
+  /// Settings section header for end-to-end encryption.
+  ///
+  /// In en, this message translates to:
+  /// **'End-to-end encryption'**
+  String get e2eeSectionTitle;
+
+  /// Settings section description for end-to-end encryption.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage the encryption keys that let this device read your encrypted messages.'**
+  String get e2eeSectionDescription;
+
+  /// Title of the restore-encrypted-backup sheet and subsection.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore encrypted backup'**
+  String get e2eeRestoreTitle;
+
+  /// Subsection description for restoring an encrypted backup.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring your encryption keys to this device from an encrypted backup you made on another device.'**
+  String get e2eeRestoreSubsectionDescription;
+
+  /// Button that opens the restore-encrypted-backup sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from backup'**
+  String get e2eeRestoreOpenButton;
+
+  /// Explanatory text at the top of the restore sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your backup passphrase to restore your encryption keys. This lets this device read your encrypted messages and history.'**
+  String get e2eeRestoreDescription;
+
+  /// Label for the backup passphrase input.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup passphrase'**
+  String get e2eeRestorePassphraseLabel;
+
+  /// Placeholder for the backup passphrase input.
+  ///
+  /// In en, this message translates to:
+  /// **'Your backup passphrase'**
+  String get e2eeRestorePassphraseHint;
+
+  /// Confirm button in the restore sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get e2eeRestoreButton;
+
+  /// Validation error when the passphrase field is empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your backup passphrase.'**
+  String get e2eeRestorePassphraseRequired;
+
+  /// Error shown when the passphrase can't decrypt the backup.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong passphrase, or the backup is corrupted.'**
+  String get e2eeRestoreWrongPassphrase;
+
+  /// Error shown when no backup exists on the server.
+  ///
+  /// In en, this message translates to:
+  /// **'No encrypted backup was found for your account.'**
+  String get e2eeRestoreNoBackup;
+
+  /// Error shown when the backup is structurally invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This backup couldn\'t be read. It may be corrupted or from an unsupported version.'**
+  String get e2eeRestoreCorrupt;
+
+  /// Error shown when the backup has no account to restore.
+  ///
+  /// In en, this message translates to:
+  /// **'This backup doesn\'t contain a restorable identity.'**
+  String get e2eeRestoreNoAccount;
+
+  /// Error shown when the backup belongs to another user.
+  ///
+  /// In en, this message translates to:
+  /// **'This backup belongs to a different account.'**
+  String get e2eeRestoreWrongUser;
+
+  /// Error shown when there is no current user.
+  ///
+  /// In en, this message translates to:
+  /// **'You need to be signed in to restore a backup.'**
+  String get e2eeRestoreNotSignedIn;
+
+  /// Generic error shown when restore throws unexpectedly.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t restore the backup. Please try again.'**
+  String get e2eeRestoreFailed;
+
+  /// Toast shown after a successful restore.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption keys restored.'**
+  String get e2eeRestoreSuccess;
+
   /// Error shown when new password and confirmation don't match.
   ///
   /// In en, this message translates to:

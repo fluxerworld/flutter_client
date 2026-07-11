@@ -18,6 +18,7 @@ import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/e2ee/e2ee_api.dart';
 import 'package:fluxer_app/e2ee/e2ee_attachments.dart';
+import 'package:fluxer_app/e2ee/e2ee_backup.dart';
 import 'package:fluxer_app/e2ee/e2ee_crypto.dart';
 import 'package:fluxer_app/e2ee/e2ee_key_store.dart';
 import 'package:fluxer_app/e2ee/e2ee_secure_store.dart';
@@ -38,6 +39,42 @@ const Duration kBootstrapRetryMin = Duration(seconds: 30);
 
 /// Registration lifecycle, surfaced to the UI for the E2EE status indicator.
 enum E2eeRegistrationStatus { idle, initialising, registering, ready, error }
+
+/// Outcome of a [E2eeManager.restoreFromBackup] attempt, surfaced to the UI.
+enum E2eeRestoreOutcome {
+  /// Restore succeeded (see the counts on [E2eeRestoreResult]).
+  ok,
+
+  /// No backup exists on the server for this user (nothing to restore).
+  noBackup,
+
+  /// The passphrase was wrong (GCM tag rejected the derived key).
+  wrongPassphrase,
+
+  /// The blob decrypted but is structurally invalid / unsupported.
+  corruptBackup,
+
+  /// The backup carries no account (or no pickle key) — no identity to adopt.
+  noAccount,
+
+  /// The backup belongs to a different user than the one signed in.
+  wrongUser,
+}
+
+/// Result of a restore attempt.
+class E2eeRestoreResult {
+  const E2eeRestoreResult(
+    this.outcome, {
+    this.sessionsRestored = 0,
+    this.inboundGroupSessionsRestored = 0,
+  });
+
+  final E2eeRestoreOutcome outcome;
+  final int sessionsRestored;
+  final int inboundGroupSessionsRestored;
+
+  bool get isSuccess => outcome == E2eeRestoreOutcome.ok;
+}
 
 /// The outcome of a decrypt attempt.
 ///
@@ -338,6 +375,193 @@ class E2eeManager {
       signedPrekey: signedPrekey,
       oneTimePrekeys: oneTimePrekeys,
       deviceName: _detectDeviceName(),
+    );
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Backup restore (Phase 3b)
+  // ───────────────────────────────────────────────────────────────────────────
+
+  /// Restore this user's E2EE identity + history keys from the server-stored,
+  /// passphrase-encrypted backup that the web/RN clients produce. Cross-client:
+  /// the backup carries libolm-format pickles (vodozemac imports them). Additive
+  /// and idempotent — it never wipes existing state, and re-running re-imports.
+  ///
+  /// On success the local install BECOMES the backed-up device (same device id +
+  /// identity key), reclaiming that server device slot; the prior bootstrap
+  /// device (if any) is GC'd best-effort and the restored identity is
+  /// re-published with fresh one-time keys so it can receive new 1:1 messages.
+  ///
+  /// Outbound Megolm sessions are deliberately NOT imported: resuming a sender
+  /// ratchet at its stored message index could collide with a still-live
+  /// original device (duplicate Megolm indices → undecryptable). Flutter mints a
+  /// fresh outbound session on the next group send instead. Inbound Megolm
+  /// sessions (which recover group history) ARE imported.
+  ///
+  /// Caller contract: invoke this for the CURRENTLY signed-in user, not
+  /// concurrently with [ensureBootstrapped]. On a non-ok outcome nothing has
+  /// been written and the caller may fall through to normal registration.
+  Future<E2eeRestoreResult> restoreFromBackup({
+    required String userId,
+    required String passphrase,
+  }) async {
+    await initE2eeCrypto();
+
+    // 1. Fetch the envelope. A 404 means "no backup uploaded" — not an error.
+    final Map<String, dynamic>? blob;
+    try {
+      blob = await _api.getBackup();
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return const E2eeRestoreResult(E2eeRestoreOutcome.noBackup);
+      }
+      rethrow;
+    }
+    if (blob == null) {
+      return const E2eeRestoreResult(E2eeRestoreOutcome.noBackup);
+    }
+
+    // 2. Decrypt + parse the outer envelope (PBKDF2 + AES-256-GCM).
+    final E2eeBackupPayload payload;
+    try {
+      payload = decryptBackupBlob(blob, passphrase);
+    } on E2eeBackupWrongPassphrase {
+      return const E2eeRestoreResult(E2eeRestoreOutcome.wrongPassphrase);
+    } on E2eeBackupCorrupt {
+      return const E2eeRestoreResult(E2eeRestoreOutcome.corruptBackup);
+    }
+
+    // 3. Validate the identity before touching any storage.
+    final account = payload.account;
+    final backupPickleKeyString = payload.pickleKey;
+    if (account == null || backupPickleKeyString == null) {
+      return const E2eeRestoreResult(E2eeRestoreOutcome.noAccount);
+    }
+    if (account.userId != userId) {
+      // Never write another user's identity under this session.
+      return const E2eeRestoreResult(E2eeRestoreOutcome.wrongUser);
+    }
+    // The backup pickle key is the UTF-8 bytes of the pickle-key STRING (libolm
+    // key material), NOT a base64-decoded 32-byte key.
+    final backupPickleKey =
+        Uint8List.fromList(utf8.encode(backupPickleKeyString));
+
+    // 4. Import the account. A broken account = no restorable identity (fatal).
+    final E2eeAccount restored;
+    try {
+      restored = E2eeAccount.fromLibolmPickle(account.pickle, backupPickleKey);
+    } on Object {
+      return const E2eeRestoreResult(E2eeRestoreOutcome.corruptBackup);
+    }
+
+    // 5. REUSE the existing local pickle key if the store already has one
+    // (bootstrap runs before the user can reach settings, so a STATE-B account +
+    // key are usually already present; a prior restore may have populated more).
+    // Minting a fresh key would re-encrypt the account/1:1 rows fine but ORPHAN
+    // pre-existing inbound-Megolm rows (writeInboundGroupSessionIfAbsent skips
+    // them via insert-or-ignore, leaving them under the old key → they fail to
+    // unpickle and get permanently evicted → group history lost). Sharing one
+    // key keeps restore truly additive, and — because the account is then
+    // pickled under the store's existing key — a crash mid-write can't leave an
+    // un-decryptable STATE-B identity either.
+    final existingPickleKey = await _secure.readPickleKey(userId);
+    final localPickleKey = existingPickleKey ?? _generatePickleKey();
+    final oldBreadcrumb = await _secure.readDeviceId(userId);
+    if (existingPickleKey == null) {
+      await _secure.writePickleKey(userId, localPickleKey);
+    }
+    await _store.writeAccount(
+      E2eeAccountsCompanion.insert(
+        userId: userId,
+        deviceId: account.deviceId,
+        accountPickle: restored.toPickle(localPickleKey),
+      ),
+    );
+    await _secure.writeDeviceId(userId, account.deviceId);
+
+    // 6. Adopt the restored identity in memory.
+    _account = restored;
+    _accountUserId = userId;
+    _deviceId = account.deviceId;
+    _pickleKey = localPickleKey;
+    _status = E2eeRegistrationStatus.ready;
+    // Prime the bootstrap-dedup state so a subsequent same-user gateway READY
+    // short-circuits (on the in-flight/ready guard) instead of re-running
+    // _doBootstrap — which would flap isReady to false and swap the live account
+    // mid-flight, opening a plaintext-downgrade window on a send.
+    _bootstrapUserId = userId;
+    _bootstrapFuture = Future<void>.value();
+
+    // 7. Import 1:1 Olm sessions (best-effort; one bad pickle must not abort).
+    var sessionsRestored = 0;
+    for (final s in payload.sessions) {
+      try {
+        final sess = E2eeOlmSession.fromLibolmPickle(s.pickle, backupPickleKey);
+        await _store.writeSession(
+          E2eeOlmSessionsCompanion.insert(
+            remoteUserId: s.remoteUserId,
+            remoteDeviceId: s.remoteDeviceId,
+            sessionId: s.sessionId,
+            sessionPickle: sess.toPickle(localPickleKey),
+            createdAt:
+                Value(DateTime.fromMillisecondsSinceEpoch(s.createdAt)),
+            lastUsedAt:
+                Value(DateTime.fromMillisecondsSinceEpoch(s.lastUsedAt)),
+          ),
+        );
+        sessionsRestored++;
+      } on Object catch (_) {
+        // Skip a corrupt session; a live one re-establishes lazily anyway.
+      }
+    }
+
+    // 8. Import inbound Megolm sessions (insert-if-absent: never overwrite a
+    // copy that may decrypt earlier history). Outbound sessions intentionally
+    // not imported (see the method doc).
+    var inboundRestored = 0;
+    for (final ig in payload.inboundGroupSessions) {
+      try {
+        final inbound =
+            E2eeInboundGroupSession.fromLibolmPickle(ig.pickle, backupPickleKey);
+        await _store.writeInboundGroupSessionIfAbsent(
+          E2eeInboundGroupSessionsCompanion.insert(
+            channelId: ig.channelId,
+            senderUserId: ig.senderUserId,
+            senderDeviceId: ig.senderDeviceId,
+            sessionId: ig.sessionId,
+            sessionPickle: inbound.toPickle(localPickleKey),
+            senderIdentityKey: ig.senderIdentityKey,
+            createdAt:
+                Value(DateTime.fromMillisecondsSinceEpoch(ig.createdAt)),
+          ),
+        );
+        inboundRestored++;
+      } on Object catch (_) {
+        // Skip a corrupt inbound session.
+      }
+    }
+
+    // 9. Reclaim the device slot: GC the prior bootstrap device (best-effort),
+    // then re-publish the restored identity with fresh one-time keys.
+    if (oldBreadcrumb != null && oldBreadcrumb != account.deviceId) {
+      try {
+        await _api.deleteDevice(oldBreadcrumb);
+      } on Object catch (_) {
+        // A leftover orphan device is harmless; never block restore on it.
+      }
+    }
+    try {
+      await _publishExistingIdentity(userId);
+    } on Object catch (_) {
+      // A publish failure leaves a fully recoverable local identity;
+      // reconciliation re-publishes it on the next gateway READY.
+    }
+    scheduleReplenishCheck();
+
+    return E2eeRestoreResult(
+      E2eeRestoreOutcome.ok,
+      sessionsRestored: sessionsRestored,
+      inboundGroupSessionsRestored: inboundRestored,
     );
   }
 

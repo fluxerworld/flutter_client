@@ -1739,6 +1739,70 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get passwordChangeSuccess => 'Parole mainīta';
 
   @override
+  String get e2eeSectionTitle => 'End-to-end encryption';
+
+  @override
+  String get e2eeSectionDescription =>
+      'Manage the encryption keys that let this device read your encrypted messages.';
+
+  @override
+  String get e2eeRestoreTitle => 'Restore encrypted backup';
+
+  @override
+  String get e2eeRestoreSubsectionDescription =>
+      'Bring your encryption keys to this device from an encrypted backup you made on another device.';
+
+  @override
+  String get e2eeRestoreOpenButton => 'Restore from backup';
+
+  @override
+  String get e2eeRestoreDescription =>
+      'Enter your backup passphrase to restore your encryption keys. This lets this device read your encrypted messages and history.';
+
+  @override
+  String get e2eeRestorePassphraseLabel => 'Backup passphrase';
+
+  @override
+  String get e2eeRestorePassphraseHint => 'Your backup passphrase';
+
+  @override
+  String get e2eeRestoreButton => 'Restore';
+
+  @override
+  String get e2eeRestorePassphraseRequired => 'Enter your backup passphrase.';
+
+  @override
+  String get e2eeRestoreWrongPassphrase =>
+      'Wrong passphrase, or the backup is corrupted.';
+
+  @override
+  String get e2eeRestoreNoBackup =>
+      'No encrypted backup was found for your account.';
+
+  @override
+  String get e2eeRestoreCorrupt =>
+      'This backup couldn\'t be read. It may be corrupted or from an unsupported version.';
+
+  @override
+  String get e2eeRestoreNoAccount =>
+      'This backup doesn\'t contain a restorable identity.';
+
+  @override
+  String get e2eeRestoreWrongUser =>
+      'This backup belongs to a different account.';
+
+  @override
+  String get e2eeRestoreNotSignedIn =>
+      'You need to be signed in to restore a backup.';
+
+  @override
+  String get e2eeRestoreFailed =>
+      'Couldn\'t restore the backup. Please try again.';
+
+  @override
+  String get e2eeRestoreSuccess => 'Encryption keys restored.';
+
+  @override
   String get passwordChangePasswordsDoNotMatch => 'Paroles nesakrīt';
 
   @override
