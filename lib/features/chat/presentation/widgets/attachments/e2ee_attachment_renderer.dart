@@ -85,14 +85,32 @@ class _E2eeAttachmentItem extends ConsumerStatefulWidget {
       _E2eeAttachmentItemState();
 }
 
+/// Refuse to decode a decrypted image larger than this — the display is capped
+/// small, and a huge (or hostile) payload would blow up peak memory.
+const int _kMaxAttachmentBytes = 30 * 1024 * 1024;
+
 class _E2eeAttachmentItemState extends ConsumerState<_E2eeAttachmentItem> {
   Future<Uint8List>? _bytesFuture;
 
-  String? get _key => widget.entry?['key'] as String?;
-  String? get _iv => widget.entry?['iv'] as String?;
-  String get _mime => (widget.entry?['mime'] as String?) ?? '';
-  String get _name =>
-      (widget.entry?['name'] as String?) ?? widget.attachment.filename;
+  // The envelope entry comes from sender-controlled JSON — read every field
+  // defensively so a non-string/non-int value degrades to a placeholder rather
+  // than throwing a synchronous cast error out of the widget lifecycle.
+  String? _str(String field) {
+    final Object? v = widget.entry?[field];
+    return v is String ? v : null;
+  }
+
+  int? _int(String field) {
+    final Object? v = widget.entry?[field];
+    return v is int ? v : (v is num ? v.toInt() : null);
+  }
+
+  String? get _key => _str('key');
+  String? get _iv => _str('iv');
+  String get _mime => _str('mime') ?? '';
+  String get _name => _str('name') ?? widget.attachment.filename;
+  int? get _width => _int('width');
+  int? get _height => _int('height');
 
   @override
   void initState() {
@@ -124,15 +142,31 @@ class _E2eeAttachmentItemState extends ConsumerState<_E2eeAttachmentItem> {
     String key,
     String iv,
   ) async {
+    final CancelToken cancelToken = CancelToken();
     final Response<List<int>> response = await Dio().get<List<int>>(
       url,
-      options: Options(responseType: ResponseType.bytes),
+      cancelToken: cancelToken,
+      options: Options(
+        responseType: ResponseType.bytes,
+        receiveTimeout: const Duration(seconds: 60),
+      ),
+      onReceiveProgress: (int received, int _) {
+        // Abort a runaway download before it fills memory (ciphertext is
+        // ~plaintext + a 16-byte tag).
+        if (received > _kMaxAttachmentBytes + 4096) {
+          cancelToken.cancel('attachment exceeds size cap');
+        }
+      },
     );
-    return ref.read(e2eeManagerProvider).decryptAttachmentBytes(
+    final Uint8List bytes = ref.read(e2eeManagerProvider).decryptAttachmentBytes(
           ciphertext: Uint8List.fromList(response.data ?? const <int>[]),
           keyBase64: key,
           ivBase64: iv,
         );
+    if (bytes.length > _kMaxAttachmentBytes) {
+      throw Exception('decrypted attachment exceeds size cap');
+    }
+    return bytes;
   }
 
   @override
@@ -158,31 +192,66 @@ class _E2eeAttachmentItemState extends ConsumerState<_E2eeAttachmentItem> {
         if (bytes == null) {
           return _loadingBox();
         }
+        final Size? size = _displaySize();
+        final Widget image = Image.memory(
+          bytes,
+          fit: BoxFit.contain,
+          width: size?.width,
+          height: size?.height,
+          // Bound the decoded bitmap to the display resolution — the source may
+          // be far larger than the ~400px box it renders into.
+          cacheWidth: (400 * MediaQuery.devicePixelRatioOf(context)).round(),
+          // Bytes are authenticated (GCM), but the sender-labeled mime doesn't
+          // guarantee they decode — degrade to a chip instead of a broken box.
+          errorBuilder: (BuildContext context, Object error, StackTrace? stack) =>
+              _placeholder(Icons.insert_drive_file_outlined, _name),
+        );
         return ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 400, maxHeight: 400),
-            child: Image.memory(bytes, fit: BoxFit.contain),
-          ),
+          child: size != null
+              ? image
+              : ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxWidth: 400, maxHeight: 400),
+                  child: image,
+                ),
         );
       },
     );
   }
 
-  Widget _loadingBox() => Container(
-        width: 200,
-        height: 120,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        alignment: Alignment.center,
-        child: const SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(strokeWidth: 2),
-        ),
-      );
+  /// Display size derived from the envelope's sender-provided width/height,
+  /// scaled to fit within 400x400 without upscaling. Null if dims are absent —
+  /// callers fall back to a fixed box. Reserves the right aspect during load so
+  /// the image doesn't pop the layout when it resolves.
+  Size? _displaySize() {
+    final int? w = _width;
+    final int? h = _height;
+    if (w == null || h == null || w <= 0 || h <= 0) {
+      return null;
+    }
+    const double maxEdge = 400;
+    final double scale = (w > h ? maxEdge / w : maxEdge / h).clamp(0.0, 1.0);
+    return Size(w * scale, h * scale);
+  }
+
+  Widget _loadingBox() {
+    final Size? size = _displaySize();
+    return Container(
+      width: size?.width ?? 200,
+      height: size?.height ?? 120,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      alignment: Alignment.center,
+      child: const SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(strokeWidth: 2),
+      ),
+    );
+  }
 
   Widget _placeholder(IconData icon, String name) {
     final Color color = Theme.of(context).colorScheme.onSurfaceVariant;
