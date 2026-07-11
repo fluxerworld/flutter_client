@@ -10,6 +10,7 @@
 // Threading model: all methods are async and assume single-flighted use from
 // the UI isolate. Bootstrap is de-duplicated and back-off throttled internally.
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -83,6 +84,12 @@ class DecryptionPermanent extends DecryptionOutcome {
 class _TransientOrderingException implements Exception {
   const _TransientOrderingException();
 }
+
+/// Outcome of trying to fetch + import the Megolm session-key blobs for a
+/// channel: [imported] the target session is now available, [noBlob] none was
+/// addressed to this device (pre-join / forward-secrecy — permanent), or
+/// [networkError] the listing failed (retryable).
+enum _GroupImportResult { imported, noBlob, networkError }
 
 class _SentPlaintext {
   const _SentPlaintext(this.text, this.attachments);
@@ -628,9 +635,15 @@ class E2eeManager {
     }
 
     if (payload is MegolmPayload) {
-      // Phase 2. Transient so it retries once group support lands rather than
-      // being cached as a dead message.
-      return const DecryptionTransient('group decrypt not yet supported');
+      if (channelId == null) {
+        return const DecryptionPermanent('group message without a channel id');
+      }
+      return _decryptMegolm(
+        payload: payload,
+        channelId: channelId,
+        senderUserId: senderUserId,
+        messageId: messageId,
+      );
     }
 
     final olm = payload as OlmPayload;
@@ -771,6 +784,185 @@ class E2eeManager {
       // best-effort
     }
     return result.plaintext;
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // Group DM (Megolm) decrypt
+  // ───────────────────────────────────────────────────────────────────────────
+
+  Future<DecryptionOutcome> _decryptMegolm({
+    required MegolmPayload payload,
+    required String channelId,
+    required String senderUserId,
+    String? messageId,
+  }) async {
+    // 1. Try an already-imported inbound session for (channel, sender, session).
+    final existing = await _store.readInboundGroupSession(
+      channelId,
+      senderUserId,
+      payload.senderDeviceId,
+      payload.sessionId,
+    );
+    if (existing != null) {
+      final text = _tryMegolmDecrypt(existing, payload.ciphertext);
+      if (text != null) {
+        return _finishMegolm(text, channelId, messageId);
+      }
+      // A stored session that can't read this ciphertext is corrupt/tampered or
+      // past its window — unrecoverable for this device.
+      return const DecryptionPermanent(
+        'megolm decrypt failed on stored session',
+      );
+    }
+
+    // 2. No session yet — fetch + import the distributed session-key blobs.
+    final result = await _fetchAndImportGroupSessions(
+      channelId: channelId,
+      senderUserId: senderUserId,
+      payload: payload,
+    );
+    if (result == _GroupImportResult.networkError) {
+      return const DecryptionTransient('group session listing failed');
+    }
+    if (result == _GroupImportResult.noBlob) {
+      // No key blob targets this device (joined after the message, or forward
+      // secrecy) — never decryptable here.
+      return const DecryptionPermanent('no group session key for this device');
+    }
+
+    // 3. Imported — decrypt.
+    final imported = await _store.readInboundGroupSession(
+      channelId,
+      senderUserId,
+      payload.senderDeviceId,
+      payload.sessionId,
+    );
+    if (imported == null) {
+      return const DecryptionTransient('group session missing after import');
+    }
+    final text = _tryMegolmDecrypt(imported, payload.ciphertext);
+    if (text == null) {
+      return const DecryptionTransient('megolm decrypt failed after import');
+    }
+    return _finishMegolm(text, channelId, messageId);
+  }
+
+  /// Decrypt a Megolm ciphertext with a stored inbound session WITHOUT
+  /// re-pickling it: the stored session must stay at its first-known index so
+  /// earlier history can still be re-derived. Returns null on failure.
+  String? _tryMegolmDecrypt(
+    StoredInboundGroupSession stored,
+    String ciphertext,
+  ) {
+    try {
+      final session = E2eeInboundGroupSession.fromPickle(
+        stored.sessionPickle,
+        _pickleKey!,
+      );
+      return session.decrypt(ciphertext).plaintext;
+    } on Object catch (_) {
+      return null;
+    }
+  }
+
+  Future<DecryptionOutcome> _finishMegolm(
+    String decrypted,
+    String channelId,
+    String? messageId,
+  ) async {
+    final env = PlaintextEnvelope.decode(decrypted);
+    if (messageId != null) {
+      try {
+        await _store.writePlaintext(
+          _plaintextRow(messageId, channelId, env.text, 'unverified'),
+        );
+      } on Object catch (_) {
+        // best-effort
+      }
+    }
+    return DecryptionOk(text: env.text, attachments: env.attachments);
+  }
+
+  /// List the channel's pending Megolm session-key blobs, Olm-decrypt any
+  /// addressed to this device, and import the enclosed session keys. Returns
+  /// whether the specific target (sender device + session id) became available.
+  Future<_GroupImportResult> _fetchAndImportGroupSessions({
+    required String channelId,
+    required String senderUserId,
+    required MegolmPayload payload,
+  }) async {
+    final ownDeviceId = _deviceId!;
+    final List<E2eeGroupSessionBlobIn> blobs;
+    try {
+      blobs = await _api.listGroupSessions(channelId);
+    } on Object catch (_) {
+      return _GroupImportResult.networkError;
+    }
+
+    var importedTarget = false;
+    for (final blob in blobs) {
+      if (blob.recipientDeviceId != ownDeviceId) {
+        continue;
+      }
+      try {
+        // The blob is an Olm message from the sender wrapping the session key.
+        final keyJson = await _olmDecrypt(
+          remoteUserId: blob.senderUserId,
+          remoteDeviceId: blob.senderDeviceId,
+          remoteIdentityKey: blob.senderIdentityKey,
+          ciphertext: OlmCiphertext(
+            type: blob.olmMessageType,
+            body: blob.olmCiphertext,
+          ),
+        );
+        final decoded = jsonDecode(keyJson);
+        if (decoded is! Map) {
+          continue;
+        }
+        final map = decoded.cast<String, Object?>();
+        final sessionKey = map['session_key'];
+        if (sessionKey is! String ||
+            map['channel_id']?.toString() != channelId) {
+          continue;
+        }
+        final inbound = E2eeInboundGroupSession.fromSessionKey(sessionKey);
+        // Insert-if-absent so a re-delivered key can't overwrite (and advance) a
+        // session we already hold at a lower index.
+        await _store.writeInboundGroupSessionIfAbsent(
+          E2eeInboundGroupSessionsCompanion.insert(
+            channelId: channelId,
+            senderUserId: blob.senderUserId,
+            senderDeviceId: blob.senderDeviceId,
+            sessionId: inbound.sessionId,
+            sessionPickle: inbound.toPickle(_pickleKey!),
+            senderIdentityKey: blob.senderIdentityKey,
+          ),
+        );
+        // Best-effort GC of the consumed blob (idempotent; a failed ack just
+        // re-imports the same key next time).
+        unawaited(
+          _api
+              .ackGroupSessionBlob(
+                channelId: channelId,
+                sessionId: blob.sessionId,
+                recipientDeviceId: ownDeviceId,
+                senderDeviceId: blob.senderDeviceId,
+              )
+              .catchError((Object _) {}),
+        );
+        if (blob.senderUserId == senderUserId &&
+            blob.senderDeviceId == payload.senderDeviceId &&
+            inbound.sessionId == payload.sessionId) {
+          importedTarget = true;
+        }
+      } on Object catch (_) {
+        // Olm-decrypt failed / malformed blob — skip it, try the rest.
+        continue;
+      }
+    }
+    return importedTarget
+        ? _GroupImportResult.imported
+        : _GroupImportResult.noBlob;
   }
 
   // ───────────────────────────────────────────────────────────────────────────

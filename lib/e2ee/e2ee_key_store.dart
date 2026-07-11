@@ -210,6 +210,50 @@ class E2eeKeyStore extends _$E2eeKeyStore {
       (delete(e2eeMessagePlaintexts)..where((t) => t.messageId.isIn(messageIds)))
           .go();
 
+  // ── Outbound group (Megolm) sessions ─────────────────────────────────────
+
+  Future<StoredOutboundGroupSession?> readOutboundGroupSession(
+    String channelId,
+  ) =>
+      (select(e2eeOutboundGroupSessions)
+            ..where((t) => t.channelId.equals(channelId)))
+          .getSingleOrNull();
+
+  Future<void> writeOutboundGroupSession(
+    E2eeOutboundGroupSessionsCompanion session,
+  ) =>
+      into(e2eeOutboundGroupSessions).insertOnConflictUpdate(session);
+
+  Future<void> deleteOutboundGroupSession(String channelId) =>
+      (delete(e2eeOutboundGroupSessions)
+            ..where((t) => t.channelId.equals(channelId)))
+          .go();
+
+  // ── Inbound group (Megolm) sessions ──────────────────────────────────────
+
+  Future<StoredInboundGroupSession?> readInboundGroupSession(
+    String channelId,
+    String senderUserId,
+    String senderDeviceId,
+    String sessionId,
+  ) =>
+      (select(e2eeInboundGroupSessions)
+            ..where((t) =>
+                t.channelId.equals(channelId) &
+                t.senderUserId.equals(senderUserId) &
+                t.senderDeviceId.equals(senderDeviceId) &
+                t.sessionId.equals(sessionId)))
+          .getSingleOrNull();
+
+  /// Persist a NEW inbound group session. Uses insert-if-absent (NOT
+  /// insertOnConflictUpdate): an already-imported session must never be
+  /// overwritten with a higher first-known-index copy, which would lose the
+  /// ability to decrypt earlier history.
+  Future<void> writeInboundGroupSessionIfAbsent(
+    E2eeInboundGroupSessionsCompanion session,
+  ) =>
+      into(e2eeInboundGroupSessions).insert(session, mode: InsertMode.insertOrIgnore);
+
   /// Wipe every store — called on logout so a different user signing in on the
   /// same install can't be linked to the previous user's material.
   Future<void> wipeAll() => transaction(() async {
