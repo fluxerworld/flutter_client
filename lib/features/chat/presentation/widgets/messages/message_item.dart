@@ -15,6 +15,7 @@ import 'package:fluxer_app/features/chat/presentation/'
 import 'package:fluxer_app/features/chat/presentation/'
     'sheets/unpin_message_confirm_sheet.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/attachments/attachment_list_renderer.dart';
+import 'package:fluxer_app/features/chat/presentation/widgets/attachments/e2ee_attachment_renderer.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_image.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_invite.dart';
 import 'package:fluxer_app/features/chat/presentation/widgets/embeds/embed_link.dart';
@@ -852,16 +853,24 @@ class _MessageItemState extends ConsumerState<MessageItem> {
               });
         }(),
       if (msg.attachments.isNotEmpty)
-        AttachmentListRenderer(
-          attachments: msg.attachments,
-          inlineAttachmentMedia: inlineAttachmentMedia,
-          dimensionSize: attachmentSize,
-          revealSpoilers: revealSpoilers,
-          messageId: msg.id,
-          messageNonce: msg.clientNonce,
-          channelId: msg.channelId,
-          messageFlags: msg.flags,
-        ),
+        if (msg.isEncrypted)
+          // Encrypted attachments are opaque ciphertext on the wire; render them
+          // through the decrypt-on-download path keyed by the sealed envelope.
+          E2eeAttachmentRenderer(
+            messageId: msg.id,
+            attachments: msg.attachments,
+          )
+        else
+          AttachmentListRenderer(
+            attachments: msg.attachments,
+            inlineAttachmentMedia: inlineAttachmentMedia,
+            dimensionSize: attachmentSize,
+            revealSpoilers: revealSpoilers,
+            messageId: msg.id,
+            messageNonce: msg.clientNonce,
+            channelId: msg.channelId,
+            messageFlags: msg.flags,
+          ),
       if (msg.hasStickers)
         wrapPart(
           Padding(

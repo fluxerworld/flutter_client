@@ -17,6 +17,7 @@ import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:fluxer_app/e2ee/e2ee_api.dart';
+import 'package:fluxer_app/e2ee/e2ee_attachments.dart';
 import 'package:fluxer_app/e2ee/e2ee_crypto.dart';
 import 'package:fluxer_app/e2ee/e2ee_key_store.dart';
 import 'package:fluxer_app/e2ee/e2ee_secure_store.dart';
@@ -121,6 +122,7 @@ class E2eeManager {
   final E2eeApi _api;
   final E2eeKeyStore _store;
   final E2eeSecureStore _secure;
+  final E2eeAttachments _attachments = E2eeAttachments();
   final DateTime Function() _now;
   final Random _random;
 
@@ -1349,6 +1351,35 @@ class E2eeManager {
         attachmentsJson: Value(
           attachments.isEmpty ? null : jsonEncode(attachments),
         ),
+      );
+
+  /// The decrypted attachment envelope entries ({key,iv,mime,name,...}) for a
+  /// message, from the plaintext cache — the renderer uses these to fetch the
+  /// per-file AES key/iv and the real mime for an encrypted attachment. Paired
+  /// positionally with the message's wire attachments. Empty if none/unavailable.
+  Future<List<Map<String, Object?>>> cachedAttachments(String messageId) async {
+    try {
+      final cached = await _store.readPlaintext(messageId);
+      if (cached != null) {
+        return _decodeAttachments(cached.attachmentsJson);
+      }
+    } on Object catch (_) {
+      // no cache row / read error → no attachments
+    }
+    return const [];
+  }
+
+  /// Decrypt one downloaded attachment ciphertext with a base64 key/iv from a
+  /// [cachedAttachments] entry. Throws on an authentication failure.
+  Uint8List decryptAttachmentBytes({
+    required Uint8List ciphertext,
+    required String keyBase64,
+    required String ivBase64,
+  }) =>
+      _attachments.decryptFile(
+        ciphertext: ciphertext,
+        keyBase64: keyBase64,
+        ivBase64: ivBase64,
       );
 
   /// Decode the persisted attachment envelope entries back into the list the
