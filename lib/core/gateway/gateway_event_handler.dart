@@ -1286,6 +1286,18 @@ class GatewayEventHandler {
     if (e2ee != null &&
         (msg.flags & kMessageFlagEncrypted) != 0 &&
         event.message.encryptedPayload != null) {
+      // Make sure the identity is loaded before decrypting, so a message that
+      // arrives in the brief window after gateway READY but before bootstrap
+      // finishes doesn't fall into the "not ready" transient. ensureBootstrapped
+      // is de-duped, so all early messages await the one in-flight bootstrap.
+      final String? uid = currentUserId;
+      if (uid != null) {
+        try {
+          await e2ee.ensureBootstrapped(uid);
+        } on Object catch (_) {
+          // Proceed; decrypt returns transient if still not ready.
+        }
+      }
       final DecryptionOutcome outcome = await e2ee.tryDecryptForCurrentDevice(
         senderUserId: event.message.author.id,
         encryptedPayloadRaw: event.message.encryptedPayload,

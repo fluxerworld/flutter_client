@@ -246,22 +246,23 @@ class MessageRepository {
         currentUserId: _currentUserId,
         channelId: channelId,
       );
-      final messages = data
-          .map(
-            (sdk) =>
-                Message.fromSdk(sdk, currentUserId: _currentUserId).copyWith(
-                  isMentioned: messageMentionsUser(
-                    mentionCtx,
-                    authorId: sdk.author.id,
-                    mentionedUserIds: sdk.mentions.map((u) => u.id).toList(),
-                    mentionEveryone: sdk.mentionEveryone,
-                    mentionRoleIds: sdk.mentionRoles,
-                  ),
+      await _ensureE2eeReadyForPage(data);
+      final built = await Future.wait(
+        data.map((sdk) {
+          final Message m = Message.fromSdk(sdk, currentUserId: _currentUserId)
+              .copyWith(
+                isMentioned: messageMentionsUser(
+                  mentionCtx,
+                  authorId: sdk.author.id,
+                  mentionedUserIds: sdk.mentions.map((u) => u.id).toList(),
+                  mentionEveryone: sdk.mentionEveryone,
+                  mentionRoleIds: sdk.mentionRoles,
                 ),
-          )
-          .toList()
-          .reversed
-          .toList();
+              );
+          return _decryptIncoming(m, sdk);
+        }),
+      );
+      final messages = built.reversed.toList();
 
       for (final sdk in data) {
         if (sdk.webhookId == null) {
@@ -332,7 +333,7 @@ class MessageRepository {
         await _db.userDao.upsertUser(userFromPartialSdk(sdk.author));
       }
       await upsertMentionUsersFromSdk(_db, sdk.mentions);
-      final message = Message.fromSdk(sdk, currentUserId: _currentUserId)
+      Message message = Message.fromSdk(sdk, currentUserId: _currentUserId)
           .copyWith(
             isMentioned: await resolveMessageMentionsUser(
               _db,
@@ -344,6 +345,8 @@ class MessageRepository {
               mentionRoleIds: sdk.mentionRoles,
             ),
           );
+      await _ensureE2eeReadyForPage(<MessageResponseSchema>[sdk]);
+      message = await _decryptIncoming(message, sdk);
       await _db.messageDao.upsertMessage(message.toCompanion());
       return message;
     } on DioException catch (e) {
@@ -659,6 +662,50 @@ class MessageRepository {
     } on DioException {
       rethrow;
     }
+  }
+
+  /// Bootstrap the E2EE identity once before decrypting a history page, but
+  /// only when the page actually contains an encrypted message.
+  Future<void> _ensureE2eeReadyForPage(
+    List<MessageResponseSchema> data,
+  ) async {
+    final String? userId = _currentUserId;
+    if (userId == null) {
+      return;
+    }
+    final bool anyEncrypted = data.any(
+      (MessageResponseSchema sdk) => sdk.encryptedPayload != null,
+    );
+    if (!anyEncrypted) {
+      return;
+    }
+    try {
+      await _e2ee.ensureBootstrapped(userId);
+    } on Object {
+      // Proceed; decrypt returns transient if still not ready.
+    }
+  }
+
+  /// Decrypt an inbound message from REST history. On success the plaintext
+  /// replaces the empty server content; otherwise the message is returned
+  /// unchanged (the manager's plaintext cache keeps a message decrypted once it
+  /// has been read live, so re-renders stay consistent).
+  Future<Message> _decryptIncoming(Message msg, MessageResponseSchema sdk) async {
+    if ((msg.flags & kMessageFlagEncrypted) == 0 ||
+        sdk.encryptedPayload == null) {
+      return msg;
+    }
+    final DecryptionOutcome outcome = await _e2ee.tryDecryptForCurrentDevice(
+      senderUserId: sdk.author.id,
+      encryptedPayloadRaw: sdk.encryptedPayload,
+      channelId: msg.channelId,
+      messageId: msg.id,
+      nonce: msg.clientNonce,
+    );
+    if (outcome is DecryptionOk) {
+      return msg.copyWith(content: outcome.text);
+    }
+    return msg;
   }
 
   /// Encrypt [body] in place for an E2EE DM/Group-DM channel: replaces the
