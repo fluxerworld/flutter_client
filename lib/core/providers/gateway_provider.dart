@@ -94,6 +94,7 @@ Raw<StreamSubscription<GatewayEvent>?> gatewayEventListener(Ref ref) {
     mentionFeedWriteBatcher: ref.read(mentionFeedWriteBatcherProvider),
     reactionWriteBatcher: ref.read(reactionWriteBatcherProvider),
     currentUserId: currentUserId,
+    e2eeManager: ref.read(e2eeManagerProvider),
     isAutoAckActive: (channelId) =>
         ref.read(activeReadChannelProvider.notifier).isAutoAckActive(channelId),
     onReady: () {

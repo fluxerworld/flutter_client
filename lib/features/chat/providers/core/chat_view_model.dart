@@ -486,9 +486,12 @@ class ChatViewModel extends _$ChatViewModel {
         if (event.message.channelId != state.channelId) {
           return null;
         }
-        final Message msg = _toDomain(
+        Message msg = _toDomain(
           event.message,
         ).copyWith(isMentioned: snapshot.mentionsCurrentUser);
+        if (snapshot.decryptedContent != null) {
+          msg = msg.copyWith(content: snapshot.decryptedContent);
+        }
         int matchedIndex = messages.indexWhere(
           (m) =>
               m.clientNonce != null &&

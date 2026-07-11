@@ -8,6 +8,7 @@ class MessagePersistSnapshot {
     required this.guildStorageId,
     required this.acknowledgedByGateway,
     this.notificationLevel,
+    this.decryptedContent,
   });
 
   final bool mentionsCurrentUser;
@@ -15,6 +16,11 @@ class MessagePersistSnapshot {
   final String? guildStorageId;
   final bool acknowledgedByGateway;
   final UserNotificationSettings? notificationLevel;
+
+  /// Decrypted plaintext for an E2EE message, or null when the message isn't
+  /// encrypted (or couldn't be decrypted). The live view rebuilds its Message
+  /// from the raw event, so it must prefer this over the empty event content.
+  final String? decryptedContent;
 }
 
 class MessageCreateDispatch {

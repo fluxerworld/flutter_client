@@ -1,4 +1,4 @@
 [submodule "dart_sdk"]
 	path = dart_sdk
-	url = https://github.com/fluxerapp/dart_sdk.git
-	branch = main
+	url = https://github.com/fluxerworld/dart_sdk.git
+	branch = fluxer-world

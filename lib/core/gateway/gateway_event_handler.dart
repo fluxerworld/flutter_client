@@ -8,6 +8,8 @@ import 'package:fluxer_app/core/gateway/message_mention_context_cache.dart';
 import 'package:fluxer_app/core/gateway/presence_update_batcher.dart';
 import 'package:fluxer_app/core/talker.dart';
 import 'package:fluxer_app/core/utils/message_mention_resolver.dart';
+import 'package:fluxer_app/e2ee/e2ee_manager.dart';
+import 'package:fluxer_app/e2ee/e2ee_wire.dart';
 import 'package:fluxer_app/features/channels/data/read_state_decisions.dart';
 import 'package:fluxer_app/features/channels/data/read_state_repository.dart';
 import 'package:fluxer_app/features/channels/data/read_state_utils.dart';
@@ -96,6 +98,7 @@ class GatewayEventHandler {
     this.mentionFeedWriteBatcher,
     this.reactionWriteBatcher,
     this.currentUserId,
+    this.e2eeManager,
     this.isAutoAckActive,
     this.onReady,
     this.onResumed,
@@ -142,6 +145,7 @@ class GatewayEventHandler {
   final MentionFeedWriteBatcher? mentionFeedWriteBatcher;
   final ReactionWriteBatcher? reactionWriteBatcher;
   final String? currentUserId;
+  final E2eeManager? e2eeManager;
   final bool Function(String channelId)? isAutoAckActive;
   final ReadyCallback? onReady;
   final ReadyCallback? onResumed;
@@ -1268,10 +1272,34 @@ class GatewayEventHandler {
     final String? previousChannelLastMessageId = channelResolution.isGuild
         ? channelResolution.guildChannel?.lastMessageId
         : channelResolution.dmChannel?.lastMessageId;
-    final msg = Message.fromSdk(
+    var msg = Message.fromSdk(
       event.message,
       currentUserId: currentUserId,
     ).copyWith(isMentioned: mentionsCurrentUser);
+
+    // Decrypt an E2EE DM/Group-DM message before it is persisted or shown. On
+    // success the plaintext replaces the (empty) server content for BOTH the DB
+    // row and the live-view dispatch (the live UI rebuilds from the event, not
+    // the row, so the decrypted text also rides on the snapshot below).
+    String? decryptedContent;
+    final E2eeManager? e2ee = e2eeManager;
+    if (e2ee != null &&
+        (msg.flags & kMessageFlagEncrypted) != 0 &&
+        event.message.encryptedPayload != null) {
+      final DecryptionOutcome outcome = await e2ee.tryDecryptForCurrentDevice(
+        senderUserId: event.message.author.id,
+        encryptedPayloadRaw: event.message.encryptedPayload,
+        channelId: msg.channelId,
+        messageId: msg.id,
+        nonce: msg.clientNonce,
+      );
+      if (outcome is DecryptionOk) {
+        decryptedContent = outcome.text;
+        msg = msg.copyWith(content: outcome.text);
+      }
+      // Transient/Permanent: leave the empty server content for now (a retry +
+      // placeholder is a follow-up slice); this is no worse than pre-decrypt.
+    }
 
     onTypingClear?.call(msg.channelId, msg.authorId);
 
@@ -1342,6 +1370,7 @@ class GatewayEventHandler {
           guildStorageId: channelResolution.guildStorageId,
           acknowledgedByGateway: acknowledgedByGateway,
           notificationLevel: notificationLevel,
+          decryptedContent: decryptedContent,
         ),
       ),
     );
