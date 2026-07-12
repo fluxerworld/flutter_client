@@ -1922,6 +1922,19 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get e2eeVerifyGroupReview => 'Review';
 
   @override
+  String get e2eeAttachmentTapToSave =>
+      'Encrypted file — tap to decrypt and save';
+
+  @override
+  String get e2eeAttachmentDecrypting => 'Decrypting…';
+
+  @override
+  String get e2eeAttachmentSaved => 'Saved';
+
+  @override
+  String get e2eeAttachmentSaveFailed => 'Couldn\'t save — tap to retry';
+
+  @override
   String get passwordChangePasswordsDoNotMatch => 'Gesli se ne ujemata';
 
   @override

@@ -3541,6 +3541,30 @@ abstract class FluxerLocalizations {
   /// **'Review'**
   String get e2eeVerifyGroupReview;
 
+  /// Idle label on a non-image encrypted attachment chip.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted file — tap to decrypt and save'**
+  String get e2eeAttachmentTapToSave;
+
+  /// Label while a non-image encrypted attachment is being decrypted.
+  ///
+  /// In en, this message translates to:
+  /// **'Decrypting…'**
+  String get e2eeAttachmentDecrypting;
+
+  /// Label after a non-image encrypted attachment was shared/saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get e2eeAttachmentSaved;
+
+  /// Label after decrypting/sharing a non-image attachment failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save — tap to retry'**
+  String get e2eeAttachmentSaveFailed;
+
   /// Error shown when new password and confirmation don't match.
   ///
   /// In en, this message translates to:

@@ -2457,6 +2457,22 @@
   "@e2eeVerifyGroupReview": {
     "description": "Trailing action label on a group member row."
   },
+  "e2eeAttachmentTapToSave": "Encrypted file — tap to decrypt and save",
+  "@e2eeAttachmentTapToSave": {
+    "description": "Idle label on a non-image encrypted attachment chip."
+  },
+  "e2eeAttachmentDecrypting": "Decrypting…",
+  "@e2eeAttachmentDecrypting": {
+    "description": "Label while a non-image encrypted attachment is being decrypted."
+  },
+  "e2eeAttachmentSaved": "Saved",
+  "@e2eeAttachmentSaved": {
+    "description": "Label after a non-image encrypted attachment was shared/saved."
+  },
+  "e2eeAttachmentSaveFailed": "Couldn't save — tap to retry",
+  "@e2eeAttachmentSaveFailed": {
+    "description": "Label after decrypting/sharing a non-image attachment failed."
+  },
   "passwordChangePasswordsDoNotMatch": "Passwords do not match",
   "@passwordChangePasswordsDoNotMatch": {
     "description": "Error shown when new password and confirmation don't match."
