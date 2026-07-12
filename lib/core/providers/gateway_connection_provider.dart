@@ -31,6 +31,13 @@ GatewayConnection gatewayConnection(Ref ref) {
     gatewayUrl: ref.watch(activeInstanceGatewayUrlProvider),
     initialGuildId: activeGuildId,
     flags: kGatewayDebounceMessageReactions,
+    // Request uncompressed frames. The SDK default is 'zstd-stream', but the
+    // server's zstd-stream is disabled/broken (the web client's
+    // getPreferredCompression() returns 'none' for the same reason), and the
+    // SDK's one-shot ZstdCodec.decompress can't decode a stream frame anyway —
+    // a decode throw in the async _onMessage is swallowed, so the HELLO frame
+    // never lands and the gateway never reaches READY (app hangs on boot).
+    compress: 'none',
     properties: GatewayIdentifyProperties(
       os: Platform.operatingSystem,
       browser: 'fluxer_app',

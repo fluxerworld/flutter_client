@@ -18,7 +18,7 @@ Future<void> applySyncedThemeFromUserSettings(
   UserSettingsResponse settings,
   SyncedThemeCustomizationApplier apply,
 ) async {
-  final String encoded = settings.syncedPreferences;
+  final String encoded = settings.syncedPreferences ?? '';
   if (encoded.isEmpty) {
     return;
   }

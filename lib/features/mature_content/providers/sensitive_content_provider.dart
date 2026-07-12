@@ -68,13 +68,13 @@ class SensitiveContent extends _$SensitiveContent {
         isLoading: false,
         nsfwAllowed: user.nsfwAllowed,
         friendDmFilter: ClientSensitiveMediaFilterLevel.fromInt(
-          settings.sensitiveContentFriendDmFilter.json ?? 0,
+          settings.sensitiveContentFriendDmFilter?.json ?? 0,
         ),
         nonFriendDmFilter: ClientSensitiveMediaFilterLevel.fromInt(
-          settings.sensitiveContentNonFriendDmFilter.json ?? 0,
+          settings.sensitiveContentNonFriendDmFilter?.json ?? 0,
         ),
         guildFilter: ClientSensitiveMediaFilterLevel.fromInt(
-          settings.sensitiveContentGuildFilter.json ?? 0,
+          settings.sensitiveContentGuildFilter?.json ?? 0,
         ),
       );
     } on Object catch (error, stackTrace) {

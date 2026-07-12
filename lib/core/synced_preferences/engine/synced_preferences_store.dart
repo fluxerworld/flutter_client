@@ -129,7 +129,7 @@ class SyncedPreferencesStore {
     UserSettingsResponse settings, {
     SyncedThemeCustomizationApplier? themeCustomizationApplier,
   }) async {
-    final encoded = settings.syncedPreferences;
+    final encoded = settings.syncedPreferences ?? '';
     _wireBlob = encoded;
     final decodeStatus = await _decodeIncoming(encoded);
     if (decodeStatus == _DecodeStatus.failure) {

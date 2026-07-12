@@ -334,13 +334,13 @@ class PrivacyDashboardViewModel extends _$PrivacyDashboardViewModel {
         incomingCallFlags: settings.incomingCallFlags,
         groupDmAddPermissionFlags: settings.groupDmAddPermissionFlags,
         sensitiveContentFriendDmFilter:
-            settings.sensitiveContentFriendDmFilter.json ??
+            settings.sensitiveContentFriendDmFilter?.json ??
             SensitiveMediaFilterValue.show,
         sensitiveContentNonFriendDmFilter:
-            settings.sensitiveContentNonFriendDmFilter.json ??
+            settings.sensitiveContentNonFriendDmFilter?.json ??
             SensitiveMediaFilterValue.show,
         sensitiveContentGuildFilter:
-            settings.sensitiveContentGuildFilter.json ??
+            settings.sensitiveContentGuildFilter?.json ??
             SensitiveMediaFilterValue.show,
         isAdult: user.nsfwAllowed,
         pendingDeletion: user.pendingBulkMessageDeletion,
