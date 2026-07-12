@@ -51,7 +51,7 @@ class UserEntitlements {
   UserEntitlements applyUserProfile(UserPrivateResponse profile) {
     final int type = profile.premiumType?.json ?? 0;
     final List<String> profileTraits = List<String>.from(profile.traits);
-    final bool perksDisabled = profile.premiumPerksDisabled;
+    final bool perksDisabled = profile.premiumPerksDisabled ?? false;
     return UserEntitlements(
       traits: profileTraits,
       premiumType: type,
