@@ -1199,7 +1199,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Opozorilo o zunanji povezavi';
 
   @override
-  String get externalLinkWarningLeaving => 'Namenjate zapustiti Fluxer';
+  String get externalLinkWarningLeaving => 'Namenjate zapustiti Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1654,7 +1654,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Upravljajte e-poštni naslov, ki ga uporabljate za prijavo v Fluxer';
+      'Upravljajte e-poštni naslov, ki ga uporabljate za prijavo v Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-poštni naslov';
@@ -2382,7 +2382,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Tem aplikacijam je bil odobren dostop do vašega računa Fluxer.';
+      'Tem aplikacijam je bil odobren dostop do vašega računa Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Ni pooblaščenih aplikacij';
@@ -2493,28 +2493,28 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get userProfileStaffBadgeTooltip => 'Osebje Fluxerja';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer Community Team';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld Community Team';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer Partner';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld Partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Lovilec hroščev Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Lovilec hroščev Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Naročnik Fluxer Plutonium od $date';
+    return 'Naročnik Fluxerworld Plutonium od $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Vizionar Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Vizionar Fluxerworld';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Vizionar Fluxer od $date';
+    return 'Vizionar Fluxerworld od $date';
   }
 
   @override
@@ -3568,7 +3568,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Povežite zunanje račune in domene z vašim profilom Fluxer. Preverjene povezave bodo prikazane v vašem profilu, da jih bodo drugi videli.';
+      'Povežite zunanje račune in domene z vašim profilom Fluxerworld. Preverjene povezave bodo prikazane v vašem profilu, da jih bodo drugi videli.';
 
   @override
   String get connectionsEmptyTitle => 'Še ni povezav';
@@ -3744,7 +3744,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get connectionRemoveFailed => 'Povezave ni bilo mogoče odstraniti';
 
   @override
-  String get connectionTokenSavedToast => 'Fluxer-verification shranjen';
+  String get connectionTokenSavedToast => 'Fluxerworld-verification shranjen';
 
   @override
   String get connectionTokenSaveFailedToast =>
@@ -3923,7 +3923,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Ko je omogočeno, se neprebrani DM-ji v stranski vrstici skupnosti strnejo v mapo na gumbu Fluxer. Kliknite gumb Fluxer, ko ste na strani DM-jev, da razširite ali strnete mapo.';
+      'Ko je omogočeno, se neprebrani DM-ji v stranski vrstici skupnosti strnejo v mapo na gumbu Fluxerworld. Kliknite gumb Fluxerworld, ko ste na strani DM-jev, da razširite ali strnete mapo.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Seznam kanalov';
@@ -4133,7 +4133,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Ko so naloženi neposredno v Fluxer';
+      'Ko so naloženi neposredno v Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Predogledi povezav';
@@ -6209,7 +6209,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Varnost in prijava';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Darila in kode';
@@ -6473,7 +6473,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Pomagajte izboljšati Fluxer z deljenjem anonimnih podatkov o zrušitvah in uspešnosti.';
+      'Pomagajte izboljšati Fluxerworld z deljenjem anonimnih podatkov o zrušitvah in uspešnosti.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6513,7 +6513,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Prosimo, prijavite vse težave, ki jih najdete, skupnosti Fluxer Mobile (trenutno se lahko pridružite skupnosti samo, če imate Plutonium).';
+      'Prosimo, prijavite vse težave, ki jih najdete, skupnosti Fluxerworld Mobile (trenutno se lahko pridružite skupnosti samo, če imate Plutonium).';
 
   @override
   String get betaWarningRepoLink => 'Ogled izvorne kode na GitHubu';
@@ -6683,7 +6683,7 @@ class FluxerLocalizationsSl extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'Vnesite URL primerka (npr. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Ponastavi na Fluxer';
+  String get resetToDefaultInstance => 'Ponastavi na Fluxerworld';
 
   @override
   String get instanceConnect => 'Poveži';

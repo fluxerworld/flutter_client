@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Fluxer 가입일",
+    "profilePreviewMemberSince": "Fluxerworld 가입일",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "다음 애플리케이션에 Fluxer 계정 액세스가 허용되었습니다.",
+    "authorizedAppsDescription": "다음 애플리케이션에 Fluxerworld 계정 액세스가 허용되었습니다.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "Fluxer 태그 복사",
+    "blockedUsersCopyTag": "Fluxerworld 태그 복사",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Fluxer 팀",
+    "userProfileStaffBadgeTooltip": "Fluxerworld 팀",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer 커뮤니티 팀",
+    "userProfileCtpBadgeTooltip": "Fluxerworld 커뮤니티 팀",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer 파트너",
+    "userProfilePartnerBadgeTooltip": "Fluxerworld 파트너",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Fluxer 버그 헌터",
+    "userProfileBugHunterBadgeTooltip": "Fluxerworld 버그 헌터",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer 플루토늄",
+    "userProfilePlutoniumBadgeTooltip": "Fluxerworld 플루토늄",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "{date}부터 Fluxer 플루토늄 구독자",
+    "userProfilePlutoniumSubscriberSinceTooltip": "{date}부터 Fluxerworld 플루토늄 구독자",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer 비저너리",
+    "userProfileVisionaryBadgeTooltip": "Fluxerworld 비저너리",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "{date}부터 Fluxer 비저너리",
+    "userProfileVisionaryBadgeSinceTooltip": "{date}부터 Fluxerworld 비저너리",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "{productName} 팀의 시스템 공지입니다. 답장할 수 없습니다.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "외부 계정 및 도메인을 Fluxer 프로필에 연결하세요. 인증된 연결은 프로필에 표시되어 다른 사용자가 볼 수 있습니다.",
+    "connectionsDescription": "외부 계정 및 도메인을 Fluxerworld 프로필에 연결하세요. 인증된 연결은 프로필에 표시되어 다른 사용자가 볼 수 있습니다.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "DM을 폴더로 축소",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "활성화하면 서버 사이드바의 읽지 않은 DM이 Fluxer 버튼 폴더로 축소됩니다. 폴더를 확장하거나 축소하려면 DM 페이지에서 Fluxer 버튼을 클릭하세요.",
+    "lookAndFeelCollapseDMsDescription": "활성화하면 서버 사이드바의 읽지 않은 DM이 Fluxerworld 버튼 폴더로 축소됩니다. 폴더를 확장하거나 축소하려면 DM 페이지에서 Fluxerworld 버튼을 클릭하세요.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Fluxer 규칙을 명확하게 위반하고 위에 해당하지 않는 경우에만 사용하세요.",
+    "iarReasonOtherDescription": "Fluxerworld 규칙을 명확하게 위반하고 위에 해당하지 않는 경우에만 사용하세요.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "선물 및 코드",
     "@userSettingsNavGiftsAndCodes": {
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "보고된 모든 데이터는 익명이며 Fluxer 자체 모니터링 서비스로만 전송됩니다. 제3자 제공업체는 사용되지 않습니다.",
+    "advancedPerformanceReportingDescription": "보고된 모든 데이터는 익명이며 Fluxerworld 자체 모니터링 서비스로만 전송됩니다. 제3자 제공업체는 사용되지 않습니다.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "문제가 발견되면 Fluxer 모바일 커뮤니티에 보고해 주세요(현재 커뮤니티에 가입하려면 Plutonium이 있어야 합니다).",
+    "betaWarningReportIssues": "문제가 발견되면 Fluxerworld 모바일 커뮤니티에 보고해 주세요(현재 커뮤니티에 가입하려면 Plutonium이 있어야 합니다).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6828,15 +6828,15 @@
     },
     "resetToDefaultInstance": "Fluxer로 재설정",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "연결",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "연결 중…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "인스턴스에 연결하지 못했습니다",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "변경",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "로그인하려면 인스턴스에 연결하세요",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Fluxer 직원만 액세스할 수 있습니다",
+    "guildNavbarStaffOnlyAccessible": "Fluxerworld 직원만 액세스할 수 있습니다",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

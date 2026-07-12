@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Πρόκειται να φύγετε από το Fluxer",
+    "externalLinkWarningLeaving": "Πρόκειται να φύγετε από το Fluxerworld",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Μέλος Fluxer από",
+    "profilePreviewMemberSince": "Μέλος Fluxerworld από",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Διαχειριστείτε τη διεύθυνση email που χρησιμοποιείτε για να συνδεθείτε στο Fluxer",
+    "securityLoginEmailSectionDescription": "Διαχειριστείτε τη διεύθυνση email που χρησιμοποιείτε για να συνδεθείτε στο Fluxerworld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Αυτές οι εφαρμογές έχουν λάβει πρόσβαση στον λογαριασμό σας Fluxer.",
+    "authorizedAppsDescription": "Αυτές οι εφαρμογές έχουν λάβει πρόσβαση στον λογαριασμό σας Fluxerworld.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Προσωπικό Fluxer",
+    "userProfileStaffBadgeTooltip": "Προσωπικό Fluxerworld",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Ομάδα Κοινότητας Fluxer",
+    "userProfileCtpBadgeTooltip": "Ομάδα Κοινότητας Fluxerworld",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Συνεργάτης Fluxer",
+    "userProfilePartnerBadgeTooltip": "Συνεργάτης Fluxerworld",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Κυνηγός Σφαλμάτων Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Κυνηγός Σφαλμάτων Fluxerworld",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Fluxerworld Plutonium",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Συνδρομητής Fluxer Plutonium από {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Συνδρομητής Fluxerworld Plutonium από {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Fluxer Visionary",
+    "userProfileVisionaryBadgeTooltip": "Fluxerworld Visionary",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Fluxer Visionary από {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Fluxerworld Visionary από {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Ανακοινώσεις συστήματος από το προσωπικό του {productName}. Δεν μπορείτε να απαντήσετε εδώ.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Συνδέστε εξωτερικούς λογαριασμούς και τομείς στο προφίλ σας στο Fluxer. Οι επαληθευμένες συνδέσεις θα εμφανίζονται στο προφίλ σας για να τις δουν οι άλλοι.",
+    "connectionsDescription": "Συνδέστε εξωτερικούς λογαριασμούς και τομείς στο προφίλ σας στο Fluxerworld. Οι επαληθευμένες συνδέσεις θα εμφανίζονται στο προφίλ σας για να τις δουν οι άλλοι.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Σύμπτυξη DM σε φάκελο",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Όταν είναι ενεργοποιημένο, τα μη αναγνωσμένα DM στην πλευρική μπάρα κοινότητας συμπτύσσονται σε έναν φάκελο στο κουμπί Fluxer. Κάντε κλικ στο κουμπί Fluxer ενώ βρίσκεστε στη σελίδα DM για να επεκτείνετε ή να συμπτύξετε τον φάκελο.",
+    "lookAndFeelCollapseDMsDescription": "Όταν είναι ενεργοποιημένο, τα μη αναγνωσμένα DM στην πλευρική μπάρα κοινότητας συμπτύσσονται σε έναν φάκελο στο κουμπί Fluxerworld. Κάντε κλικ στο κουμπί Fluxerworld ενώ βρίσκεστε στη σελίδα DM για να επεκτείνετε ή να συμπτύξετε τον φάκελο.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Όταν μεταφορτώνονται απευθείας στο Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Όταν μεταφορτώνονται απευθείας στο Fluxerworld",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Χρησιμοποιήστε μόνο εάν παραβιάζει σαφώς τους κανόνες του Fluxer και δεν ταιριάζει παραπάνω.",
+    "iarReasonOtherDescription": "Χρησιμοποιήστε μόνο εάν παραβιάζει σαφώς τους κανόνες του Fluxerworld και δεν ταιριάζει παραπάνω.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Δώρα & Κωδικοί",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Βοηθήστε στη βελτίωση του Fluxer μοιράζοντας ανώνυμα δεδομένα σφαλμάτων και απόδοσης.",
+    "advancedPerformanceReportingSectionDescription": "Βοηθήστε στη βελτίωση του Fluxerworld μοιράζοντας ανώνυμα δεδομένα σφαλμάτων και απόδοσης.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Όλα τα αναφερόμενα δεδομένα είναι ανώνυμα και αποστέλλονται μόνο στην υπηρεσία παρακολούθησης του Fluxer — δεν χρησιμοποιούνται πάροχοι τρίτων.",
+    "advancedPerformanceReportingDescription": "Όλα τα αναφερόμενα δεδομένα είναι ανώνυμα και αποστέλλονται μόνο στην υπηρεσία παρακολούθησης του Fluxerworld — δεν χρησιμοποιούνται πάροχοι τρίτων.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Παρακαλούμε αναφέρετε τυχόν προβλήματα που θα βρείτε στην κοινότητα Fluxer Mobile (πρέπει να έχετε Plutonium για να μπορείτε να συμμετάσχετε στην κοινότητα αυτή τη στιγμή).",
+    "betaWarningReportIssues": "Παρακαλούμε αναφέρετε τυχόν προβλήματα που θα βρείτε στην κοινότητα Fluxerworld Mobile (πρέπει να έχετε Plutonium για να μπορείτε να συμμετάσχετε στην κοινότητα αυτή τη στιγμή).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Επαναφορά στο Fluxer",
+    "resetToDefaultInstance": "Επαναφορά στο Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Σύνδεση",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Σύνδεση…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Αποτυχία σύνδεσης στην παρουσία",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Αλλαγή",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Συνδεθείτε στην παρουσία για να συνδεθείτε",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Προσβάσιμο μόνο από το προσωπικό του Fluxer",
+    "guildNavbarStaffOnlyAccessible": "Προσβάσιμο μόνο από το προσωπικό του Fluxerworld",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

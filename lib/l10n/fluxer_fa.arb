@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "عضو Fluxer از",
+    "profilePreviewMemberSince": "عضو Fluxerworld از",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "به این برنامه‌ها دسترسی به حساب Fluxer شما اعطا شده است.",
+    "authorizedAppsDescription": "به این برنامه‌ها دسترسی به حساب Fluxerworld شما اعطا شده است.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2844,7 +2844,7 @@
             }
         }
     },
-    "blockedUsersCopyTag": "کپی کردن تگ Fluxer",
+    "blockedUsersCopyTag": "کپی کردن تگ Fluxerworld",
     "@blockedUsersCopyTag": {
         "description": "Context menu item that copies the user's tag."
     },
@@ -2876,15 +2876,15 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "کارکنان Fluxer",
+    "userProfileStaffBadgeTooltip": "کارکنان Fluxerworld",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "تیم انجمن Fluxer",
+    "userProfileCtpBadgeTooltip": "تیم انجمن Fluxerworld",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "شریک Fluxer",
+    "userProfilePartnerBadgeTooltip": "شریک Fluxerworld",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "اعلان‌های سیستمی از طرف کارکنان {productName}. شما نمی‌توانید اینجا پاسخ دهید.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "حساب ها و دامنه های خارجی را به پروفایل Fluxer خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.",
+    "connectionsDescription": "حساب ها و دامنه های خارجی را به پروفایل Fluxerworld خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,7 +4555,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "پیام‌های مستقیم را در پوشه جمع کنید",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
     "lookAndFeelCollapseDMsDescription": "وقتی فعال باشد، پیام‌های مستقیم خوانده نشده در نوار کناری انجمن در پوشه‌ای در دکمه فلاکسر جمع می‌شوند. برای باز کردن یا بستن پوشه، هنگام حضور در صفحه پیام‌های مستقیم روی دکمه فلاکسر کلیک کنید.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "هدیه‌ها و کدها",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Fluxer کمک کنید.",
+    "advancedPerformanceReportingSectionDescription": "با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Fluxerworld کمک کنید.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Fluxer ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.",
+    "advancedPerformanceReportingDescription": "تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Fluxerworld ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Fluxer گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Plutonium داشته باشید).",
+    "betaWarningReportIssues": "لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Fluxerworld گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Plutonium داشته باشید).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "بازنشانی به Fluxer",
+    "resetToDefaultInstance": "بازنشانی به Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "اتصال",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "در حال اتصال…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "اتصال به نمونه ناموفق بود",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "تغییر",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "برای ورود به سیستم به نمونه متصل شوید",
     "@instanceConnectionRequired": {

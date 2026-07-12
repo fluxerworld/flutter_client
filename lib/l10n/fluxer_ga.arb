@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Tá tú ar tí Fluxer a fhágáil",
+    "externalLinkWarningLeaving": "Tá tú ar tí Fluxerworld a fhágáil",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Ball Fluxer Ó",
+    "profilePreviewMemberSince": "Ball Fluxerworld Ó",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Fluxer",
+    "securityLoginEmailSectionDescription": "Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Fluxerworld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Tá rochtain ar do chuntas Fluxer tugtha do na feidhmchláir seo.",
+    "authorizedAppsDescription": "Tá rochtain ar do chuntas Fluxerworld tugtha do na feidhmchláir seo.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Foireann Fluxer",
+    "userProfileStaffBadgeTooltip": "Foireann Fluxerworld",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Foireann Pobail Fluxer",
+    "userProfileCtpBadgeTooltip": "Foireann Pobail Fluxerworld",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Comhpháirtí Fluxer",
+    "userProfilePartnerBadgeTooltip": "Comhpháirtí Fluxerworld",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Sealgair Bugaí Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Sealgair Bugaí Fluxerworld",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Plútóniam Fluxer",
+    "userProfilePlutoniumBadgeTooltip": "Plútóniam Fluxerworld",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Liostáil Plútóniam Fluxer ó {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Liostáil Plútóniam Fluxerworld ó {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,7 +2905,7 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Físghníomhaí Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Físghníomhaí Fluxerworld",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Fógraí córais ó fhoireann {productName}. Ní féidir leat freagairt anseo.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Ceangail cuntais agus fearainn sheachtracha le do phróifíl Fluxer. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.",
+    "connectionsDescription": "Ceangail cuntais agus fearainn sheachtracha le do phróifíl Fluxerworld. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Comhbhrúigh DManna I bhFillteán",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Fluxer. Cliceáil ar an gcnaipe Fluxer agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.",
+    "lookAndFeelCollapseDMsDescription": "Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Fluxerworld. Cliceáil ar an gcnaipe Fluxerworld agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Nuair a uaslódáiltear go díreach chuig Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Nuair a uaslódáiltear go díreach chuig Fluxerworld",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Ná húsáid ach amháin má sháraíonn sé rialacha Fluxer go soiléir agus mura n-oirfeadh sé thuas.",
+    "iarReasonOtherDescription": "Ná húsáid ach amháin má sháraíonn sé rialacha Fluxerworld go soiléir agus mura n-oirfeadh sé thuas.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Bronntanais & Códanna",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Cuidigh le Fluxer a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.",
+    "advancedPerformanceReportingSectionDescription": "Cuidigh le Fluxerworld a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Fluxer féin — ní úsáidtear aon soláthraithe tríú páirtí.",
+    "advancedPerformanceReportingDescription": "Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Fluxerworld féin — ní úsáidtear aon soláthraithe tríú páirtí.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Fluxer Mobile (caithfidh Plutonium a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).",
+    "betaWarningReportIssues": "Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Fluxerworld Mobile (caithfidh Plutonium a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Athshocraigh go Fluxer",
+    "resetToDefaultInstance": "Athshocraigh go Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Ceangail",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Ag ceangal…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Teip ar an nasc leis an instans",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Athraigh",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Ceangail leis an instans chun logáil isteach",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Naisc le foireann Fluxer amháin",
+    "guildNavbarStaffOnlyAccessible": "Naisc le foireann Fluxerworld amháin",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

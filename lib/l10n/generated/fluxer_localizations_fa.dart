@@ -1553,7 +1553,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
   String get profilePreviewMessage => 'پیام';
 
   @override
-  String get profilePreviewMemberSince => 'عضو Fluxer از';
+  String get profilePreviewMemberSince => 'عضو Fluxerworld از';
 
   @override
   String get unclaimedAccountTitle => 'حساب ادعا نشده';
@@ -2372,7 +2372,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'به این برنامه‌ها دسترسی به حساب Fluxer شما اعطا شده است.';
+      'به این برنامه‌ها دسترسی به حساب Fluxerworld شما اعطا شده است.';
 
   @override
   String get authorizedAppsEmptyTitle => 'هیچ برنامه مجاز وجود ندارد';
@@ -2457,7 +2457,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'کپی کردن تگ Fluxer';
+  String get blockedUsersCopyTag => 'کپی کردن تگ Fluxerworld';
 
   @override
   String get blockedUsersCopyId => 'کپی کردن شناسه کاربر';
@@ -2481,13 +2481,13 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
   String get userProfileEditProfile => 'ویرایش پروفایل';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'کارکنان Fluxer';
+  String get userProfileStaffBadgeTooltip => 'کارکنان Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'تیم انجمن Fluxer';
+  String get userProfileCtpBadgeTooltip => 'تیم انجمن Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'شریک Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'شریک Fluxerworld';
 
   @override
   String get userProfileBugHunterBadgeTooltip => 'شکارچی باگ فاکسر';
@@ -3557,7 +3557,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'حساب ها و دامنه های خارجی را به پروفایل Fluxer خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.';
+      'حساب ها و دامنه های خارجی را به پروفایل Fluxerworld خود پیوند دهید. اتصالات تأیید شده در پروفایل شما نمایش داده می شوند تا دیگران ببینند.';
 
   @override
   String get connectionsEmptyTitle => 'هنوز هیچ اتصالی وجود ندارد';
@@ -6184,7 +6184,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'امنیت و ورود';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'هدیه‌ها و کدها';
@@ -6448,7 +6448,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Fluxer کمک کنید.';
+      'با اشتراک‌گذاری داده‌های ناشناس خرابی و عملکرد، به بهبود Fluxerworld کمک کنید.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6456,7 +6456,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Fluxer ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.';
+      'تمام داده‌های گزارش شده ناشناس هستند و فقط به سرویس نظارت خود Fluxerworld ارسال می‌شوند — هیچ ارائه‌دهنده شخص ثالثی استفاده نمی‌شود.';
 
   @override
   String get userSettingsNavApplications => 'برنامه‌ها';
@@ -6488,7 +6488,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Fluxer گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Plutonium داشته باشید).';
+      'لطفاً هر مشکلی را که پیدا می‌کنید به جامعه موبایل Fluxerworld گزارش دهید (در حال حاضر برای پیوستن به جامعه باید Plutonium داشته باشید).';
 
   @override
   String get betaWarningRepoLink => 'مشاهده سورس در گیت‌هاب';
@@ -6659,7 +6659,7 @@ class FluxerLocalizationsFa extends FluxerLocalizations {
       'آدرس URL نمونه را وارد کنید (مانند fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'بازنشانی به Fluxer';
+  String get resetToDefaultInstance => 'بازنشانی به Fluxerworld';
 
   @override
   String get instanceConnect => 'اتصال';

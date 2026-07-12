@@ -1558,7 +1558,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get profilePreviewMessage => 'Viesti';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer-jäsen vuodesta';
+  String get profilePreviewMemberSince => 'Fluxerworld-jäsen vuodesta';
 
   @override
   String get unclaimedAccountTitle => 'Lunastamaton tili';
@@ -2380,7 +2380,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Näille sovelluksille on myönnetty pääsy Fluxer-tiliisi.';
+      'Näille sovelluksille on myönnetty pääsy Fluxerworld-tiliisi.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Ei valtuutettuja sovelluksia';
@@ -2488,31 +2488,31 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get userProfileEditProfile => 'Muokkaa profiilia';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer-henkilökunta';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld-henkilökunta';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer-yhteisötiimi';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld-yhteisötiimi';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer-kumppani';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld-kumppani';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium -tilaaja vuodesta $date';
+    return 'Fluxerworld Plutonium -tilaaja vuodesta $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary vuodesta $date';
+    return 'Fluxerworld Visionary vuodesta $date';
   }
 
   @override
@@ -3570,7 +3570,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Linkitä ulkoisia tilejä ja verkkotunnuksia Fluxer-profiiliisi. Vahvistetut yhteydet näytetään profiilissasi muiden nähtävillä.';
+      'Linkitä ulkoisia tilejä ja verkkotunnuksia Fluxerworld-profiiliisi. Vahvistetut yhteydet näytetään profiilissasi muiden nähtävillä.';
 
   @override
   String get connectionsEmptyTitle => 'Ei yhteyksiä vielä';
@@ -3925,7 +3925,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Kun käytössä, lukemattomat yksityisviestit palvelinvalikossa kootaan Fluxer-painikkeen kansioon. Napsauta Fluxer-painiketta DM-sivulla laajentaaksesi tai kootaksesi kansion.';
+      'Kun käytössä, lukemattomat yksityisviestit palvelinvalikossa kootaan Fluxerworld-painikkeen kansioon. Napsauta Fluxerworld-painiketta DM-sivulla laajentaaksesi tai kootaksesi kansion.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanavalista';
@@ -6209,7 +6209,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Suojaus ja kirjautuminen';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Lahjat ja koodit';
@@ -6513,7 +6513,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Ilmoita löytämistäsi ongelmista Fluxer Mobile -yhteisölle (sinulla on oltava Plutonium voidaksesi liittyä yhteisöön tällä hetkellä).';
+      'Ilmoita löytämistäsi ongelmista Fluxerworld Mobile -yhteisölle (sinulla on oltava Plutonium voidaksesi liittyä yhteisöön tällä hetkellä).';
 
   @override
   String get betaWarningRepoLink => 'Katso lähdekoodi GitHubissa';
@@ -7036,7 +7036,7 @@ class FluxerLocalizationsFi extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Vain Fluxer-henkilökunnan käytettävissä';
+      'Vain Fluxerworld-henkilökunnan käytettävissä';
 
   @override
   String get guildNavbarInvitesPaused =>

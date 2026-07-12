@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Estás a piques de saír de Fluxer",
+    "externalLinkWarningLeaving": "Estás a piques de saír de Fluxerworld",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Membro de Fluxer dende",
+    "profilePreviewMemberSince": "Membro de Fluxerworld dende",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Xestiona o enderezo de correo electrónico que usas para iniciar sesión en Fluxer",
+    "securityLoginEmailSectionDescription": "Xestiona o enderezo de correo electrónico que usas para iniciar sesión en Fluxerworld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "A estas aplicacións concedéuselles acceso á túa conta de Fluxer.",
+    "authorizedAppsDescription": "A estas aplicacións concedéuselles acceso á túa conta de Fluxerworld.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Persoal de Fluxer",
+    "userProfileStaffBadgeTooltip": "Persoal de Fluxerworld",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Equipo Comunitario de Fluxer",
+    "userProfileCtpBadgeTooltip": "Equipo Comunitario de Fluxerworld",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Socio de Fluxer",
+    "userProfilePartnerBadgeTooltip": "Socio de Fluxerworld",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Cazador de erros de Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Cazador de erros de Fluxerworld",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Plutonio de Fluxer",
+    "userProfilePlutoniumBadgeTooltip": "Plutonio de Fluxerworld",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "subscritor de Plutonio de Fluxer dende o {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "subscritor de Plutonio de Fluxerworld dende o {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Visionario de Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Visionario de Fluxerworld",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Visionario de Fluxer dende o {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Visionario de Fluxerworld dende o {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Anuncios do sistema do persoal de {productName}. Non podes responder aquí.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Vincula contas e dominios externos ao teu perfil de Fluxer. As conexións verificadas mostraranse no teu perfil para que outros as vexan.",
+    "connectionsDescription": "Vincula contas e dominios externos ao teu perfil de Fluxerworld. As conexións verificadas mostraranse no teu perfil para que outros as vexan.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Colapsar DMs nun cartafol",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Cando estea activado, os DMs sen ler na barra lateral de gremios colapsaranse nun cartafol no botón de Fluxer. Fai clic no botón de Fluxer mentres estás na páxina de DMs para expandir ou colapsar o cartafol.",
+    "lookAndFeelCollapseDMsDescription": "Cando estea activado, os DMs sen ler na barra lateral de gremios colapsaranse nun cartafol no botón de Fluxerworld. Fai clic no botón de Fluxerworld mentres estás na páxina de DMs para expandir ou colapsar o cartafol.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Cando se cargan directamente a Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Cando se cargan directamente a Fluxerworld",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -5874,7 +5874,7 @@
     "@iarReasonOtherLabel": {
         "description": "Rule-reason label for the catch-all option in the IAR message flow."
     },
-    "iarReasonOtherDescription": "Use só se viola claramente as regras de Fluxer e non encaixa nas anteriores.",
+    "iarReasonOtherDescription": "Use só se viola claramente as regras de Fluxerworld e non encaixa nas anteriores.",
     "@iarReasonOtherDescription": {
         "description": "Rule-reason description for the catch-all option."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Agasallos e códigos",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Axuda a mellorar Fluxer compartindo datos anónimos de fallos e rendemento.",
+    "advancedPerformanceReportingSectionDescription": "Axuda a mellorar Fluxerworld compartindo datos anónimos de fallos e rendemento.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6560,7 +6560,7 @@
     "@advancedPerformanceReportingLabel": {
         "description": "Toggle label for opting into crash and performance reporting."
     },
-    "advancedPerformanceReportingDescription": "Todos os datos informados son anónimos e só se envían ao propio servizo de monitorización de Fluxer; non se utilizan provedores de terceiros.",
+    "advancedPerformanceReportingDescription": "Todos os datos informados son anónimos e só se envían ao propio servizo de monitorización de Fluxerworld; non se utilizan provedores de terceiros.",
     "@advancedPerformanceReportingDescription": {
         "description": "Toggle description explaining anonymous self-hosted performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Por favor, informa de calquera problema que atopes á comunidade de Fluxer Mobile (actualmente debes ter Plutonium para poder unirte á comunidade).",
+    "betaWarningReportIssues": "Por favor, informa de calquera problema que atopes á comunidade de Fluxerworld Mobile (actualmente debes ter Plutonium para poder unirte á comunidade).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Restablecer a Fluxer",
+    "resetToDefaultInstance": "Restablecer a Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Conectar",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Conectando…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Non se puido conectar á instancia",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Cambiar",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Conéctate á instancia para iniciar sesión",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Só accesible para o persoal de Fluxer",
+    "guildNavbarStaffOnlyAccessible": "Só accesible para o persoal de Fluxerworld",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

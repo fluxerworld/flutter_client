@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Opuszczasz Fluxer",
+    "externalLinkWarningLeaving": "Opuszczasz Fluxerworld",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -1976,7 +1976,7 @@
     "@profilePreviewMessage": {
         "description": "Disabled message button in the profile preview card."
     },
-    "profilePreviewMemberSince": "Członek Fluxer od",
+    "profilePreviewMemberSince": "Członek Fluxerworld od",
     "@profilePreviewMemberSince": {
         "description": "Label for the member-since date in the profile preview card."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Zarządzaj adresem e-mail używanym do logowania się do Fluxer",
+    "securityLoginEmailSectionDescription": "Zarządzaj adresem e-mail używanym do logowania się do Fluxerworld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Te aplikacje otrzymały dostęp do Twojego konta Fluxer.",
+    "authorizedAppsDescription": "Te aplikacje otrzymały dostęp do Twojego konta Fluxerworld.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2876,27 +2876,27 @@
     "@userProfileEditProfile": {
         "description": "Action card label shown on the current user's own profile sheet."
     },
-    "userProfileStaffBadgeTooltip": "Zespół Fluxer",
+    "userProfileStaffBadgeTooltip": "Zespół Fluxerworld",
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Społeczność Fluxer",
+    "userProfileCtpBadgeTooltip": "Społeczność Fluxerworld",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Partner Fluxer",
+    "userProfilePartnerBadgeTooltip": "Partner Fluxerworld",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Łowca Błędów Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Łowca Błędów Fluxerworld",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Fluxerworld Plutonium",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "subskrybent Fluxer Plutonium od {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "subskrybent Fluxerworld Plutonium od {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Wizjoner Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Wizjoner Fluxerworld",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Wizjoner Fluxer od {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Wizjoner Fluxerworld od {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Ogłoszenia systemowe od pracowników {productName}. Nie możesz odpowiedzieć tutaj.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Połącz zewnętrzne konta i domeny z profilem Fluxer. Zweryfikowane połączenia będą widoczne w Twoim profilu dla innych.",
+    "connectionsDescription": "Połącz zewnętrzne konta i domeny z profilem Fluxerworld. Zweryfikowane połączenia będą widoczne w Twoim profilu dla innych.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Zwiń DM do folderu",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Gdy włączone, nieprzeczytane wiadomości DM na pasku bocznym społeczności są zwijane do folderu na przycisku Fluxer. Kliknij przycisk Fluxer, będąc na stronie DM, aby rozwinąć lub zwinąć folder.",
+    "lookAndFeelCollapseDMsDescription": "Gdy włączone, nieprzeczytane wiadomości DM na pasku bocznym społeczności są zwijane do folderu na przycisku Fluxerworld. Kliknij przycisk Fluxerworld, będąc na stronie DM, aby rozwinąć lub zwinąć folder.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Prezenty i kody",
     "@userSettingsNavGiftsAndCodes": {
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Prosimy o zgłaszanie wszelkich napotkanych problemów społeczności Fluxer Mobile (obecnie musisz posiadać Plutonium, aby móc dołączyć do społeczności).",
+    "betaWarningReportIssues": "Prosimy o zgłaszanie wszelkich napotkanych problemów społeczności Fluxerworld Mobile (obecnie musisz posiadać Plutonium, aby móc dołączyć do społeczności).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Resetuj do Fluxer",
+    "resetToDefaultInstance": "Resetuj do Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Połącz",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Łączenie…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Nie udało się połączyć z instancją",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Zmień",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Połącz z instancją, aby się zalogować",
     "@instanceConnectionRequired": {
@@ -7267,7 +7267,7 @@
             }
         }
     },
-    "guildNavbarStaffOnlyAccessible": "Dostępne tylko dla personelu Fluxer",
+    "guildNavbarStaffOnlyAccessible": "Dostępne tylko dla personelu Fluxerworld",
     "@guildNavbarStaffOnlyAccessible": {
         "description": "Guild tooltip when the community is staff-only."
     },

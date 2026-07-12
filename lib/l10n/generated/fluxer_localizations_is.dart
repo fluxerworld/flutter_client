@@ -1193,7 +1193,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Viðvörun um ytri tengil';
 
   @override
-  String get externalLinkWarningLeaving => 'Þú ert að fara úr Fluxer';
+  String get externalLinkWarningLeaving => 'Þú ert að fara úr Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1553,7 +1553,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
   String get profilePreviewMessage => 'Skilaboð';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer meðlimur síðan';
+  String get profilePreviewMemberSince => 'Fluxerworld meðlimur síðan';
 
   @override
   String get unclaimedAccountTitle => 'Ókrafinn reikningur';
@@ -1645,7 +1645,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Stjórnaðu tölvupóstfanginu sem þú notar til að skrá þig inn á Fluxer';
+      'Stjórnaðu tölvupóstfanginu sem þú notar til að skrá þig inn á Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'Tölvupóstfang';
@@ -2374,7 +2374,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Þessi forrit hafa fengið aðgang að Fluxer reikningnum þínum.';
+      'Þessi forrit hafa fengið aðgang að Fluxerworld reikningnum þínum.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Engin leyfisveitt forrit';
@@ -2483,31 +2483,31 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
   String get userProfileEditProfile => 'Breyta prófíl';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer starfsfólk';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld starfsfólk';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer samfélagsteymi';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld samfélagsteymi';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer samstarfsaðili';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld samstarfsaðili';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium áskrifandi síðan $date';
+    return 'Fluxerworld Plutonium áskrifandi síðan $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary síðan $date';
+    return 'Fluxerworld Visionary síðan $date';
   }
 
   @override
@@ -3557,7 +3557,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Tengdu ytri reikninga og lén við Fluxer prófílinn þinn. Staðfestar tengingar verða sýndar á prófílnum þínum svo aðrir sjái.';
+      'Tengdu ytri reikninga og lén við Fluxerworld prófílinn þinn. Staðfestar tengingar verða sýndar á prófílnum þínum svo aðrir sjái.';
 
   @override
   String get connectionsEmptyTitle => 'Engar tengingar ennþá';
@@ -3910,7 +3910,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Þegar þetta er virkt eru ólesin bein skilaboð í hliðarstiku samfélagsins felld saman í möppu á Fluxer hnappnum. Smelltu á Fluxer hnappinn á meðan þú ert á bein skilaboðasíðunni til að stækka eða fella saman möppuna.';
+      'Þegar þetta er virkt eru ólesin bein skilaboð í hliðarstiku samfélagsins felld saman í möppu á Fluxerworld hnappnum. Smelltu á Fluxerworld hnappinn á meðan þú ert á bein skilaboðasíðunni til að stækka eða fella saman möppuna.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Rásalisti';
@@ -4120,7 +4120,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Þegar hlaðið er upp beint í Fluxer';
+      'Þegar hlaðið er upp beint í Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Forskoðun tengla';
@@ -5068,7 +5068,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Notaðu aðeins ef það brýtur augljóslega gegn reglum Fluxer og passar ekki hér að ofan.';
+      'Notaðu aðeins ef það brýtur augljóslega gegn reglum Fluxerworld og passar ekki hér að ofan.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6186,7 +6186,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Öryggi og innskráning';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Gjafir og kóðar';
@@ -6450,7 +6450,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Hjálpaðu til við að bæta Fluxer með því að deila nafnlausum hrun- og afkomugögnum.';
+      'Hjálpaðu til við að bæta Fluxerworld með því að deila nafnlausum hrun- og afkomugögnum.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6458,7 +6458,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Öll gögn sem tilkynnt eru eru nafnlaus og eru aðeins send til eigin eftirlitsþjónustu Fluxer — engir þriðju aðilar eru notaðir.';
+      'Öll gögn sem tilkynnt eru eru nafnlaus og eru aðeins send til eigin eftirlitsþjónustu Fluxerworld — engir þriðju aðilar eru notaðir.';
 
   @override
   String get userSettingsNavApplications => 'Forrit';
@@ -6490,7 +6490,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Vinsamlegast tilkynntu öll vandamál sem þú finnur til samfélags Fluxer Mobile (þú verður að hafa Plutonium til að geta gengið í samfélagið eins og er).';
+      'Vinsamlegast tilkynntu öll vandamál sem þú finnur til samfélags Fluxerworld Mobile (þú verður að hafa Plutonium til að geta gengið í samfélagið eins og er).';
 
   @override
   String get betaWarningRepoLink => 'Skoða heimild á GitHub';
@@ -6660,7 +6660,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
       'Sláðu inn URL á netþjóni (t.d. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Endurstilla á Fluxer';
+  String get resetToDefaultInstance => 'Endurstilla á Fluxerworld';
 
   @override
   String get instanceConnect => 'Tengjast';
@@ -7013,7 +7013,7 @@ class FluxerLocalizationsIs extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Aðeins aðgengilegt starfsfólki Fluxer';
+      'Aðeins aðgengilegt starfsfólki Fluxerworld';
 
   @override
   String get guildNavbarInvitesPaused => 'Boð eru nú í bið í þessu samfélagi';

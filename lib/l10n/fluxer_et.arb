@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Süsteemiteated {productName} personalilt. Siia ei saa vastata.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4555,7 +4555,7 @@
     },
     "lookAndFeelCollapseDMsLabel": "Paki DM-id kausta",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
     "lookAndFeelCollapseDMsDescription": "Kui see on lubatud, pakitakse serveri külgribal olevad lugemata DM-id kausta Fluxeri nupu alla. Kausta laiendamiseks või kokku pakkimiseks klõpsake DM-ide lehel olles Fluxeri nuppu.",
     "@lookAndFeelCollapseDMsDescription": {
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Kingitused ja koodid",
     "@userSettingsNavGiftsAndCodes": {
@@ -6828,15 +6828,15 @@
     },
     "resetToDefaultInstance": "Lähtesta Fluxerile",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Ühenda",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Ühendub…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Ühendus instansiga nurjus",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Muuda",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Logimiseks ühendu instansiga",
     "@instanceConnectionRequired": {

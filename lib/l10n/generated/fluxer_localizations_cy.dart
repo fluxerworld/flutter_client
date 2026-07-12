@@ -1196,7 +1196,8 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Rhybudd Dolenni Allanol';
 
   @override
-  String get externalLinkWarningLeaving => 'Rydych chi ar fin gadael Fluxer';
+  String get externalLinkWarningLeaving =>
+      'Rydych chi ar fin gadael Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1559,7 +1560,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get profilePreviewMessage => 'Neges';
 
   @override
-  String get profilePreviewMemberSince => 'Aelod Fluxer Ers';
+  String get profilePreviewMemberSince => 'Aelod Fluxerworld Ers';
 
   @override
   String get unclaimedAccountTitle => 'Cyfrif Heb Hawlio';
@@ -1651,7 +1652,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Rheoli\'r cyfeiriad e-bost rydych chi\'n ei ddefnyddio i fewngofnodi i Fluxer';
+      'Rheoli\'r cyfeiriad e-bost rydych chi\'n ei ddefnyddio i fewngofnodi i Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'Cyfeiriad E-bost';
@@ -2380,7 +2381,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Mae\'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Fluxer.';
+      'Mae\'r cymhwysiadau hyn wedi cael caniatâd i gyrchu eich cyfrif Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Dim Cymhwysiadau Awdurdodedig';
@@ -2490,27 +2491,27 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get userProfileEditProfile => 'Golygu Proffil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Staff Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Staff Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Tîm Cymuned Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Tîm Cymuned Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Partner Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Partner Fluxerworld';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Heliwr Bugiau Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Heliwr Bugiau Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plwtoniwm Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Plwtoniwm Fluxerworld';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'tanysgrifiwr Plwtoniwm Fluxer er $date';
+    return 'tanysgrifiwr Plwtoniwm Fluxerworld er $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Gweledydd Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Gweledydd Fluxerworld';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
@@ -3571,7 +3572,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Cysylltwch gyfrifon ac ardaloedd allanol i\'ch proffil Fluxer. Bydd cysylltiadau wedi\'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.';
+      'Cysylltwch gyfrifon ac ardaloedd allanol i\'ch proffil Fluxerworld. Bydd cysylltiadau wedi\'u dilysu yn cael eu harddangos ar eich proffil i eraill eu gweld.';
 
   @override
   String get connectionsEmptyTitle => 'Dim cysylltiadau eto';
@@ -3925,7 +3926,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Pan fydd wedi\'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Fluxer. Cliciwch y botwm Fluxer tra\'ch bod ar dudalen DMau i ehangu neu grychu\'r ffolder.';
+      'Pan fydd wedi\'i alluogi, mae DMau heb eu darllen yn y bar ochr achlysur yn cael eu crychu i mewn i ffolder ar y botwm Fluxerworld. Cliciwch y botwm Fluxerworld tra\'ch bod ar dudalen DMau i ehangu neu grychu\'r ffolder.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Rhestr Sianelau';
@@ -4135,7 +4136,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Pan fyddant wedi\'u huwchlwytho\'n uniongyrchol i Fluxer';
+      'Pan fyddant wedi\'u huwchlwytho\'n uniongyrchol i Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Rhagolygon dolen';
@@ -5093,7 +5094,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Defnyddiwch yn unig os yw\'n torri rheolau Fluxer yn amlwg ac nid yw\'n cyd-fynd â\'r uchod.';
+      'Defnyddiwch yn unig os yw\'n torri rheolau Fluxerworld yn amlwg ac nid yw\'n cyd-fynd â\'r uchod.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6208,7 +6209,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Diogelwch a Mewngofnodi';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Rhoddion a Chodau';
@@ -6472,7 +6473,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Helpwch i wella Fluxer trwy rannu data damweiniau a pherfformiad dienw.';
+      'Helpwch i wella Fluxerworld trwy rannu data damweiniau a pherfformiad dienw.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6480,7 +6481,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Mae\'r holl ddata a adroddir yn ddienw ac fe\'i hanfonir yn unig at wasanaeth monitro Fluxer ei hun - ni ddefnyddir darparwyr trydydd parti.';
+      'Mae\'r holl ddata a adroddir yn ddienw ac fe\'i hanfonir yn unig at wasanaeth monitro Fluxerworld ei hun - ni ddefnyddir darparwyr trydydd parti.';
 
   @override
   String get userSettingsNavApplications => 'Cymhwysiadau';
@@ -6512,7 +6513,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Rhowch wybod am unrhyw broblemau a geir i gymuned Fluxer Mobile (mae\'n rhaid i chi fod â Plutonium i allu ymuno â\'r gymuned ar hyn o bryd).';
+      'Rhowch wybod am unrhyw broblemau a geir i gymuned Fluxerworld Mobile (mae\'n rhaid i chi fod â Plutonium i allu ymuno â\'r gymuned ar hyn o bryd).';
 
   @override
   String get betaWarningRepoLink => 'Gweld ffynhonnell ar GitHub';
@@ -6683,7 +6684,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'Rhowch URL yr achos (ee fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Ailosod i Fluxer';
+  String get resetToDefaultInstance => 'Ailosod i Fluxerworld';
 
   @override
   String get instanceConnect => 'Cysylltu';
@@ -7039,7 +7040,7 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Dim ond staff Fluxer all gyrchu';
+      'Dim ond staff Fluxerworld all gyrchu';
 
   @override
   String get guildNavbarInvitesPaused =>

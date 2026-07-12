@@ -1195,7 +1195,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Varování před externím odkazem';
 
   @override
-  String get externalLinkWarningLeaving => 'Chystáte se opustit Fluxer';
+  String get externalLinkWarningLeaving => 'Chystáte se opustit Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -2374,7 +2374,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Těmto aplikacím byl udělen přístup k vašemu účtu Fluxer.';
+      'Těmto aplikacím byl udělen přístup k vašemu účtu Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Žádné autorizované aplikace';
@@ -2496,11 +2496,11 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get userProfileBugHunterBadgeTooltip => 'Lovec chyb Fluxeru';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Předplatitel Fluxer Plutonium od $date';
+    return 'Předplatitel Fluxerworld Plutonium od $date';
   }
 
   @override
@@ -3564,7 +3564,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Propojte externí účty a domény s vaším profilem Fluxer. Ověřená propojení se zobrazí ve vašem profilu.';
+      'Propojte externí účty a domény s vaším profilem Fluxerworld. Ověřená propojení se zobrazí ve vašem profilu.';
 
   @override
   String get connectionsEmptyTitle => 'Zatím žádná propojení';
@@ -3918,7 +3918,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Když je povoleno, nepřečtené DM v postranním panelu komunity jsou sbaleny do složky na tlačítku Fluxer. Kliknutím na tlačítko Fluxer na stránce DM složku rozbalíte nebo sbalíte.';
+      'Když je povoleno, nepřečtené DM v postranním panelu komunity jsou sbaleny do složky na tlačítku Fluxerworld. Kliknutím na tlačítko Fluxerworld na stránce DM složku rozbalíte nebo sbalíte.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Seznam kanálů';
@@ -6198,7 +6198,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Zabezpečení a přihlášení';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Dárky a kódy';
@@ -6462,7 +6462,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Pomozte vylepšit Fluxer sdílením anonymních dat o pádech a výkonu.';
+      'Pomozte vylepšit Fluxerworld sdílením anonymních dat o pádech a výkonu.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6502,7 +6502,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Jakékoli nalezené problémy prosím nahlaste komunitě Fluxer Mobile (pro vstup do komunity momentálně potřebujete Plutonium).';
+      'Jakékoli nalezené problémy prosím nahlaste komunitě Fluxerworld Mobile (pro vstup do komunity momentálně potřebujete Plutonium).';
 
   @override
   String get betaWarningRepoLink => 'Zobrazit zdroj na GitHubu';
@@ -6672,7 +6672,7 @@ class FluxerLocalizationsCs extends FluxerLocalizations {
       'Zadejte URL instance (např. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Obnovit na Fluxer';
+  String get resetToDefaultInstance => 'Obnovit na Fluxerworld';
 
   @override
   String get instanceConnect => 'Připojit';

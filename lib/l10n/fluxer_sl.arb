@@ -1514,7 +1514,7 @@
     "@externalLinkWarningTitle": {
         "description": "Title of the external link warning modal."
     },
-    "externalLinkWarningLeaving": "Namenjate zapustiti Fluxer",
+    "externalLinkWarningLeaving": "Namenjate zapustiti Fluxerworld",
     "@externalLinkWarningLeaving": {
         "description": "Primary warning text shown in the external link warning modal."
     },
@@ -2088,7 +2088,7 @@
     "@securityLoginEmailSectionTitle": {
         "description": "Title for email settings section in Security & Login."
     },
-    "securityLoginEmailSectionDescription": "Upravljajte e-poštni naslov, ki ga uporabljate za prijavo v Fluxer",
+    "securityLoginEmailSectionDescription": "Upravljajte e-poštni naslov, ki ga uporabljate za prijavo v Fluxerworld",
     "@securityLoginEmailSectionDescription": {
         "description": "Description for email settings section."
     },
@@ -2733,7 +2733,7 @@
     "@authorizedAppsTitle": {
         "description": "Title for the Authorized Applications settings section."
     },
-    "authorizedAppsDescription": "Tem aplikacijam je bil odobren dostop do vašega računa Fluxer.",
+    "authorizedAppsDescription": "Tem aplikacijam je bil odobren dostop do vašega računa Fluxerworld.",
     "@authorizedAppsDescription": {
         "description": "Description under the Authorized Applications section title."
     },
@@ -2880,23 +2880,23 @@
     "@userProfileStaffBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileCtpBadgeTooltip": "Fluxer Community Team",
+    "userProfileCtpBadgeTooltip": "Fluxerworld Community Team",
     "@userProfileCtpBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePartnerBadgeTooltip": "Fluxer Partner",
+    "userProfilePartnerBadgeTooltip": "Fluxerworld Partner",
     "@userProfilePartnerBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileBugHunterBadgeTooltip": "Lovilec hroščev Fluxer",
+    "userProfileBugHunterBadgeTooltip": "Lovilec hroščev Fluxerworld",
     "@userProfileBugHunterBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumBadgeTooltip": "Fluxer Plutonium",
+    "userProfilePlutoniumBadgeTooltip": "Fluxerworld Plutonium",
     "@userProfilePlutoniumBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfilePlutoniumSubscriberSinceTooltip": "Naročnik Fluxer Plutonium od {date}",
+    "userProfilePlutoniumSubscriberSinceTooltip": "Naročnik Fluxerworld Plutonium od {date}",
     "@userProfilePlutoniumSubscriberSinceTooltip": {
         "description": "Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep \"subscriber since\" lowercase. Other locales should use natural local capitalization.",
         "placeholders": {
@@ -2905,11 +2905,11 @@
             }
         }
     },
-    "userProfileVisionaryBadgeTooltip": "Vizionar Fluxer",
+    "userProfileVisionaryBadgeTooltip": "Vizionar Fluxerworld",
     "@userProfileVisionaryBadgeTooltip": {
         "description": "Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization."
     },
-    "userProfileVisionaryBadgeSinceTooltip": "Vizionar Fluxer od {date}",
+    "userProfileVisionaryBadgeSinceTooltip": "Vizionar Fluxerworld od {date}",
     "@userProfileVisionaryBadgeSinceTooltip": {
         "description": "Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.",
         "placeholders": {
@@ -3762,7 +3762,7 @@
     },
     "systemDmComposerBarrier": "Sistemske objave osebja {productName}. Tukaj ne morete odgovoriti.",
     "@systemDmComposerBarrier": {
-        "description": "Read-only system DM barrier message. productName is the Fluxer product name.",
+        "description": "Read-only system DM barrier message. productName is the Fluxerworld product name.",
         "placeholders": {
             "productName": {
                 "type": "String"
@@ -4142,7 +4142,7 @@
     "@connectionsTitle": {
         "description": "Title of the Connections settings page."
     },
-    "connectionsDescription": "Povežite zunanje račune in domene z vašim profilom Fluxer. Preverjene povezave bodo prikazane v vašem profilu, da jih bodo drugi videli.",
+    "connectionsDescription": "Povežite zunanje račune in domene z vašim profilom Fluxerworld. Preverjene povezave bodo prikazane v vašem profilu, da jih bodo drugi videli.",
     "@connectionsDescription": {
         "description": "Description shown under the Connections settings page title."
     },
@@ -4364,7 +4364,7 @@
     "@connectionRemoveFailed": {
         "description": "Toast shown when the delete request fails."
     },
-    "connectionTokenSavedToast": "Fluxer-verification shranjen",
+    "connectionTokenSavedToast": "Fluxerworld-verification shranjen",
     "@connectionTokenSavedToast": {
         "description": "Toast shown after the token file is saved successfully."
     },
@@ -4555,9 +4555,9 @@
     },
     "lookAndFeelCollapseDMsLabel": "Strni DM v mapo",
     "@lookAndFeelCollapseDMsLabel": {
-        "description": "Toggle label — collapse unread DMs into the Fluxer button folder."
+        "description": "Toggle label — collapse unread DMs into the Fluxerworld button folder."
     },
-    "lookAndFeelCollapseDMsDescription": "Ko je omogočeno, se neprebrani DM-ji v stranski vrstici skupnosti strnejo v mapo na gumbu Fluxer. Kliknite gumb Fluxer, ko ste na strani DM-jev, da razširite ali strnete mapo.",
+    "lookAndFeelCollapseDMsDescription": "Ko je omogočeno, se neprebrani DM-ji v stranski vrstici skupnosti strnejo v mapo na gumbu Fluxerworld. Kliknite gumb Fluxerworld, ko ste na strani DM-jev, da razširite ali strnete mapo.",
     "@lookAndFeelCollapseDMsDescription": {
         "description": "Toggle description for the DM folder collapse behavior."
     },
@@ -4801,7 +4801,7 @@
     "@messagesMediaDisplayInlineEmbedLabel": {
         "description": "Toggle label for inlining media when posted as links."
     },
-    "messagesMediaDisplayInlineAttachmentLabel": "Ko so naloženi neposredno v Fluxer",
+    "messagesMediaDisplayInlineAttachmentLabel": "Ko so naloženi neposredno v Fluxerworld",
     "@messagesMediaDisplayInlineAttachmentLabel": {
         "description": "Toggle label for inlining media for direct uploads."
     },
@@ -6488,9 +6488,9 @@
     "@userSettingsNavSecurityLogin": {
         "description": "User settings navigation item for security and login settings."
     },
-    "userSettingsNavFluxerPlutonium": "Fluxer Plutonium",
+    "userSettingsNavFluxerPlutonium": "Fluxerworld Plutonium",
     "@userSettingsNavFluxerPlutonium": {
-        "description": "User settings navigation item for Fluxer Plutonium subscription settings."
+        "description": "User settings navigation item for Fluxerworld Plutonium subscription settings."
     },
     "userSettingsNavGiftsAndCodes": "Darila in kode",
     "@userSettingsNavGiftsAndCodes": {
@@ -6552,7 +6552,7 @@
     "@advancedPerformanceReportingTitle": {
         "description": "Advanced settings section title for crash and performance reporting."
     },
-    "advancedPerformanceReportingSectionDescription": "Pomagajte izboljšati Fluxer z deljenjem anonimnih podatkov o zrušitvah in uspešnosti.",
+    "advancedPerformanceReportingSectionDescription": "Pomagajte izboljšati Fluxerworld z deljenjem anonimnih podatkov o zrušitvah in uspešnosti.",
     "@advancedPerformanceReportingSectionDescription": {
         "description": "Advanced settings section description for crash and performance reporting."
     },
@@ -6600,7 +6600,7 @@
     "@betaWarningMessage": {
         "description": "Main warning message on the beta warning bottom sheet."
     },
-    "betaWarningReportIssues": "Prosimo, prijavite vse težave, ki jih najdete, skupnosti Fluxer Mobile (trenutno se lahko pridružite skupnosti samo, če imate Plutonium).",
+    "betaWarningReportIssues": "Prosimo, prijavite vse težave, ki jih najdete, skupnosti Fluxerworld Mobile (trenutno se lahko pridružite skupnosti samo, če imate Plutonium).",
     "@betaWarningReportIssues": {
         "description": "Secondary message on the beta warning sheet about reporting issues."
     },
@@ -6826,17 +6826,17 @@
     "@instanceUrlPlaceholder": {
         "description": "Placeholder for the self-hosted instance URL input."
     },
-    "resetToDefaultInstance": "Ponastavi na Fluxer",
+    "resetToDefaultInstance": "Ponastavi na Fluxerworld",
     "@resetToDefaultInstance": {
-        "description": "Tooltip for the button that resets the instance URL to the official Fluxer instance."
+        "description": "Tooltip for the button that resets the instance URL to the official Fluxerworld instance."
     },
     "instanceConnect": "Poveži",
     "@instanceConnect": {
-        "description": "Button label to connect to a custom Fluxer instance."
+        "description": "Button label to connect to a custom Fluxerworld instance."
     },
     "instanceConnecting": "Povezovanje…",
     "@instanceConnecting": {
-        "description": "Status text while discovering a custom Fluxer instance."
+        "description": "Status text while discovering a custom Fluxerworld instance."
     },
     "instanceConnectFailed": "Povezava z instanco ni uspela",
     "@instanceConnectFailed": {
@@ -6865,7 +6865,7 @@
     },
     "changeInstance": "Spremeni",
     "@changeInstance": {
-        "description": "Link to change the connected Fluxer instance."
+        "description": "Link to change the connected Fluxerworld instance."
     },
     "instanceConnectionRequired": "Za prijavo se poveži z instanco",
     "@instanceConnectionRequired": {

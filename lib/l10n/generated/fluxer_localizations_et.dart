@@ -6185,7 +6185,7 @@ class FluxerLocalizationsEt extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Turvalisus ja sisselogimine';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Kingitused ja koodid';

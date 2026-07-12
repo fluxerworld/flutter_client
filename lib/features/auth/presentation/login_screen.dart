@@ -191,10 +191,16 @@ class LoginScreen extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  SvgPicture.asset(
-                    Assets.fluxerWordmarkMonochrome,
-                    height: 32,
-                    theme: SvgTheme(currentColor: context.colors.textPrimary),
+                  // Text wordmark until a Fluxerworld logo asset is wired in
+                  // (the upstream SVG is a vector-path "Fluxer" logo).
+                  Text(
+                    'Fluxerworld',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.5,
+                      color: context.colors.textPrimary,
+                    ),
                   ),
                   SizedBox(height: layout.s8),
                   _buildAuthContent(context, ref, showBrowserLogin: false),

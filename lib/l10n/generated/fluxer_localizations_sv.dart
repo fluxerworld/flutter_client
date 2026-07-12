@@ -1193,7 +1193,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Varning för extern länk';
 
   @override
-  String get externalLinkWarningLeaving => 'Du är på väg att lämna Fluxer';
+  String get externalLinkWarningLeaving => 'Du är på väg att lämna Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1553,7 +1553,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get profilePreviewMessage => 'Meddelande';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer-medlem sedan';
+  String get profilePreviewMemberSince => 'Fluxerworld-medlem sedan';
 
   @override
   String get unclaimedAccountTitle => 'Oinnehållet konto';
@@ -1644,7 +1644,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Hantera e-postadressen du använder för att logga in på Fluxer';
+      'Hantera e-postadressen du använder för att logga in på Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-postadress';
@@ -2373,7 +2373,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Dessa program har beviljats åtkomst till ditt Fluxer-konto.';
+      'Dessa program har beviljats åtkomst till ditt Fluxerworld-konto.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Inga auktoriserade program';
@@ -2481,31 +2481,31 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get userProfileEditProfile => 'Redigera profil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer-personal';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld-personal';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer Community Team';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld Community Team';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer Partner';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld Partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium-prenumerant sedan $date';
+    return 'Fluxerworld Plutonium-prenumerant sedan $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary sedan $date';
+    return 'Fluxerworld Visionary sedan $date';
   }
 
   @override
@@ -3559,7 +3559,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Länka externa konton och domäner till din Fluxer-profil. Verifierade anslutningar visas på din profil för andra att se.';
+      'Länka externa konton och domäner till din Fluxerworld-profil. Verifierade anslutningar visas på din profil för andra att se.';
 
   @override
   String get connectionsEmptyTitle => 'Inga anslutningar ännu';
@@ -3914,7 +3914,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'När det är aktiverat kollapsas olästa DM i serverlistan till en mapp på Fluxer-knappen. Klicka på Fluxer-knappen när du är på DM-sidan för att expandera eller kollapsa mappen.';
+      'När det är aktiverat kollapsas olästa DM i serverlistan till en mapp på Fluxerworld-knappen. Klicka på Fluxerworld-knappen när du är på DM-sidan för att expandera eller kollapsa mappen.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanallista';
@@ -4123,7 +4123,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'När de laddas upp direkt till Fluxer';
+      'När de laddas upp direkt till Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Länkförhandsvisningar';
@@ -6194,7 +6194,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Säkerhet och inloggning';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Gåvor och koder';
@@ -6458,7 +6458,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Hjälp till att förbättra Fluxer genom att dela anonyma krasch- och prestandadata.';
+      'Hjälp till att förbättra Fluxerworld genom att dela anonyma krasch- och prestandadata.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6498,7 +6498,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Vänligen rapportera alla problem du hittar till Fluxer Mobile-communityn (du måste ha Plutonium för att kunna gå med i communityn för närvarande).';
+      'Vänligen rapportera alla problem du hittar till Fluxerworld Mobile-communityn (du måste ha Plutonium för att kunna gå med i communityn för närvarande).';
 
   @override
   String get betaWarningRepoLink => 'Visa källkod på GitHub';
@@ -6669,7 +6669,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
   String get instanceUrlPlaceholder => 'Ange instans-URL (t.ex. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Återställ till Fluxer';
+  String get resetToDefaultInstance => 'Återställ till Fluxerworld';
 
   @override
   String get instanceConnect => 'Anslut';
@@ -7025,7 +7025,7 @@ class FluxerLocalizationsSv extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Endast tillgängligt för Fluxer-personal';
+      'Endast tillgängligt för Fluxerworld-personal';
 
   @override
   String get guildNavbarInvitesPaused =>

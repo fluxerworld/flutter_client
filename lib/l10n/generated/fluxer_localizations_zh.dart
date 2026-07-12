@@ -1139,7 +1139,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get externalLinkWarningTitle => '外部链接警告';
 
   @override
-  String get externalLinkWarningLeaving => '您即将离开 Fluxer';
+  String get externalLinkWarningLeaving => '您即将离开 Fluxerworld';
 
   @override
   String get externalLinkWarningDescription => '外部链接可能存在风险。请小心。';
@@ -1474,7 +1474,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get profilePreviewMessage => '消息';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer 会员自';
+  String get profilePreviewMemberSince => 'Fluxerworld 会员自';
 
   @override
   String get unclaimedAccountTitle => '未认领的账户';
@@ -1561,7 +1561,8 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get securityLoginEmailSectionTitle => '电子邮件设置';
 
   @override
-  String get securityLoginEmailSectionDescription => '管理你用于登录 Fluxer 的电子邮件地址';
+  String get securityLoginEmailSectionDescription =>
+      '管理你用于登录 Fluxerworld 的电子邮件地址';
 
   @override
   String get securityLoginEmailAddressLabel => '电子邮件地址';
@@ -2361,31 +2362,31 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userProfileEditProfile => '编辑个人资料';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer 员工';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld 员工';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer 社区团队';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld 社区团队';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer 合作伙伴';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld 合作伙伴';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium 订阅者，始于 $date';
+    return 'Fluxerworld Plutonium 订阅者，始于 $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary，始于 $date';
+    return 'Fluxerworld Visionary，始于 $date';
   }
 
   @override
@@ -3398,7 +3399,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      '将外部账号和域名链接到您的 Fluxer 个人资料。已验证的连接将显示在您的个人资料上供他人查看。';
+      '将外部账号和域名链接到您的 Fluxerworld 个人资料。已验证的连接将显示在您的个人资料上供他人查看。';
 
   @override
   String get connectionsEmptyTitle => '暂无连接';
@@ -3723,7 +3724,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      '启用后，服务器边栏中的未读私信将折叠到 Fluxer 按钮文件夹中。在私信页面上单击 Fluxer 按钮可展开或折叠文件夹。';
+      '启用后，服务器边栏中的未读私信将折叠到 Fluxerworld 按钮文件夹中。在私信页面上单击 Fluxerworld 按钮可展开或折叠文件夹。';
 
   @override
   String get lookAndFeelChannelListSectionTitle => '频道列表';
@@ -3916,7 +3917,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get messagesMediaDisplayInlineEmbedLabel => '作为链接发布到聊天时';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel => '直接上传到 Fluxer 时';
+  String get messagesMediaDisplayInlineAttachmentLabel => '直接上传到 Fluxerworld 时';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => '链接预览';
@@ -5880,7 +5881,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => '安全与登录';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => '礼物与兑换码';
@@ -6144,14 +6145,14 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      '通过分享匿名的崩溃和性能数据来帮助改进 Fluxer。';
+      '通过分享匿名的崩溃和性能数据来帮助改进 Fluxerworld。';
 
   @override
   String get advancedPerformanceReportingLabel => '发送崩溃和性能报告';
 
   @override
   String get advancedPerformanceReportingDescription =>
-      '所有报告的数据都是匿名的，并且仅发送到 Fluxer 自有的监控服务——不使用任何第三方提供商。';
+      '所有报告的数据都是匿名的，并且仅发送到 Fluxerworld 自有的监控服务——不使用任何第三方提供商。';
 
   @override
   String get userSettingsNavApplications => '应用';
@@ -6182,7 +6183,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      '请将你发现的任何问题报告给 Fluxer 移动社区（目前你必须拥有 Plutonium 才能加入该社区）。';
+      '请将你发现的任何问题报告给 Fluxerworld 移动社区（目前你必须拥有 Plutonium 才能加入该社区）。';
 
   @override
   String get betaWarningRepoLink => '在 GitHub 上查看源代码';
@@ -6348,7 +6349,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   String get instanceUrlPlaceholder => '输入实例 URL（例如 fluxer.app）';
 
   @override
-  String get resetToDefaultInstance => '重置为 Fluxer';
+  String get resetToDefaultInstance => '重置为 Fluxerworld';
 
   @override
   String get instanceConnect => '连接';
@@ -6679,7 +6680,7 @@ class FluxerLocalizationsZh extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxer 员工访问';
+  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxerworld 员工访问';
 
   @override
   String get guildNavbarInvitesPaused => '此社群的邀请当前已暂停';
@@ -9683,7 +9684,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get externalLinkWarningTitle => '外部連結警告';
 
   @override
-  String get externalLinkWarningLeaving => '您即將離開 Fluxer';
+  String get externalLinkWarningLeaving => '您即將離開 Fluxerworld';
 
   @override
   String get externalLinkWarningDescription => '外部連結可能很危險。請小心。';
@@ -10019,7 +10020,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get profilePreviewMessage => '訊息';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer 會員自';
+  String get profilePreviewMemberSince => 'Fluxerworld 會員自';
 
   @override
   String get unclaimedAccountTitle => '未認領帳戶';
@@ -10106,7 +10107,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get securityLoginEmailSectionTitle => '電子郵件設定';
 
   @override
-  String get securityLoginEmailSectionDescription => '管理您用來登入 Fluxer 的電子郵件地址';
+  String get securityLoginEmailSectionDescription =>
+      '管理您用來登入 Fluxerworld 的電子郵件地址';
 
   @override
   String get securityLoginEmailAddressLabel => '電子郵件地址';
@@ -10613,7 +10615,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get authorizedAppsTitle => '已授權的應用程式';
 
   @override
-  String get authorizedAppsDescription => '這些應用程式已被授權存取你的 Fluxer 帳號。';
+  String get authorizedAppsDescription => '這些應用程式已被授權存取你的 Fluxerworld 帳號。';
 
   @override
   String get authorizedAppsEmptyTitle => '沒有已授權的應用程式';
@@ -10715,31 +10717,31 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get userProfileEditProfile => '編輯個人資料';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer 團隊成員';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld 團隊成員';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer 社群團隊';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld 社群團隊';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer 合作夥伴';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld 合作夥伴';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer 蟲蟲獵人';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld 蟲蟲獵人';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium 訂閱者自 $date 起';
+    return 'Fluxerworld Plutonium 訂閱者自 $date 起';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary 自 $date 起';
+    return 'Fluxerworld Visionary 自 $date 起';
   }
 
   @override
@@ -11623,7 +11625,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get connectionsDescription =>
-      '連結外部帳號和網域至您的 Fluxer 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。';
+      '連結外部帳號和網域至您的 Fluxerworld 個人檔案。已驗證的連線將顯示在您的個人檔案上供他人查看。';
 
   @override
   String get connectionsEmptyTitle => '尚未有連線';
@@ -11949,7 +11951,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      '啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Fluxer 按鈕資料夾中。在私訊頁面上按一下 Fluxer 按鈕即可展開或摺疊資料夾。';
+      '啟用時，伺服器側邊欄中的未讀私訊會摺疊到 Fluxerworld 按鈕資料夾中。在私訊頁面上按一下 Fluxerworld 按鈕即可展開或摺疊資料夾。';
 
   @override
   String get lookAndFeelChannelListSectionTitle => '頻道列表';
@@ -12143,7 +12145,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get messagesMediaDisplayInlineEmbedLabel => '當以連結形式張貼到聊天時';
 
   @override
-  String get messagesMediaDisplayInlineAttachmentLabel => '當直接上傳到 Fluxer 時';
+  String get messagesMediaDisplayInlineAttachmentLabel =>
+      '當直接上傳到 Fluxerworld 時';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => '連結預覽';
@@ -12933,7 +12936,8 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get iarReasonOtherLabel => '其他明顯的違規行為';
 
   @override
-  String get iarReasonOtherDescription => '僅在內容明顯違反 Fluxer 規定且不符合以上任何類別時使用。';
+  String get iarReasonOtherDescription =>
+      '僅在內容明顯違反 Fluxerworld 規定且不符合以上任何類別時使用。';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -13370,7 +13374,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get userSettingsNavSecurityLogin => '安全性與登入';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => '禮物與代碼';
@@ -13419,14 +13423,14 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      '透過分享匿名的當機和效能資料，協助改進 Fluxer。';
+      '透過分享匿名的當機和效能資料，協助改進 Fluxerworld。';
 
   @override
   String get advancedPerformanceReportingLabel => '傳送當機和效能報告';
 
   @override
   String get advancedPerformanceReportingDescription =>
-      '所有回報的資料均為匿名，且僅傳送至 Fluxer 自有的監控服務 — 不會使用任何第三方供應商。';
+      '所有回報的資料均為匿名，且僅傳送至 Fluxerworld 自有的監控服務 — 不會使用任何第三方供應商。';
 
   @override
   String get userSettingsNavApplications => '應用程式';
@@ -13457,7 +13461,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
 
   @override
   String get betaWarningReportIssues =>
-      '請將您發現的任何問題回報給 Fluxer Mobile 社群 (目前必須擁有 Plutonium 才能加入社群)。';
+      '請將您發現的任何問題回報給 Fluxerworld Mobile 社群 (目前必須擁有 Plutonium 才能加入社群)。';
 
   @override
   String get betaWarningRepoLink => '在 GitHub 上檢視原始碼';
@@ -13623,7 +13627,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   String get instanceUrlPlaceholder => '輸入伺服器網址 (例如 fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => '重設為 Fluxer';
+  String get resetToDefaultInstance => '重設為 Fluxerworld';
 
   @override
   String get instanceConnect => '連線';
@@ -13952,7 +13956,7 @@ class FluxerLocalizationsZhHant extends FluxerLocalizationsZh {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxer 员工存取';
+  String get guildNavbarStaffOnlyAccessible => '仅限 Fluxerworld 员工存取';
 
   @override
   String get guildNavbarInvitesPaused => '此社群的邀请目前已暂停';

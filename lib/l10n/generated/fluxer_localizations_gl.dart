@@ -1202,7 +1202,8 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Advertencia de ligazón externa';
 
   @override
-  String get externalLinkWarningLeaving => 'Estás a piques de saír de Fluxer';
+  String get externalLinkWarningLeaving =>
+      'Estás a piques de saír de Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1568,7 +1569,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
   String get profilePreviewMessage => 'Mensaxe';
 
   @override
-  String get profilePreviewMemberSince => 'Membro de Fluxer dende';
+  String get profilePreviewMemberSince => 'Membro de Fluxerworld dende';
 
   @override
   String get unclaimedAccountTitle => 'Conta non reclamada';
@@ -1660,7 +1661,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Xestiona o enderezo de correo electrónico que usas para iniciar sesión en Fluxer';
+      'Xestiona o enderezo de correo electrónico que usas para iniciar sesión en Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'Enderezo de correo electrónico';
@@ -2394,7 +2395,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'A estas aplicacións concedéuselles acceso á túa conta de Fluxer.';
+      'A estas aplicacións concedéuselles acceso á túa conta de Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Ningunha aplicación autorizada';
@@ -2504,31 +2505,32 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
   String get userProfileEditProfile => 'Editar perfil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Persoal de Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Persoal de Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Equipo Comunitario de Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Equipo Comunitario de Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Socio de Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Socio de Fluxerworld';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Cazador de erros de Fluxer';
+  String get userProfileBugHunterBadgeTooltip =>
+      'Cazador de erros de Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plutonio de Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Plutonio de Fluxerworld';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'subscritor de Plutonio de Fluxer dende o $date';
+    return 'subscritor de Plutonio de Fluxerworld dende o $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Visionario de Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Visionario de Fluxerworld';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Visionario de Fluxer dende o $date';
+    return 'Visionario de Fluxerworld dende o $date';
   }
 
   @override
@@ -3591,7 +3593,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Vincula contas e dominios externos ao teu perfil de Fluxer. As conexións verificadas mostraranse no teu perfil para que outros as vexan.';
+      'Vincula contas e dominios externos ao teu perfil de Fluxerworld. As conexións verificadas mostraranse no teu perfil para que outros as vexan.';
 
   @override
   String get connectionsEmptyTitle => 'Aínda non hai conexións';
@@ -3946,7 +3948,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Cando estea activado, os DMs sen ler na barra lateral de gremios colapsaranse nun cartafol no botón de Fluxer. Fai clic no botón de Fluxer mentres estás na páxina de DMs para expandir ou colapsar o cartafol.';
+      'Cando estea activado, os DMs sen ler na barra lateral de gremios colapsaranse nun cartafol no botón de Fluxerworld. Fai clic no botón de Fluxerworld mentres estás na páxina de DMs para expandir ou colapsar o cartafol.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Lista de canles';
@@ -4157,7 +4159,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Cando se cargan directamente a Fluxer';
+      'Cando se cargan directamente a Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle =>
@@ -5115,7 +5117,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Use só se viola claramente as regras de Fluxer e non encaixa nas anteriores.';
+      'Use só se viola claramente as regras de Fluxerworld e non encaixa nas anteriores.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6234,7 +6236,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Seguranza e inicio de sesión';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Agasallos e códigos';
@@ -6498,7 +6500,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Axuda a mellorar Fluxer compartindo datos anónimos de fallos e rendemento.';
+      'Axuda a mellorar Fluxerworld compartindo datos anónimos de fallos e rendemento.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6506,7 +6508,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Todos os datos informados son anónimos e só se envían ao propio servizo de monitorización de Fluxer; non se utilizan provedores de terceiros.';
+      'Todos os datos informados son anónimos e só se envían ao propio servizo de monitorización de Fluxerworld; non se utilizan provedores de terceiros.';
 
   @override
   String get userSettingsNavApplications => 'Aplicacións';
@@ -6538,7 +6540,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Por favor, informa de calquera problema que atopes á comunidade de Fluxer Mobile (actualmente debes ter Plutonium para poder unirte á comunidade).';
+      'Por favor, informa de calquera problema que atopes á comunidade de Fluxerworld Mobile (actualmente debes ter Plutonium para poder unirte á comunidade).';
 
   @override
   String get betaWarningRepoLink => 'Ver código fonte en GitHub';
@@ -6708,7 +6710,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
       'Introduce a URL da instancia (p. ex., fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Restablecer a Fluxer';
+  String get resetToDefaultInstance => 'Restablecer a Fluxerworld';
 
   @override
   String get instanceConnect => 'Conectar';
@@ -7066,7 +7068,7 @@ class FluxerLocalizationsGl extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Só accesible para o persoal de Fluxer';
+      'Só accesible para o persoal de Fluxerworld';
 
   @override
   String get guildNavbarInvitesPaused =>

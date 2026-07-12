@@ -1194,7 +1194,8 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Harici Bağlantı Uyarısı';
 
   @override
-  String get externalLinkWarningLeaving => 'Fluxer\'dan ayrılmak üzeresiniz';
+  String get externalLinkWarningLeaving =>
+      'Fluxerworld\'dan ayrılmak üzeresiniz';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1558,7 +1559,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get profilePreviewMessage => 'Mesaj';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer Üyeliği';
+  String get profilePreviewMemberSince => 'Fluxerworld Üyeliği';
 
   @override
   String get unclaimedAccountTitle => 'Talep Edilmemiş Hesap';
@@ -1650,7 +1651,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Fluxer\'a giriş yapmak için kullandığın e-posta adresini yönet';
+      'Fluxerworld\'a giriş yapmak için kullandığın e-posta adresini yönet';
 
   @override
   String get securityLoginEmailAddressLabel => 'E-posta Adresi';
@@ -2379,7 +2380,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Bu uygulamalara Fluxer hesabınıza erişim izni verilmiştir.';
+      'Bu uygulamalara Fluxerworld hesabınıza erişim izni verilmiştir.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Yetkili Uygulama Yok';
@@ -2463,7 +2464,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Fluxer Etiketi Kopyala';
+  String get blockedUsersCopyTag => 'Fluxerworld Etiketi Kopyala';
 
   @override
   String get blockedUsersCopyId => 'Kullanıcı Kimliğini Kopyala';
@@ -2487,31 +2488,31 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get userProfileEditProfile => 'Profili Düzenle';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer Ekibi';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld Ekibi';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer Topluluk Ekibi';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld Topluluk Ekibi';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer Partner';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld Partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Hata Avcısı';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Hata Avcısı';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium abonesi $date tarihinden beri';
+    return 'Fluxerworld Plutonium abonesi $date tarihinden beri';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Vizyoner';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Vizyoner';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Vizyoner $date tarihinden beri';
+    return 'Fluxerworld Vizyoner $date tarihinden beri';
   }
 
   @override
@@ -3567,7 +3568,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Harici hesapları ve alan adlarını Fluxer profilinize bağlayın. Doğrulanmış bağlantılar profilinizde başkalarının görebilmesi için görüntülenecektir.';
+      'Harici hesapları ve alan adlarını Fluxerworld profilinize bağlayın. Doğrulanmış bağlantılar profilinizde başkalarının görebilmesi için görüntülenecektir.';
 
   @override
   String get connectionsEmptyTitle => 'Henüz bağlantı yok';
@@ -3922,7 +3923,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Etkinleştirildiğinde, sunucu kenar çubuğundaki okunmamış DM\'ler Fluxer düğmesindeki bir klasöre daraltılır. Klasörü genişletmek veya daraltmak için DM\'ler sayfasındayken Fluxer düğmesine tıklayın.';
+      'Etkinleştirildiğinde, sunucu kenar çubuğundaki okunmamış DM\'ler Fluxerworld düğmesindeki bir klasöre daraltılır. Klasörü genişletmek veya daraltmak için DM\'ler sayfasındayken Fluxerworld düğmesine tıklayın.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanal Listesi';
@@ -4133,7 +4134,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Doğrudan Fluxer\'a yüklendiğinde';
+      'Doğrudan Fluxerworld\'a yüklendiğinde';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Bağlantı Önizlemeleri';
@@ -5087,7 +5088,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Yalnızca Fluxer\'ın kurallarını açıkça ihlal ediyorsa ve yukarıdakilere uymuyorsa kullanın.';
+      'Yalnızca Fluxerworld\'ın kurallarını açıkça ihlal ediyorsa ve yukarıdakilere uymuyorsa kullanın.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6199,7 +6200,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Güvenlik ve Giriş';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Hediyeler ve Kodlar';
@@ -6463,7 +6464,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Anonim çökme ve performans verilerini paylaşarak Fluxer\'ı geliştirmeye yardımcı olun.';
+      'Anonim çökme ve performans verilerini paylaşarak Fluxerworld\'ı geliştirmeye yardımcı olun.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6471,7 +6472,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Raporlanan tüm veriler anonimdir ve yalnızca Fluxer\'ın kendi izleme hizmetine gönderilir — üçüncü taraf sağlayıcı kullanılmaz.';
+      'Raporlanan tüm veriler anonimdir ve yalnızca Fluxerworld\'ın kendi izleme hizmetine gönderilir — üçüncü taraf sağlayıcı kullanılmaz.';
 
   @override
   String get userSettingsNavApplications => 'Uygulamalar';
@@ -6503,7 +6504,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Lütfen bulduğunuz sorunları Fluxer Mobil topluluğuna bildirin (şu anda topluluğa katılabilmek için Plutonium\'a sahip olmanız gerekir).';
+      'Lütfen bulduğunuz sorunları Fluxerworld Mobil topluluğuna bildirin (şu anda topluluğa katılabilmek için Plutonium\'a sahip olmanız gerekir).';
 
   @override
   String get betaWarningRepoLink => 'GitHub\'da kaynak kodunu görüntüle';
@@ -6671,7 +6672,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
       'Sunucu URL\'sini girin (ör. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Fluxer\'a sıfırla';
+  String get resetToDefaultInstance => 'Fluxerworld\'a sıfırla';
 
   @override
   String get instanceConnect => 'Bağlan';
@@ -7021,7 +7022,7 @@ class FluxerLocalizationsTr extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Yalnızca Fluxer personeli tarafından erişilebilir';
+      'Yalnızca Fluxerworld personeli tarafından erişilebilir';
 
   @override
   String get guildNavbarInvitesPaused =>

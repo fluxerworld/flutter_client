@@ -1494,7 +1494,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get profilePreviewMessage => '메시지';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer 가입일';
+  String get profilePreviewMemberSince => 'Fluxerworld 가입일';
 
   @override
   String get unclaimedAccountTitle => '미청구 계정';
@@ -2289,7 +2289,8 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get authorizedAppsTitle => '승인된 애플리케이션';
 
   @override
-  String get authorizedAppsDescription => '다음 애플리케이션에 Fluxer 계정 액세스가 허용되었습니다.';
+  String get authorizedAppsDescription =>
+      '다음 애플리케이션에 Fluxerworld 계정 액세스가 허용되었습니다.';
 
   @override
   String get authorizedAppsEmptyTitle => '승인된 애플리케이션 없음';
@@ -2368,7 +2369,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
-  String get blockedUsersCopyTag => 'Fluxer 태그 복사';
+  String get blockedUsersCopyTag => 'Fluxerworld 태그 복사';
 
   @override
   String get blockedUsersCopyId => '사용자 ID 복사';
@@ -2392,31 +2393,31 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get userProfileEditProfile => '프로필 수정';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer 팀';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld 팀';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer 커뮤니티 팀';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld 커뮤니티 팀';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer 파트너';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld 파트너';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer 버그 헌터';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld 버그 헌터';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer 플루토늄';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld 플루토늄';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return '$date부터 Fluxer 플루토늄 구독자';
+    return '$date부터 Fluxerworld 플루토늄 구독자';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer 비저너리';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld 비저너리';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return '$date부터 Fluxer 비저너리';
+    return '$date부터 Fluxerworld 비저너리';
   }
 
   @override
@@ -3446,7 +3447,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      '외부 계정 및 도메인을 Fluxer 프로필에 연결하세요. 인증된 연결은 프로필에 표시되어 다른 사용자가 볼 수 있습니다.';
+      '외부 계정 및 도메인을 Fluxerworld 프로필에 연결하세요. 인증된 연결은 프로필에 표시되어 다른 사용자가 볼 수 있습니다.';
 
   @override
   String get connectionsEmptyTitle => '아직 연결된 항목이 없습니다';
@@ -3779,7 +3780,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      '활성화하면 서버 사이드바의 읽지 않은 DM이 Fluxer 버튼 폴더로 축소됩니다. 폴더를 확장하거나 축소하려면 DM 페이지에서 Fluxer 버튼을 클릭하세요.';
+      '활성화하면 서버 사이드바의 읽지 않은 DM이 Fluxerworld 버튼 폴더로 축소됩니다. 폴더를 확장하거나 축소하려면 DM 페이지에서 Fluxerworld 버튼을 클릭하세요.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => '채널 목록';
@@ -4880,7 +4881,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Fluxer 규칙을 명확하게 위반하고 위에 해당하지 않는 경우에만 사용하세요.';
+      'Fluxerworld 규칙을 명확하게 위반하고 위에 해당하지 않는 경우에만 사용하세요.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -5963,7 +5964,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => '보안 및 로그인';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => '선물 및 코드';
@@ -6234,7 +6235,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      '보고된 모든 데이터는 익명이며 Fluxer 자체 모니터링 서비스로만 전송됩니다. 제3자 제공업체는 사용되지 않습니다.';
+      '보고된 모든 데이터는 익명이며 Fluxerworld 자체 모니터링 서비스로만 전송됩니다. 제3자 제공업체는 사용되지 않습니다.';
 
   @override
   String get userSettingsNavApplications => '애플리케이션';
@@ -6266,7 +6267,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      '문제가 발견되면 Fluxer 모바일 커뮤니티에 보고해 주세요(현재 커뮤니티에 가입하려면 Plutonium이 있어야 합니다).';
+      '문제가 발견되면 Fluxerworld 모바일 커뮤니티에 보고해 주세요(현재 커뮤니티에 가입하려면 Plutonium이 있어야 합니다).';
 
   @override
   String get betaWarningRepoLink => 'GitHub에서 소스 보기';
@@ -6769,7 +6770,7 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => 'Fluxer 직원만 액세스할 수 있습니다';
+  String get guildNavbarStaffOnlyAccessible => 'Fluxerworld 직원만 액세스할 수 있습니다';
 
   @override
   String get guildNavbarInvitesPaused => '이 커뮤니티의 초대가 일시 중지되었습니다';

@@ -1198,7 +1198,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Попередження про зовнішнє посилання';
 
   @override
-  String get externalLinkWarningLeaving => 'Ви збираєтеся покинути Fluxer';
+  String get externalLinkWarningLeaving => 'Ви збираєтеся покинути Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1561,7 +1561,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get profilePreviewMessage => 'Повідомлення';
 
   @override
-  String get profilePreviewMemberSince => 'Учасник Fluxer з';
+  String get profilePreviewMemberSince => 'Учасник Fluxerworld з';
 
   @override
   String get unclaimedAccountTitle => 'Непідтверджений обліковий запис';
@@ -1652,7 +1652,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Керуйте адресою електронної пошти, яку ви використовуєте для входу в Fluxer';
+      'Керуйте адресою електронної пошти, яку ви використовуєте для входу в Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'Адреса електронної пошти';
@@ -2383,7 +2383,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Цим програмам надано доступ до вашого облікового запису Fluxer.';
+      'Цим програмам надано доступ до вашого облікового запису Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Немає авторизованих програм';
@@ -2495,32 +2495,32 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get userProfileEditProfile => 'Редагувати профіль';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Команда Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Команда Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Спільнота Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Спільнота Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Партнер Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Партнер Fluxerworld';
 
   @override
   String get userProfileBugHunterBadgeTooltip =>
-      'Мисливець за помилками Fluxer';
+      'Мисливець за помилками Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Підписник Fluxer Plutonium з $date';
+    return 'Підписник Fluxerworld Plutonium з $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Visionary Fluxer з $date';
+    return 'Visionary Fluxerworld з $date';
   }
 
   @override
@@ -3577,7 +3577,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Підключіть зовнішні облікові записи та домени до свого профілю Fluxer. Перевірені підключення відображатимуться у вашому профілі для інших.';
+      'Підключіть зовнішні облікові записи та домени до свого профілю Fluxerworld. Перевірені підключення відображатимуться у вашому профілі для інших.';
 
   @override
   String get connectionsEmptyTitle => 'Ще немає підключень';
@@ -3932,7 +3932,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Якщо ввімкнено, непрочитані прямі повідомлення на бічній панелі спільноти згортаються в папку на кнопці Fluxer. Клацніть кнопку Fluxer на сторінці прямих повідомлень, щоб розгорнути або згорнути папку.';
+      'Якщо ввімкнено, непрочитані прямі повідомлення на бічній панелі спільноти згортаються в папку на кнопці Fluxerworld. Клацніть кнопку Fluxerworld на сторінці прямих повідомлень, щоб розгорнути або згорнути папку.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Список каналів';
@@ -4142,7 +4142,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Під час завантаження безпосередньо до Fluxer';
+      'Під час завантаження безпосередньо до Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle =>
@@ -5100,7 +5100,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Використовуйте лише якщо це явно порушує правила Fluxer і не підпадає під вищезазначені категорії.';
+      'Використовуйте лише якщо це явно порушує правила Fluxerworld і не підпадає під вищезазначені категорії.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6222,7 +6222,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Безпека та вхід';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Подарунки та коди';
@@ -6486,7 +6486,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Допоможіть покращити Fluxer, надаючи анонімні дані про збої та продуктивність.';
+      'Допоможіть покращити Fluxerworld, надаючи анонімні дані про збої та продуктивність.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6494,7 +6494,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Усі надані дані є анонімними та надсилаються лише на власний моніторинговий сервіс Fluxer — сторонні постачальники не використовуються.';
+      'Усі надані дані є анонімними та надсилаються лише на власний моніторинговий сервіс Fluxerworld — сторонні постачальники не використовуються.';
 
   @override
   String get userSettingsNavApplications => 'Програми';
@@ -6526,7 +6526,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Будь ласка, повідомляйте про будь-які проблеми, які ви знайдете, спільноті Fluxer Mobile (наразі ви повинні мати Plutonium, щоб приєднатися до спільноти).';
+      'Будь ласка, повідомляйте про будь-які проблеми, які ви знайдете, спільноті Fluxerworld Mobile (наразі ви повинні мати Plutonium, щоб приєднатися до спільноти).';
 
   @override
   String get betaWarningRepoLink => 'Переглянути вихідний код на GitHub';
@@ -6697,7 +6697,7 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
       'Введіть URL екземпляра (наприклад, fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Скинути до Fluxer';
+  String get resetToDefaultInstance => 'Скинути до Fluxerworld';
 
   @override
   String get instanceConnect => 'Підключитися';
@@ -7051,7 +7051,8 @@ class FluxerLocalizationsUk extends FluxerLocalizations {
   }
 
   @override
-  String get guildNavbarStaffOnlyAccessible => 'Доступно лише персоналу Fluxer';
+  String get guildNavbarStaffOnlyAccessible =>
+      'Доступно лише персоналу Fluxerworld';
 
   @override
   String get guildNavbarInvitesPaused =>

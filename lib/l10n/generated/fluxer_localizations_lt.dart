@@ -1197,7 +1197,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Įspėjimas apie išorinį saitą';
 
   @override
-  String get externalLinkWarningLeaving => 'Jūs ketinate išeiti iš Fluxer';
+  String get externalLinkWarningLeaving => 'Jūs ketinate išeiti iš Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1563,7 +1563,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get profilePreviewMessage => 'Žinutė';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer narys nuo';
+  String get profilePreviewMemberSince => 'Fluxerworld narys nuo';
 
   @override
   String get unclaimedAccountTitle => 'Nepareikalautas paskyra';
@@ -1655,7 +1655,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Tvarkykite el. pašto adresą, kurį naudojate prisijungdami prie Fluxer';
+      'Tvarkykite el. pašto adresą, kurį naudojate prisijungdami prie Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'El. pašto adresas';
@@ -2387,7 +2387,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Šioms programoms buvo suteikta prieiga prie jūsų Fluxer paskyros.';
+      'Šioms programoms buvo suteikta prieiga prie jūsų Fluxerworld paskyros.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Nėra įgaliotų programų';
@@ -2496,31 +2496,31 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get userProfileEditProfile => 'Redaguoti profilį';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer personalas';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld personalas';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer bendruomenės komanda';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld bendruomenės komanda';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer partneris';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld partneris';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium prenumerata nuo $date';
+    return 'Fluxerworld Plutonium prenumerata nuo $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary nuo $date';
+    return 'Fluxerworld Visionary nuo $date';
   }
 
   @override
@@ -3580,7 +3580,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Susiekite išorinius paskyras ir domenus su savo Fluxer profiliu. Patvirtinti ryšiai bus rodomi jūsų profilyje, kad kiti galėtų juos matyti.';
+      'Susiekite išorinius paskyras ir domenus su savo Fluxerworld profiliu. Patvirtinti ryšiai bus rodomi jūsų profilyje, kad kiti galėtų juos matyti.';
 
   @override
   String get connectionsEmptyTitle => 'Dar nėra ryšių';
@@ -3756,7 +3756,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get connectionRemoveFailed => 'Nepavyko pašalinti jungties';
 
   @override
-  String get connectionTokenSavedToast => 'Fluxer-verification įrašytas';
+  String get connectionTokenSavedToast => 'Fluxerworld-verification įrašytas';
 
   @override
   String get connectionTokenSaveFailedToast => 'Nepavyko įrašyti failo';
@@ -3935,7 +3935,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Kai įjungta, neskaityti DM bendruomenės šoninėje juostoje suskleidžiami į aplanką „Fluxer“ mygtuke. Spustelėkite „Fluxer“ mygtuką, kai esate DM puslapyje, kad išskleistumėte arba suskleistumėte aplanką.';
+      'Kai įjungta, neskaityti DM bendruomenės šoninėje juostoje suskleidžiami į aplanką „Fluxerworld“ mygtuke. Spustelėkite „Fluxerworld“ mygtuką, kai esate DM puslapyje, kad išskleistumėte arba suskleistumėte aplanką.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Kanalų sąrašas';
@@ -4145,7 +4145,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Kai įkeliami tiesiogiai į Fluxer';
+      'Kai įkeliami tiesiogiai į Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Nuorodų peržiūros';
@@ -5100,7 +5100,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Naudokite tik jei akivaizdžiai pažeidžiamos Fluxer taisyklės ir tai netinka aukščiau.';
+      'Naudokite tik jei akivaizdžiai pažeidžiamos Fluxerworld taisyklės ir tai netinka aukščiau.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6216,7 +6216,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Sauga ir prisijungimas';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Dovanos ir kodai';
@@ -6481,7 +6481,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Padėkite tobulinti Fluxer, bendrindami anoniminius duomenis apie gedimus ir našumą.';
+      'Padėkite tobulinti Fluxerworld, bendrindami anoniminius duomenis apie gedimus ir našumą.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6489,7 +6489,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Visi pranešti duomenys yra anonimiški ir siunčiami tik į Fluxer nuosavą stebėjimo tarnybą – nenaudojami jokie trečiųjų šalių paslaugų teikėjai.';
+      'Visi pranešti duomenys yra anonimiški ir siunčiami tik į Fluxerworld nuosavą stebėjimo tarnybą – nenaudojami jokie trečiųjų šalių paslaugų teikėjai.';
 
   @override
   String get userSettingsNavApplications => 'Programos';
@@ -6521,7 +6521,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Prašome pranešti apie visus rastus problemas Fluxer Mobile bendruomenei (šiuo metu, kad galėtumėte prisijungti prie bendruomenės, turite turėti Plutonium).';
+      'Prašome pranešti apie visus rastus problemas Fluxerworld Mobile bendruomenei (šiuo metu, kad galėtumėte prisijungti prie bendruomenės, turite turėti Plutonium).';
 
   @override
   String get betaWarningRepoLink => 'Peržiūrėti šaltinį „GitHub“';
@@ -6693,7 +6693,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
       'Įveskite instance URL (pvz., fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Atstatyti į Fluxer';
+  String get resetToDefaultInstance => 'Atstatyti į Fluxerworld';
 
   @override
   String get instanceConnect => 'Prisijungti';
@@ -7047,7 +7047,7 @@ class FluxerLocalizationsLt extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Pasiekiama tik Fluxer darbuotojams';
+      'Pasiekiama tik Fluxerworld darbuotojams';
 
   @override
   String get guildNavbarInvitesPaused =>

@@ -1571,7 +1571,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get profilePreviewMessage => 'Üzenet';
 
   @override
-  String get profilePreviewMemberSince => 'Fluxer tag';
+  String get profilePreviewMemberSince => 'Fluxerworld tag';
 
   @override
   String get unclaimedAccountTitle => 'Nem igényelt fiók';
@@ -2395,7 +2395,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Ezek az alkalmazások kaptak hozzáférést a Fluxer-fiókodhoz.';
+      'Ezek az alkalmazások kaptak hozzáférést a Fluxerworld-fiókodhoz.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Nincsenek engedélyezett alkalmazások';
@@ -2506,31 +2506,31 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userProfileEditProfile => 'Profil szerkesztése';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Fluxer Csapat';
+  String get userProfileStaffBadgeTooltip => 'Fluxerworld Csapat';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Fluxer Közösségi Csapat';
+  String get userProfileCtpBadgeTooltip => 'Fluxerworld Közösségi Csapat';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Fluxer Partner';
+  String get userProfilePartnerBadgeTooltip => 'Fluxerworld Partner';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Fluxer Plutonium előfizető $date óta';
+    return 'Fluxerworld Plutonium előfizető $date óta';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary $date óta';
+    return 'Fluxerworld Visionary $date óta';
   }
 
   @override
@@ -3586,7 +3586,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Külső fiókok és domainek összekapcsolása a Fluxer profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
+      'Külső fiókok és domainek összekapcsolása a Fluxerworld profiloddal. A hitelesített kapcsolatok megjelennek a profilodon, hogy mások is láthassák őket.';
 
   @override
   String get connectionsEmptyTitle => 'Még nincsenek kapcsolatok';
@@ -3942,7 +3942,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Fluxer gomb mappájába lesznek összecsukva. Kattints a Fluxer gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
+      'Ha engedélyezve van, az olvasatlan DM-ek a kiszolgáló oldalsávban a Fluxerworld gomb mappájába lesznek összecsukva. Kattints a Fluxerworld gombra a DM-ek oldalon a mappa kibontásához vagy összecsukásához.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Csatornalista';
@@ -5111,7 +5111,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Csak akkor használd, ha egyértelműen megszegi a Fluxer szabályait, és nem illeszkedik a fentiekhez.';
+      'Csak akkor használd, ha egyértelműen megszegi a Fluxerworld szabályait, és nem illeszkedik a fentiekhez.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6229,7 +6229,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Biztonság és bejelentkezés';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Ajándékok és kódok';
@@ -6493,7 +6493,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Segíts a Fluxer fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
+      'Segíts a Fluxerworld fejlesztésében névtelen hiba- és teljesítményadatok megosztásával.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6501,7 +6501,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Az összes jelentett adat névtelen, és csak a Fluxer saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
+      'Az összes jelentett adat névtelen, és csak a Fluxerworld saját felügyeleti szolgáltatásába kerül – nem használunk harmadik féltől származó szolgáltatókat.';
 
   @override
   String get userSettingsNavApplications => 'Alkalmazások';
@@ -6533,7 +6533,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Kérjük, jelentsd az esetleges problémákat a Fluxer Mobile közösségnek (jelenleg Plutoniummal tudsz csak csatlakozni a közösséghez).';
+      'Kérjük, jelentsd az esetleges problémákat a Fluxerworld Mobile közösségnek (jelenleg Plutoniummal tudsz csak csatlakozni a közösséghez).';
 
   @override
   String get betaWarningRepoLink => 'Forrás megtekintése a GitHubon';
@@ -6704,7 +6704,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
       'Add meg a példány URL-jét (pl. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Visszaállítás Fluxer-re';
+  String get resetToDefaultInstance => 'Visszaállítás Fluxerworld-re';
 
   @override
   String get instanceConnect => 'Csatlakozás';
@@ -7060,7 +7060,7 @@ class FluxerLocalizationsHu extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Csak a Fluxer személyzetének hozzáférhető';
+      'Csak a Fluxerworld személyzetének hozzáférhető';
 
   @override
   String get guildNavbarInvitesPaused =>

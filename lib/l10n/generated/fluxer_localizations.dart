@@ -2302,7 +2302,7 @@ abstract class FluxerLocalizations {
   /// Primary warning text shown in the external link warning modal.
   ///
   /// In en, this message translates to:
-  /// **'You are about to leave Fluxer'**
+  /// **'You are about to leave Fluxerworld'**
   String get externalLinkWarningLeaving;
 
   /// Supporting text shown in the external link warning modal.
@@ -2896,7 +2896,7 @@ abstract class FluxerLocalizations {
   /// Label for the member-since date in the profile preview card.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Member Since'**
+  /// **'Fluxerworld Member Since'**
   String get profilePreviewMemberSince;
 
   /// Title for the unclaimed account warning bar.
@@ -3064,7 +3064,7 @@ abstract class FluxerLocalizations {
   /// Description for email settings section.
   ///
   /// In en, this message translates to:
-  /// **'Manage the email address you use to sign in to Fluxer'**
+  /// **'Manage the email address you use to sign in to Fluxerworld'**
   String get securityLoginEmailSectionDescription;
 
   /// Label for email address row.
@@ -4270,7 +4270,7 @@ abstract class FluxerLocalizations {
   /// Description under the Authorized Applications section title.
   ///
   /// In en, this message translates to:
-  /// **'These applications have been granted access to your Fluxer account.'**
+  /// **'These applications have been granted access to your Fluxerworld account.'**
   String get authorizedAppsDescription;
 
   /// Title shown when the user has no authorized OAuth2 applications.
@@ -4462,49 +4462,49 @@ abstract class FluxerLocalizations {
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Staff'**
+  /// **'Fluxerworld Staff'**
   String get userProfileStaffBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Community Team'**
+  /// **'Fluxerworld Community Team'**
   String get userProfileCtpBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Partner'**
+  /// **'Fluxerworld Partner'**
   String get userProfilePartnerBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Bug Hunter'**
+  /// **'Fluxerworld Bug Hunter'**
   String get userProfileBugHunterBadgeTooltip;
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium'**
+  /// **'Fluxerworld Plutonium'**
   String get userProfilePlutoniumBadgeTooltip;
 
   /// Badge label with a date in the user profile badges popout. Preserve {date}; it is inserted by code. In English, keep "subscriber since" lowercase. Other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium subscriber since {date}'**
+  /// **'Fluxerworld Plutonium subscriber since {date}'**
   String userProfilePlutoniumSubscriberSinceTooltip(String date);
 
   /// Short badge title in the user profile badges popout. English locales use Title Case for official badge titles; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Visionary'**
+  /// **'Fluxerworld Visionary'**
   String get userProfileVisionaryBadgeTooltip;
 
   /// Badge title with a date in the user profile badges popout. Preserve {date}; it is inserted by code. English locales use Title Case for the badge title part; other locales should use natural local capitalization.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Visionary since {date}'**
+  /// **'Fluxerworld Visionary since {date}'**
   String userProfileVisionaryBadgeSinceTooltip(String date);
 
   /// Short label in the user profile badges popout. Keep it concise. Preserve {sequence}; it is inserted by code.
@@ -5551,7 +5551,7 @@ abstract class FluxerLocalizations {
   /// **'You can\'t send messages in this channel.'**
   String get channelNoSendPermissionHint;
 
-  /// Read-only system DM barrier message. productName is the Fluxer product name.
+  /// Read-only system DM barrier message. productName is the Fluxerworld product name.
   ///
   /// In en, this message translates to:
   /// **'System announcements from {productName} staff. You can\'t reply here.'**
@@ -6076,7 +6076,7 @@ abstract class FluxerLocalizations {
   /// Description shown under the Connections settings page title.
   ///
   /// In en, this message translates to:
-  /// **'Link external accounts and domains to your Fluxer profile. Verified connections will be displayed on your profile for others to see.'**
+  /// **'Link external accounts and domains to your Fluxerworld profile. Verified connections will be displayed on your profile for others to see.'**
   String get connectionsDescription;
 
   /// Empty-state title when the user has no connections.
@@ -6673,7 +6673,7 @@ abstract class FluxerLocalizations {
   /// **'{count, plural, =1{1 community is temporarily unavailable due to a flux capacitor malfunction.} other{{count} communities are temporarily unavailable due to a flux capacitor malfunction.}}'**
   String guildUnavailableOutageTooltip(int count);
 
-  /// Toggle label — collapse unread DMs into the Fluxer button folder.
+  /// Toggle label — collapse unread DMs into the Fluxerworld button folder.
   ///
   /// In en, this message translates to:
   /// **'Collapse DMs Into Folder'**
@@ -6682,7 +6682,7 @@ abstract class FluxerLocalizations {
   /// Toggle description for the DM folder collapse behavior.
   ///
   /// In en, this message translates to:
-  /// **'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Fluxer button. Click the Fluxer button while on the DMs page to expand or collapse the folder.'**
+  /// **'When enabled, unread DMs in the guild sidebar are collapsed into a folder on the Fluxerworld button. Click the Fluxerworld button while on the DMs page to expand or collapse the folder.'**
   String get lookAndFeelCollapseDMsDescription;
 
   /// Section title for channel list options.
@@ -7048,7 +7048,7 @@ abstract class FluxerLocalizations {
   /// Toggle label for inlining media for direct uploads.
   ///
   /// In en, this message translates to:
-  /// **'When uploaded directly to Fluxer'**
+  /// **'When uploaded directly to Fluxerworld'**
   String get messagesMediaDisplayInlineAttachmentLabel;
 
   /// Section title for link preview settings.
@@ -8618,7 +8618,7 @@ abstract class FluxerLocalizations {
   /// Rule-reason description for the catch-all option.
   ///
   /// In en, this message translates to:
-  /// **'Use only if it clearly breaks Fluxer\'s rules and doesn\'t fit above.'**
+  /// **'Use only if it clearly breaks Fluxerworld\'s rules and doesn\'t fit above.'**
   String get iarReasonOtherDescription;
 
   /// Inline routing nudge shown under reasons (e.g. mature content) that overlap with child safety.
@@ -10527,10 +10527,10 @@ abstract class FluxerLocalizations {
   /// **'Security & Login'**
   String get userSettingsNavSecurityLogin;
 
-  /// User settings navigation item for Fluxer Plutonium subscription settings.
+  /// User settings navigation item for Fluxerworld Plutonium subscription settings.
   ///
   /// In en, this message translates to:
-  /// **'Fluxer Plutonium'**
+  /// **'Fluxerworld Plutonium'**
   String get userSettingsNavFluxerPlutonium;
 
   /// User settings navigation item for gifts and promo codes.
@@ -10998,7 +10998,7 @@ abstract class FluxerLocalizations {
   /// Advanced settings section description for crash and performance reporting.
   ///
   /// In en, this message translates to:
-  /// **'Help improve Fluxer by sharing anonymous crash and performance data.'**
+  /// **'Help improve Fluxerworld by sharing anonymous crash and performance data.'**
   String get advancedPerformanceReportingSectionDescription;
 
   /// Toggle label for opting into crash and performance reporting.
@@ -11010,7 +11010,7 @@ abstract class FluxerLocalizations {
   /// Toggle description explaining anonymous self-hosted performance reporting.
   ///
   /// In en, this message translates to:
-  /// **'All reported data is anonymous and is sent only to Fluxer\'s own monitoring service — no third-party providers are used.'**
+  /// **'All reported data is anonymous and is sent only to Fluxerworld\'s own monitoring service — no third-party providers are used.'**
   String get advancedPerformanceReportingDescription;
 
   /// User settings navigation item for developer applications.
@@ -11070,7 +11070,7 @@ abstract class FluxerLocalizations {
   /// Secondary message on the beta warning sheet about reporting issues.
   ///
   /// In en, this message translates to:
-  /// **'Please report any issues you find to the Fluxer Mobile community (you must have Plutonium to be able to join the community currently).'**
+  /// **'Please report any issues you find to the Fluxerworld Mobile community (you must have Plutonium to be able to join the community currently).'**
   String get betaWarningReportIssues;
 
   /// Link label on the beta warning sheet to the open-source repository.
@@ -11391,19 +11391,19 @@ abstract class FluxerLocalizations {
   /// **'Enter instance URL (e.g. fluxer.app)'**
   String get instanceUrlPlaceholder;
 
-  /// Tooltip for the button that resets the instance URL to the official Fluxer instance.
+  /// Tooltip for the button that resets the instance URL to the official Fluxerworld instance.
   ///
   /// In en, this message translates to:
-  /// **'Reset to Fluxer'**
+  /// **'Reset to Fluxerworld'**
   String get resetToDefaultInstance;
 
-  /// Button label to connect to a custom Fluxer instance.
+  /// Button label to connect to a custom Fluxerworld instance.
   ///
   /// In en, this message translates to:
   /// **'Connect'**
   String get instanceConnect;
 
-  /// Status text while discovering a custom Fluxer instance.
+  /// Status text while discovering a custom Fluxerworld instance.
   ///
   /// In en, this message translates to:
   /// **'Connecting…'**
@@ -11439,7 +11439,7 @@ abstract class FluxerLocalizations {
   /// **'Connect to a different instance'**
   String get connectToDifferentInstance;
 
-  /// Link to change the connected Fluxer instance.
+  /// Link to change the connected Fluxerworld instance.
   ///
   /// In en, this message translates to:
   /// **'Change'**
@@ -12000,7 +12000,7 @@ abstract class FluxerLocalizations {
   /// Guild tooltip when the community is staff-only.
   ///
   /// In en, this message translates to:
-  /// **'Only accessible to Fluxer staff'**
+  /// **'Only accessible to Fluxerworld staff'**
   String get guildNavbarStaffOnlyAccessible;
 
   /// Guild tooltip when invites are disabled.

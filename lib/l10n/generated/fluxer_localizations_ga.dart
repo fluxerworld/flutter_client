@@ -1200,7 +1200,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Rabhadh Nasc Seachtrach';
 
   @override
-  String get externalLinkWarningLeaving => 'Tá tú ar tí Fluxer a fhágáil';
+  String get externalLinkWarningLeaving => 'Tá tú ar tí Fluxerworld a fhágáil';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1563,7 +1563,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get profilePreviewMessage => 'Teachtaireacht';
 
   @override
-  String get profilePreviewMemberSince => 'Ball Fluxer Ó';
+  String get profilePreviewMemberSince => 'Ball Fluxerworld Ó';
 
   @override
   String get unclaimedAccountTitle => 'Cuntas Neamh-éilithe';
@@ -1655,7 +1655,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get securityLoginEmailSectionDescription =>
-      'Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Fluxer';
+      'Bainistigh an seoladh ríomhphoist a úsáideann tú chun logáil isteach i Fluxerworld';
 
   @override
   String get securityLoginEmailAddressLabel => 'Seoladh Ríomhphoist';
@@ -2389,7 +2389,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Tá rochtain ar do chuntas Fluxer tugtha do na feidhmchláir seo.';
+      'Tá rochtain ar do chuntas Fluxerworld tugtha do na feidhmchláir seo.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Gan Feidhmchláir Údaraithe';
@@ -2498,27 +2498,27 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get userProfileEditProfile => 'Cuir Próifíl in Eagar';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Foireann Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Foireann Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Foireann Pobail Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Foireann Pobail Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Comhpháirtí Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Comhpháirtí Fluxerworld';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Sealgair Bugaí Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Sealgair Bugaí Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Plútóniam Fluxer';
+  String get userProfilePlutoniumBadgeTooltip => 'Plútóniam Fluxerworld';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Liostáil Plútóniam Fluxer ó $date';
+    return 'Liostáil Plútóniam Fluxerworld ó $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Físghníomhaí Fluxer';
+  String get userProfileVisionaryBadgeTooltip => 'Físghníomhaí Fluxerworld';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
@@ -3581,7 +3581,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Ceangail cuntais agus fearainn sheachtracha le do phróifíl Fluxer. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.';
+      'Ceangail cuntais agus fearainn sheachtracha le do phróifíl Fluxerworld. Beidh naisc fhíoraithe le feiceáil ar do phróifíl do dhaoine eile.';
 
   @override
   String get connectionsEmptyTitle => 'Gan naisc fós';
@@ -3937,7 +3937,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Fluxer. Cliceáil ar an gcnaipe Fluxer agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.';
+      'Nuair a bheidh sé cumasaithe, comhbhrúitear DManna gan léamh sa líne taoisigh pobail isteach i bhfillteán ar an gcnaipe Fluxerworld. Cliceáil ar an gcnaipe Fluxerworld agus tú ar an leathanach DManna chun an fillteán a leathnú nó a chomhbhrú.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Liosta Cainéal';
@@ -4148,7 +4148,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get messagesMediaDisplayInlineAttachmentLabel =>
-      'Nuair a uaslódáiltear go díreach chuig Fluxer';
+      'Nuair a uaslódáiltear go díreach chuig Fluxerworld';
 
   @override
   String get messagesMediaLinkPreviewsSectionTitle => 'Réamhamhairc Nasc';
@@ -5102,7 +5102,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get iarReasonOtherDescription =>
-      'Ná húsáid ach amháin má sháraíonn sé rialacha Fluxer go soiléir agus mura n-oirfeadh sé thuas.';
+      'Ná húsáid ach amháin má sháraíonn sé rialacha Fluxerworld go soiléir agus mura n-oirfeadh sé thuas.';
 
   @override
   String iarUseChildSafetyInstead(String childSafetyReason) {
@@ -6220,7 +6220,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Slándáil & Logáil Isteach';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Bronntanais & Códanna';
@@ -6484,7 +6484,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Cuidigh le Fluxer a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.';
+      'Cuidigh le Fluxerworld a fheabhsú trí shonraí timpiste agus feidhmíochta anaithnid a roinnt.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6492,7 +6492,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingDescription =>
-      'Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Fluxer féin — ní úsáidtear aon soláthraithe tríú páirtí.';
+      'Tá gach sonraí tuairiscithe anaithnid agus ní sheoltar ach chuig seirbhís monatóireachta Fluxerworld féin — ní úsáidtear aon soláthraithe tríú páirtí.';
 
   @override
   String get userSettingsNavApplications => 'Aipeanna';
@@ -6524,7 +6524,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Fluxer Mobile (caithfidh Plutonium a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).';
+      'Tabhair tuairisc ar aon fhadhbanna a aimsíonn tú chuig pobal Fluxerworld Mobile (caithfidh Plutonium a bheith agat chun a bheith in ann an pobal a nascadh faoi láthair).';
 
   @override
   String get betaWarningRepoLink => 'Féach foinse ar GitHub';
@@ -6695,7 +6695,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
       'Iontráil URL an chórais (m.sh. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Athshocraigh go Fluxer';
+  String get resetToDefaultInstance => 'Athshocraigh go Fluxerworld';
 
   @override
   String get instanceConnect => 'Ceangail';
@@ -7052,7 +7052,7 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Naisc le foireann Fluxer amháin';
+      'Naisc le foireann Fluxerworld amháin';
 
   @override
   String get guildNavbarInvitesPaused =>

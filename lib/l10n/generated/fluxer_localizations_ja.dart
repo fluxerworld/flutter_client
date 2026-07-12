@@ -2406,10 +2406,10 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get userProfilePartnerBadgeTooltip => 'Fluxerパートナー';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Fluxer Bug Hunter';
+  String get userProfileBugHunterBadgeTooltip => 'Fluxerworld Bug Hunter';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
@@ -2417,7 +2417,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
@@ -5976,7 +5976,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'セキュリティとログイン';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'ギフトとコード';
@@ -6279,7 +6279,7 @@ class FluxerLocalizationsJa extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      '見つかった問題は、Fluxer Mobileコミュニティに報告してください（現在、コミュニティに参加するにはPlutoniumが必要です）。';
+      '見つかった問題は、Fluxerworld Mobileコミュニティに報告してください（現在、コミュニティに参加するにはPlutoniumが必要です）。';
 
   @override
   String get betaWarningRepoLink => 'GitHubでソースを表示';

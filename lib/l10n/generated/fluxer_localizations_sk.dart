@@ -1199,7 +1199,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get externalLinkWarningTitle => 'Varovanie pred externým odkazom';
 
   @override
-  String get externalLinkWarningLeaving => 'Chystáte sa opustiť Fluxer';
+  String get externalLinkWarningLeaving => 'Chystáte sa opustiť Fluxerworld';
 
   @override
   String get externalLinkWarningDescription =>
@@ -1560,7 +1560,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get profilePreviewMessage => 'Správa';
 
   @override
-  String get profilePreviewMemberSince => 'Členom Fluxer od';
+  String get profilePreviewMemberSince => 'Členom Fluxerworld od';
 
   @override
   String get unclaimedAccountTitle => 'Nevyžiadaný účet';
@@ -2379,7 +2379,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get authorizedAppsDescription =>
-      'Týmto aplikáciám bol udelený prístup k vášmu účtu Fluxer.';
+      'Týmto aplikáciám bol udelený prístup k vášmu účtu Fluxerworld.';
 
   @override
   String get authorizedAppsEmptyTitle => 'Žiadne autorizované aplikácie';
@@ -2489,31 +2489,31 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get userProfileEditProfile => 'Upraviť profil';
 
   @override
-  String get userProfileStaffBadgeTooltip => 'Personál Fluxer';
+  String get userProfileStaffBadgeTooltip => 'Personál Fluxerworld';
 
   @override
-  String get userProfileCtpBadgeTooltip => 'Tím komunity Fluxer';
+  String get userProfileCtpBadgeTooltip => 'Tím komunity Fluxerworld';
 
   @override
-  String get userProfilePartnerBadgeTooltip => 'Partner Fluxer';
+  String get userProfilePartnerBadgeTooltip => 'Partner Fluxerworld';
 
   @override
-  String get userProfileBugHunterBadgeTooltip => 'Lovca chýb Fluxer';
+  String get userProfileBugHunterBadgeTooltip => 'Lovca chýb Fluxerworld';
 
   @override
-  String get userProfilePlutoniumBadgeTooltip => 'Fluxer Plutonium';
+  String get userProfilePlutoniumBadgeTooltip => 'Fluxerworld Plutonium';
 
   @override
   String userProfilePlutoniumSubscriberSinceTooltip(String date) {
-    return 'Predplatiteľ Fluxer Plutonium od $date';
+    return 'Predplatiteľ Fluxerworld Plutonium od $date';
   }
 
   @override
-  String get userProfileVisionaryBadgeTooltip => 'Fluxer Visionary';
+  String get userProfileVisionaryBadgeTooltip => 'Fluxerworld Visionary';
 
   @override
   String userProfileVisionaryBadgeSinceTooltip(String date) {
-    return 'Fluxer Visionary od $date';
+    return 'Fluxerworld Visionary od $date';
   }
 
   @override
@@ -3566,7 +3566,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get connectionsDescription =>
-      'Prepojte externé účty a domény s vaším profilom Fluxer. Overené pripojenia sa zobrazia vo vašom profile, aby ich mohli vidieť ostatní.';
+      'Prepojte externé účty a domény s vaším profilom Fluxerworld. Overené pripojenia sa zobrazia vo vašom profile, aby ich mohli vidieť ostatní.';
 
   @override
   String get connectionsEmptyTitle => 'Zatiaľ žiadne pripojenia';
@@ -3921,7 +3921,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get lookAndFeelCollapseDMsDescription =>
-      'Keď je zapnuté, nepričítané priame správy v bočnom paneli komunity sa zbalia do priečinka na tlačidle Fluxer. Kliknutím na tlačidlo Fluxer na stránke priamych správ priečinok rozbalíte alebo zbalíte.';
+      'Keď je zapnuté, nepričítané priame správy v bočnom paneli komunity sa zbalia do priečinka na tlačidle Fluxerworld. Kliknutím na tlačidlo Fluxerworld na stránke priamych správ priečinok rozbalíte alebo zbalíte.';
 
   @override
   String get lookAndFeelChannelListSectionTitle => 'Zoznam kanálov';
@@ -6207,7 +6207,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get userSettingsNavSecurityLogin => 'Zabezpečenie a prihlásenie';
 
   @override
-  String get userSettingsNavFluxerPlutonium => 'Fluxer Plutonium';
+  String get userSettingsNavFluxerPlutonium => 'Fluxerworld Plutonium';
 
   @override
   String get userSettingsNavGiftsAndCodes => 'Darčeky a kódy';
@@ -6471,7 +6471,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get advancedPerformanceReportingSectionDescription =>
-      'Pomôžte vylepšiť Fluxer zdieľaním anonymných údajov o pádoch a výkone.';
+      'Pomôžte vylepšiť Fluxerworld zdieľaním anonymných údajov o pádoch a výkone.';
 
   @override
   String get advancedPerformanceReportingLabel =>
@@ -6511,7 +6511,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get betaWarningReportIssues =>
-      'Prosím, nahláste akékoľvek problémy, ktoré nájdete, komunite Fluxer Mobile (momentálne sa môžete pripojiť do komunity iba s Plutonium).';
+      'Prosím, nahláste akékoľvek problémy, ktoré nájdete, komunite Fluxerworld Mobile (momentálne sa môžete pripojiť do komunity iba s Plutonium).';
 
   @override
   String get betaWarningRepoLink => 'Zobraziť zdroj na GitHub';
@@ -6681,7 +6681,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
       'Zadajte URL inštancie (napr. fluxer.app)';
 
   @override
-  String get resetToDefaultInstance => 'Resetovať na Fluxer';
+  String get resetToDefaultInstance => 'Resetovať na Fluxerworld';
 
   @override
   String get instanceConnect => 'Pripojiť';
@@ -7034,7 +7034,7 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
 
   @override
   String get guildNavbarStaffOnlyAccessible =>
-      'Prístupné iba pre zamestnancov Fluxer';
+      'Prístupné iba pre zamestnancov Fluxerworld';
 
   @override
   String get guildNavbarInvitesPaused =>
