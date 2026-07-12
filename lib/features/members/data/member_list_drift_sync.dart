@@ -32,7 +32,10 @@ class MemberListDriftSync {
         if (listMember == null) {
           continue;
         }
-        userCompanions.add(userFromPartialSdk(listMember.member.user));
+        final memberUser = userFromPartialSdk(listMember.member.user);
+        if (memberUser != null) {
+          userCompanions.add(memberUser);
+        }
         memberCompanions.add(
           memberCompanionFromSdk(listMember.member, guildId: guildId),
         );

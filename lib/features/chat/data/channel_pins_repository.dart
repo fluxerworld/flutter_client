@@ -72,6 +72,7 @@ class ChannelPinsRepository {
     await _database.userDao.upsertUsers(
       response.items
           .map((pin) => userFromPartialSdk(pin.message.author))
+          .whereType<db.UsersCompanion>()
           .toList(),
     );
     await _database.messageDao.upsertMessages(

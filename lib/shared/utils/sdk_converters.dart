@@ -65,7 +65,7 @@ db.ServersCompanion guildFromSdk(
     verificationLevel: Value(sdk.verificationLevel.json ?? 0),
     mfaLevel: Value(sdk.mfaLevel.json ?? 0),
     nsfw: Value(sdk.nsfw),
-    contentWarningLevel: Value(sdk.contentWarningLevel.json ?? 0),
+    contentWarningLevel: Value(sdk.contentWarningLevel?.json ?? 0),
     contentWarningText: Value(sdk.contentWarningText),
   );
 }
@@ -168,7 +168,16 @@ db.RolesCompanion roleFromSdk(GuildRoleResponse sdk, String guildId) {
 /// previously-stored avatar/global name when upserted via
 /// `insertOnConflictUpdate`. Use the full `UserResponse` mapping in
 /// `USER_UPDATE` to intentionally clear fields.
-db.UsersCompanion userFromPartialSdk(UserPartialResponse sdk) {
+/// Returns null for id-only references. The fluxer.world server sends
+/// `{"id": "..."}` user embeds in READY guild members and relationships,
+/// backing the full user via the top-level `users` array (which is committed
+/// first). Such an embed decodes with an empty [UserPartialResponse.username];
+/// persisting that shell would clobber the real cached row via
+/// `insertOnConflictUpdate`, so callers must skip a null result.
+db.UsersCompanion? userFromPartialSdk(UserPartialResponse sdk) {
+  if (sdk.username.isEmpty) {
+    return null;
+  }
   final globalName = sdk.globalName;
   final avatar = sdk.avatar;
   final avatarColor = sdk.avatarColor;
@@ -193,6 +202,19 @@ db.UsersCompanion userFromPartialSdk(UserPartialResponse sdk) {
   );
 }
 
+/// Upserts a partial SDK user, skipping id-only references (see
+/// [userFromPartialSdk]). Use in place of
+/// `userDao.upsertUser(userFromPartialSdk(x))`.
+Future<void> upsertPartialUser(
+  db.FluxerDatabase database,
+  UserPartialResponse sdk,
+) async {
+  final companion = userFromPartialSdk(sdk);
+  if (companion != null) {
+    await database.userDao.upsertUser(companion);
+  }
+}
+
 Future<void> upsertMentionUsersFromSdk(
   db.FluxerDatabase database,
   Iterable<UserPartialResponse>? mentions,
@@ -202,6 +224,7 @@ Future<void> upsertMentionUsersFromSdk(
   }
   final List<db.UsersCompanion> users = mentions
       .map(userFromPartialSdk)
+      .whereType<db.UsersCompanion>()
       .toList(growable: false);
   if (users.isEmpty) {
     return;
@@ -221,11 +244,12 @@ Future<void> upsertMentionUsersFromJson(
     if (item is! Map<String, dynamic>) {
       continue;
     }
-    users.add(
-      userFromPartialSdk(
-        UserPartialResponse.fromJson(item.cast<String, Object?>()),
-      ),
+    final companion = userFromPartialSdk(
+      UserPartialResponse.fromJson(item.cast<String, Object?>()),
     );
+    if (companion != null) {
+      users.add(companion);
+    }
   }
   if (users.isEmpty) {
     return;

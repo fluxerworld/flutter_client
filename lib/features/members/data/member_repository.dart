@@ -110,7 +110,10 @@ class MemberRepository {
     final List<db.UsersCompanion> userCompanions = <db.UsersCompanion>[];
     final List<db.MembersCompanion> memberCompanions = <db.MembersCompanion>[];
     for (final GuildMemberResponse sdk in members) {
-      userCompanions.add(userFromPartialSdk(sdk.user));
+      final memberUser = userFromPartialSdk(sdk.user);
+      if (memberUser != null) {
+        userCompanions.add(memberUser);
+      }
       memberCompanions.add(memberCompanionFromSdk(sdk, guildId: guildId));
     }
     await _db.userDao.upsertUsers(userCompanions);

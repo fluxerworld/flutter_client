@@ -173,7 +173,7 @@ class DmRepository {
       return null;
     }
     for (final recipient in dmRecipientUsersFromChannelResponse(channel)) {
-      await _db.userDao.upsertUser(userFromPartialSdk(recipient));
+      await upsertPartialUser(_db, recipient);
     }
     return companion;
   }

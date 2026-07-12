@@ -31,7 +31,10 @@ class FriendRepository {
       final relationships = await _client.users.listUserRelationships();
       final companions = <db.RelationshipsCompanion>[];
       for (final rel in relationships) {
-        await _db.userDao.upsertUser(userFromPartialSdk(rel.user));
+        final relUser = rel.user;
+        if (relUser != null) {
+          await upsertPartialUser(_db, relUser);
+        }
         companions.add(_relationshipToCompanion(rel));
       }
       await _db.relationshipDao.upsertRelationships(companions);
@@ -134,7 +137,10 @@ class FriendRepository {
   }
 
   Future<void> _upsertRelationship(RelationshipResponse relationship) async {
-    await _db.userDao.upsertUser(userFromPartialSdk(relationship.user));
+    final relUser = relationship.user;
+    if (relUser != null) {
+      await upsertPartialUser(_db, relUser);
+    }
     await _db.relationshipDao.upsertRelationships([
       _relationshipToCompanion(relationship),
     ]);
@@ -144,7 +150,7 @@ class FriendRepository {
     RelationshipResponse relationship,
   ) {
     return db.RelationshipsCompanion.insert(
-      userId: relationship.user.id,
+      userId: relationship.id,
       type: _typeToInt(relationship.type),
       nickname: Value(relationship.nickname),
       since: Value(relationship.since),

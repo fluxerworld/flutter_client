@@ -315,14 +315,14 @@ class GatewayEventHandler {
       case RelationshipAddEvent():
         _logGatewayDebug(
           () => talker.debug(
-            '[Gateway] RELATIONSHIP_ADD: ${event.relationship.user.id}',
+            '[Gateway] RELATIONSHIP_ADD: ${event.relationship.id}',
           ),
         );
         _handleRelationshipUpsert(event.relationship);
       case RelationshipUpdateEvent():
         _logGatewayDebug(
           () => talker.debug(
-            '[Gateway] RELATIONSHIP_UPDATE: ${event.relationship.user.id}',
+            '[Gateway] RELATIONSHIP_UPDATE: ${event.relationship.id}',
           ),
         );
         _handleRelationshipUpsert(event.relationship);
@@ -390,7 +390,7 @@ class GatewayEventHandler {
             '[Gateway] CHANNEL_RECIPIENT_ADD: ${event.channelId}',
           ),
         );
-        unawaited(database.userDao.upsertUser(userFromPartialSdk(event.user)));
+        unawaited(upsertPartialUser(database, event.user));
         unawaited(
           database.dmChannelDao.addRecipientId(event.channelId, event.user.id),
         );
@@ -703,6 +703,7 @@ class GatewayEventHandler {
                   UserPartialResponse.fromJson(u.cast<String, Object?>()),
                 ),
               )
+              .whereType<db.UsersCompanion>()
               .toList(),
         );
       }
@@ -755,7 +756,10 @@ class GatewayEventHandler {
           }
 
           for (final member in guildData.members) {
-            await database.userDao.upsertUser(userFromPartialSdk(member.user));
+            final memberUser = userFromPartialSdk(member.user);
+            if (memberUser != null) {
+              await database.userDao.upsertUser(memberUser);
+            }
             await database.memberDao.upsertMember(
               memberCompanionFromSdk(member, guildId: guildId),
             );
@@ -823,7 +827,10 @@ class GatewayEventHandler {
             continue;
           }
           for (final r in dmRecipientUsersFromChannelResponse(ch)) {
-            recipientUsers.add(userFromPartialSdk(r));
+            final recipient = userFromPartialSdk(r);
+            if (recipient != null) {
+              recipientUsers.add(recipient);
+            }
           }
           dmCompanions.add(companion);
         }
@@ -842,17 +849,28 @@ class GatewayEventHandler {
         final relUsers = <db.UsersCompanion>[];
         final relCompanions = <db.RelationshipsCompanion>[];
         for (final rel in event.relationships) {
-          relUsers.add(userFromPartialSdk(rel.user));
+          // The fluxer.world server omits the embedded user (backed by the
+          // top-level `users` array, committed above); the relationship id is
+          // the target user id.
+          final relUser = rel.user;
+          if (relUser != null) {
+            final companion = userFromPartialSdk(relUser);
+            if (companion != null) {
+              relUsers.add(companion);
+            }
+          }
           relCompanions.add(
             db.RelationshipsCompanion.insert(
-              userId: rel.user.id,
+              userId: rel.id,
               type: rel.type.json ?? 1,
               nickname: Value(rel.nickname),
               since: Value(rel.since),
             ),
           );
         }
-        await database.userDao.upsertUsers(relUsers);
+        if (relUsers.isNotEmpty) {
+          await database.userDao.upsertUsers(relUsers);
+        }
         await database.relationshipDao.upsertRelationships(relCompanions);
       }
 
@@ -1289,9 +1307,7 @@ class GatewayEventHandler {
     onTypingClear?.call(msg.channelId, msg.authorId);
 
     if (event.message.webhookId == null) {
-      unawaited(
-        database.userDao.upsertUser(userFromPartialSdk(event.message.author)),
-      );
+      unawaited(upsertPartialUser(database, event.message.author));
       unawaited(upsertMentionUsersFromSdk(database, event.message.mentions));
     }
 
@@ -1662,9 +1678,7 @@ class GatewayEventHandler {
       mentionRoleIds: event.message.mentionRoles,
     );
     if (event.message.webhookId == null) {
-      unawaited(
-        database.userDao.upsertUser(userFromPartialSdk(event.message.author)),
-      );
+      unawaited(upsertPartialUser(database, event.message.author));
       unawaited(upsertMentionUsersFromSdk(database, event.message.mentions));
     }
     await database.messageDao.upsertMessage(
@@ -1750,7 +1764,7 @@ class GatewayEventHandler {
   }
 
   void _handleMemberUpsert(String guildId, GuildMemberResponse member) {
-    unawaited(database.userDao.upsertUser(userFromPartialSdk(member.user)));
+    unawaited(upsertPartialUser(database, member.user));
 
     unawaited(
       database.memberDao.upsertMember(
@@ -1784,7 +1798,7 @@ class GatewayEventHandler {
     }
     _invalidateMentionCacheForChannel(channel.id);
     for (final r in dmRecipientUsersFromChannelResponse(channel)) {
-      unawaited(database.userDao.upsertUser(userFromPartialSdk(r)));
+      unawaited(upsertPartialUser(database, r));
     }
     unawaited(database.dmChannelDao.upsertDmChannels([companion]));
   }
@@ -2001,13 +2015,19 @@ class GatewayEventHandler {
   }
 
   void _handleRelationshipUpsert(RelationshipResponse relationship) {
-    unawaited(
-      database.userDao.upsertUser(userFromPartialSdk(relationship.user)),
-    );
+    // The relationship id is the target user id. The embedded user may be
+    // absent (fluxer.world backs it via the READY `users` array / USER_UPDATE).
+    final relUser = relationship.user;
+    if (relUser != null) {
+      final companion = userFromPartialSdk(relUser);
+      if (companion != null) {
+        unawaited(database.userDao.upsertUser(companion));
+      }
+    }
     unawaited(() async {
       await database.relationshipDao.upsertRelationships([
         db.RelationshipsCompanion.insert(
-          userId: relationship.user.id,
+          userId: relationship.id,
           type: relationship.type.json ?? 1,
           nickname: Value(relationship.nickname),
           since: Value(relationship.since),

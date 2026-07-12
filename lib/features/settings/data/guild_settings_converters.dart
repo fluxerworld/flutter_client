@@ -18,7 +18,7 @@ GuildSettingsDetails guildSettingsDetailsFromSdk(
     explicitContentFilter: sdk.explicitContentFilter.json ?? 0,
     mfaLevel: sdk.mfaLevel.json ?? 0,
     defaultMessageNotifications: sdk.defaultMessageNotifications.json ?? 0,
-    contentWarningLevel: sdk.contentWarningLevel.json ?? 0,
+    contentWarningLevel: sdk.contentWarningLevel?.json ?? 0,
     contentWarningText: sdk.contentWarningText,
     splash: sdk.splash,
     embedSplash: sdk.embedSplash,

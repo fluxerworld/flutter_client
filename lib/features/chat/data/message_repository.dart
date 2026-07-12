@@ -280,7 +280,7 @@ class MessageRepository {
 
       for (final sdk in data) {
         if (sdk.webhookId == null) {
-          await _db.userDao.upsertUser(userFromPartialSdk(sdk.author));
+          await upsertPartialUser(_db, sdk.author);
         }
         await upsertMentionUsersFromSdk(_db, sdk.mentions);
       }
@@ -344,7 +344,7 @@ class MessageRepository {
         messageId: messageId,
       );
       if (sdk.webhookId == null) {
-        await _db.userDao.upsertUser(userFromPartialSdk(sdk.author));
+        await upsertPartialUser(_db, sdk.author);
       }
       await upsertMentionUsersFromSdk(_db, sdk.mentions);
       Message message = Message.fromSdk(sdk, currentUserId: _currentUserId)

@@ -37,13 +37,16 @@ class Friend {
   });
 
   factory Friend.fromSdk(RelationshipResponse sdk) {
+    // fluxer.world may omit the embedded user (backed by a separate users
+    // payload); the relationship id is the target user id.
+    final user = sdk.user;
     return Friend(
-      id: sdk.user.id,
-      username: sdk.user.username,
-      discriminator: sdk.user.discriminator,
-      globalName: sdk.user.globalName,
-      avatar: sdk.user.avatar,
-      avatarColor: sdk.user.avatarColor,
+      id: user?.id ?? sdk.id,
+      username: user?.username ?? '',
+      discriminator: user?.discriminator ?? '0',
+      globalName: user?.globalName,
+      avatar: user?.avatar,
+      avatarColor: user?.avatarColor,
       friendStatus: _mapType(sdk.type),
       nickname: sdk.nickname,
       since: sdk.since,
