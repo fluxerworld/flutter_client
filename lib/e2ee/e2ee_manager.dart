@@ -106,6 +106,20 @@ E2eeDeviceVerification e2eeDeviceVerificationStatus(
       : E2eeDeviceVerification.changed;
 }
 
+/// Aggregate verification state for a peer across ALL their published devices,
+/// for the group-verification member list.
+enum E2eePeerVerification {
+  /// Every published device is verified with a matching identity key.
+  verified,
+
+  /// Some (not all) devices verified, OR a verified device's key has rotated —
+  /// the peer needs (re-)verifying.
+  partial,
+
+  /// No devices verified.
+  unverified,
+}
+
 /// The outcome of a decrypt attempt.
 ///
 /// IMPROVEMENT over web/RN: those collapse EVERY 1:1 failure to a permanent
@@ -788,6 +802,41 @@ class E2eeManager {
     required String deviceId,
   }) =>
       _store.deleteVerification(userId, deviceId);
+
+  /// Aggregate verification status for [userId] across their published devices,
+  /// for the group-verification member list: verified = every device verified
+  /// with a matching key; partial = some verified or a verified key rotated;
+  /// unverified = none (or the peer has no published devices).
+  Future<E2eePeerVerification> peerVerificationStatus(String userId) async {
+    final devices = await _api.listPublicDevices(userId);
+    if (devices.isEmpty) {
+      return E2eePeerVerification.unverified;
+    }
+    final verifications = await verificationsForUser(userId);
+    var verified = 0;
+    var mismatched = false;
+    for (final d in devices) {
+      final entry = verifications[d.deviceId];
+      if (entry == null) {
+        continue;
+      }
+      if (entry.identityKey != d.identityKey) {
+        mismatched = true;
+        continue;
+      }
+      verified++;
+    }
+    if (mismatched) {
+      return E2eePeerVerification.partial;
+    }
+    if (verified == devices.length) {
+      return E2eePeerVerification.verified;
+    }
+    if (verified > 0) {
+      return E2eePeerVerification.partial;
+    }
+    return E2eePeerVerification.unverified;
+  }
 
   /// "Encryption is broken with this peer" escape hatch: drop every stored Olm
   /// session for the peer's devices and reset the cached identity keys to the

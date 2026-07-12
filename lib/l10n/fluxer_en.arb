@@ -2437,6 +2437,26 @@
   "@e2eeVerifyNotSignedIn": {
     "description": "Error when there is no current user in the verification sheet."
   },
+  "e2eeVerifyGroupTitle": "Verify group encryption",
+  "@e2eeVerifyGroupTitle": {
+    "description": "Title of the group-DM verification router sheet."
+  },
+  "e2eeVerifyGroupDescription": "Pick a member to compare fingerprints out of band (in person, on a call, and so on).",
+  "@e2eeVerifyGroupDescription": {
+    "description": "Explanation at the top of the group verification sheet."
+  },
+  "e2eeVerifyGroupNoMembers": "No other members to verify.",
+  "@e2eeVerifyGroupNoMembers": {
+    "description": "Shown when a group has no other members to verify."
+  },
+  "e2eeVerifyGroupPartial": "Partially verified",
+  "@e2eeVerifyGroupPartial": {
+    "description": "Aggregate badge when some of a member's devices are verified."
+  },
+  "e2eeVerifyGroupReview": "Review",
+  "@e2eeVerifyGroupReview": {
+    "description": "Trailing action label on a group member row."
+  },
   "passwordChangePasswordsDoNotMatch": "Passwords do not match",
   "@passwordChangePasswordsDoNotMatch": {
     "description": "Error shown when new password and confirmation don't match."

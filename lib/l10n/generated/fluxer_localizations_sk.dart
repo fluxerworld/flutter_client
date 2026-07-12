@@ -1902,6 +1902,22 @@ class FluxerLocalizationsSk extends FluxerLocalizations {
   String get e2eeVerifyNotSignedIn => 'You\'re not signed in.';
 
   @override
+  String get e2eeVerifyGroupTitle => 'Verify group encryption';
+
+  @override
+  String get e2eeVerifyGroupDescription =>
+      'Pick a member to compare fingerprints out of band (in person, on a call, and so on).';
+
+  @override
+  String get e2eeVerifyGroupNoMembers => 'No other members to verify.';
+
+  @override
+  String get e2eeVerifyGroupPartial => 'Partially verified';
+
+  @override
+  String get e2eeVerifyGroupReview => 'Review';
+
+  @override
   String get passwordChangePasswordsDoNotMatch => 'Heslá sa nezhodujú';
 
   @override

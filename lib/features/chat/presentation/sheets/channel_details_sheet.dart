@@ -61,6 +61,7 @@ import 'package:fluxer_app/features/profile/domain/custom_status_utils.dart';
 import 'package:fluxer_app/features/profile/presentation/user_profile_sheet.dart';
 import 'package:fluxer_app/features/profile/providers/user_presence_provider.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/e2ee_fingerprint_sheet.dart';
+import 'package:fluxer_app/features/settings/presentation/sheets/e2ee_group_fingerprint_sheet.dart';
 import 'package:fluxer_app/features/settings/providers/appearance_preferences_provider.dart';
 import 'package:fluxer_app/features/settings/providers/user_settings_view_model.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
@@ -2963,6 +2964,21 @@ Future<void> _showDetailsMoreSheet(
                   ref,
                   recipientUserId: dm.recipientId,
                   recipientName: dm.recipientName,
+                ),
+              );
+            },
+          ),
+        if (isGroupDM)
+          FluxerBottomSheetMenuItem(
+            label: l10n.e2eeVerifyTitle,
+            icon: PhosphorIconsBold.shieldCheck,
+            onTap: () {
+              close();
+              unawaited(
+                E2eeGroupFingerprintSheet.show(
+                  context,
+                  ref,
+                  members: dm.groupMembers,
                 ),
               );
             },

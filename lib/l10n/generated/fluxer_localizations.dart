@@ -3511,6 +3511,36 @@ abstract class FluxerLocalizations {
   /// **'You\'re not signed in.'**
   String get e2eeVerifyNotSignedIn;
 
+  /// Title of the group-DM verification router sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify group encryption'**
+  String get e2eeVerifyGroupTitle;
+
+  /// Explanation at the top of the group verification sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a member to compare fingerprints out of band (in person, on a call, and so on).'**
+  String get e2eeVerifyGroupDescription;
+
+  /// Shown when a group has no other members to verify.
+  ///
+  /// In en, this message translates to:
+  /// **'No other members to verify.'**
+  String get e2eeVerifyGroupNoMembers;
+
+  /// Aggregate badge when some of a member's devices are verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Partially verified'**
+  String get e2eeVerifyGroupPartial;
+
+  /// Trailing action label on a group member row.
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get e2eeVerifyGroupReview;
+
   /// Error shown when new password and confirmation don't match.
   ///
   /// In en, this message translates to:
