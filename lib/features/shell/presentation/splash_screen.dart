@@ -441,24 +441,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
         ],
       );
     }
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          displayText,
-          style: context.textStyles.quote,
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          _selectedQuote.source,
-          style: context.textStyles.quoteLink.copyWith(
-            color: context.colors.textChatMuted,
-            fontStyle: FontStyle.normal,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
+    // No loading sayings under the logo: the upstream quotes are attributed to
+    // fluxer.app community members, not ours. Only the service-incident notice
+    // (handled above) shows here.
+    return const SizedBox.shrink();
   }
 }
