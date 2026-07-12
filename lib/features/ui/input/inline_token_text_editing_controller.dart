@@ -99,6 +99,13 @@ class InlineTokenTextEditingController extends TextEditingController {
   /// The length of [toWireText] without materializing the string.
   int get wireLength => _wireLengthOf(text.runes);
 
+  /// The wire length of an arbitrary editing [str] using this controller's
+  /// current token map, without mutating the controller. Sentinels absent from
+  /// the map count as a single character. Lets formatters weigh a prospective
+  /// [TextEditingValue] without assigning [value] mid-edit (which re-enters the
+  /// input pipeline and duplicates IME word commits).
+  int wireLengthOfText(String str) => _wireLengthOf(str.runes);
+
   @override
   set value(TextEditingValue newValue) {
     super.value = newValue;

@@ -33,13 +33,15 @@ class ComposerMessageLengthPasteFormatter extends TextInputFormatter {
     if (!canAttachOnExceed()) {
       return newValue;
     }
-    final TextEditingValue savedValue = controller.value;
-    controller.value = newValue;
-    final int newWireLength = controller.toWireText().trim().length;
+    // Weigh the prospective value WITHOUT assigning controller.value here.
+    // Mutating the controller inside formatEditUpdate re-enters the input
+    // pipeline, so IMEs that commit a whole word at once (autocorrect on space,
+    // glide typing, word prediction) apply the word twice ("can can you you").
+    final int newWireLength = controller
+        .wireLengthOfText(newValue.text.trim());
     if (newWireLength <= maxLength) {
       return newValue;
     }
-    controller.value = savedValue;
     final String pastedText = _extractInsertedText(oldValue, newValue);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       onPasteExceedsLimit(pastedText);
