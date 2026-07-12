@@ -171,7 +171,11 @@ class MfaViewModel extends _$MfaViewModel {
 
   String _remapFailureMessage(String message) {
     return switch (message) {
-      'Session timed out. Refresh the page and log in again.' =>
+      // The server sends the second (current) wording; keep the first for
+      // older instances. Both are web-centric ("refresh the page") — reword for
+      // mobile.
+      'Session timed out. Refresh the page and log in again.' ||
+      'Session timeout. Please refresh the page and log in again.' =>
         'Session timed out. Go back and log in again.',
       _ => message,
     };
