@@ -8,7 +8,7 @@ import 'package:fluxer_app/shared/external_links/external_link_handler.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const String kBetaWarningRepoUrl =
-    'https://github.com/fluxerapp/flutter_client';
+    'https://github.com/fluxerworld/flutter_client';
 
 bool _isBetaWarningSheetOpen = false;
 

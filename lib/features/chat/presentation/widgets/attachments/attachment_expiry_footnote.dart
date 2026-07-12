@@ -3,8 +3,7 @@ import 'package:fluxer_app/core/theme/fluxer_theme_extension.dart';
 import 'package:fluxer_app/features/ui/ui.dart';
 
 /// Help article for attachment expiry.
-const String attachmentExpiryHelpUrl =
-    'https://help.fluxer.app/en/articles/13984638';
+const String attachmentExpiryHelpUrl = 'https://fluxer.world/help';
 
 class AttachmentExpiryFootnote extends StatelessWidget {
   const AttachmentExpiryFootnote({required this.text, super.key});
