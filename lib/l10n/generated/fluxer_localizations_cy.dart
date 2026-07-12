@@ -1748,6 +1748,46 @@ class FluxerLocalizationsCy extends FluxerLocalizations {
       'Manage the encryption keys that let this device read your encrypted messages.';
 
   @override
+  String get e2eeBackupCreateTitle => 'Create encrypted backup';
+
+  @override
+  String get e2eeBackupCreateSubsectionDescription =>
+      'Save an encrypted backup of your keys so you can restore them on another Flutter device.';
+
+  @override
+  String get e2eeBackupCreateOpenButton => 'Create backup';
+
+  @override
+  String get e2eeBackupCreateDescription =>
+      'Choose a strong passphrase. You\'ll need it to restore your keys — it can\'t be recovered for you, and anyone who has it can decrypt your backup.';
+
+  @override
+  String get e2eeBackupPassphraseLabel => 'Backup passphrase';
+
+  @override
+  String get e2eeBackupConfirmLabel => 'Confirm passphrase';
+
+  @override
+  String get e2eeBackupCreateButton => 'Create backup';
+
+  @override
+  String get e2eeBackupTooShort => 'Use at least 8 characters.';
+
+  @override
+  String get e2eeBackupMismatch => 'Passphrases don\'t match.';
+
+  @override
+  String get e2eeBackupNotReady =>
+      'Encryption isn\'t set up yet on this device.';
+
+  @override
+  String get e2eeBackupCreateSuccess => 'Encrypted backup uploaded.';
+
+  @override
+  String get e2eeBackupCreateFailed =>
+      'Couldn\'t create the backup. Please try again.';
+
+  @override
   String get e2eeRestoreTitle => 'Restore encrypted backup';
 
   @override

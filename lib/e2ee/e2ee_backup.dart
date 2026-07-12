@@ -102,6 +102,20 @@ class BackupVerificationEntry {
   final String source;
 }
 
+/// How the pickles inside a backup are serialized, so restore knows which
+/// vodozemac import + pickle-key encoding to use.
+enum E2eeBackupPickleFormat {
+  /// libolm-format pickles (produced by the web/RN @matrix-org/olm clients).
+  /// The pickle_key is a string used verbatim as UTF-8 key bytes. Restore via
+  /// vodozemac's fromOlmPickleEncrypted. This is the default when the payload
+  /// carries no `pickle_format` field (all web/RN backups).
+  libolm,
+
+  /// vodozemac-native encrypted pickles (produced by THIS Flutter client). The
+  /// pickle_key is base64 of a 32-byte key. Restore via fromPickleEncrypted.
+  vodozemac,
+}
+
 /// The decrypted, parsed backup payload. Outbound group sessions are
 /// intentionally NOT modelled: outbound Megolm is minted fresh on the restoring
 /// device (importing it would resume a sender ratchet that a still-live original
@@ -109,6 +123,7 @@ class BackupVerificationEntry {
 class E2eeBackupPayload {
   const E2eeBackupPayload({
     required this.version,
+    required this.pickleFormat,
     required this.pickleKey,
     required this.account,
     required this.sessions,
@@ -117,7 +132,8 @@ class E2eeBackupPayload {
   });
 
   final int version; // inner `v`: 1 or 2
-  final String? pickleKey; // the libolm pickle key (a string); may be null
+  final E2eeBackupPickleFormat pickleFormat;
+  final String? pickleKey; // libolm key string OR base64(32 bytes); may be null
   final BackupPickledAccount? account;
   final List<BackupPickledSession> sessions;
   final List<BackupPickledInboundGroup> inboundGroupSessions; // v2 only
@@ -145,6 +161,48 @@ Uint8List _gcmDecrypt(Uint8List key, Uint8List iv, Uint8List ctWithTag) {
   final n = c.processBytes(ctWithTag, 0, ctWithTag.length, out, 0);
   final total = n + c.doFinal(out, n);
   return total == out.length ? out : Uint8List.sublistView(out, 0, total);
+}
+
+Uint8List _gcmEncrypt(Uint8List key, Uint8List iv, Uint8List plaintext) {
+  final c = GCMBlockCipher(AESEngine())
+    ..init(true, AEADParameters(KeyParameter(key), 128, iv, Uint8List(0)));
+  final out = Uint8List(c.getOutputSize(plaintext.length));
+  final n = c.processBytes(plaintext, 0, plaintext.length, out, 0);
+  final total = n + c.doFinal(out, n);
+  return total == out.length ? out : Uint8List.sublistView(out, 0, total);
+}
+
+/// The server-stored blob format version (envelope, not the inner payload `v`).
+/// Matches the web writer's BACKUP_VERSION.
+const int kBackupBlobVersion = 2;
+
+/// PBKDF2 iteration count, matching the web writer. Baked in so every blob we
+/// produce is decryptable by the same parameters web/RN use.
+const int kBackupKdfIterations = 600000;
+
+/// Seal a backup [payload] into the server-stored envelope, byte-compatible with
+/// the web writer (PBKDF2-SHA256 + AES-256-GCM, tag appended, standard base64).
+/// [salt] (16 bytes) and [iv] (12 bytes) MUST be fresh CSPRNG bytes per call —
+/// reusing an (key, iv) pair breaks AES-GCM. Returns the blob map to upload.
+Map<String, Object?> encryptBackupPayload({
+  required Map<String, Object?> payload,
+  required String passphrase,
+  required Uint8List salt,
+  required Uint8List iv,
+  int iterations = kBackupKdfIterations,
+}) {
+  final plaintext = Uint8List.fromList(utf8.encode(jsonEncode(payload)));
+  final key = _pbkdf2(passphrase, salt, iterations);
+  final ciphertext = _gcmEncrypt(key, iv, plaintext);
+  return <String, Object?>{
+    'version': kBackupBlobVersion,
+    'algorithm': 'AES-GCM',
+    'kdf': 'PBKDF2-SHA256',
+    'salt': base64Encode(salt),
+    'iterations': iterations,
+    'iv': base64Encode(iv),
+    'ciphertext': base64Encode(ciphertext),
+  };
 }
 
 /// Decrypt + parse a backup blob. Throws [E2eeBackupWrongPassphrase] on a GCM
@@ -259,8 +317,13 @@ E2eeBackupPayload _parsePayload(Map<String, dynamic> p) {
   }
 
   final pickleKey = p['pickle_key'];
+  // Absent (web/RN) or anything other than "vodozemac" => libolm format.
+  final pickleFormat = p['pickle_format'] == 'vodozemac'
+      ? E2eeBackupPickleFormat.vodozemac
+      : E2eeBackupPickleFormat.libolm;
   return E2eeBackupPayload(
     version: v as int,
+    pickleFormat: pickleFormat,
     pickleKey: pickleKey is String ? pickleKey : null,
     account: account,
     sessions: sessions,

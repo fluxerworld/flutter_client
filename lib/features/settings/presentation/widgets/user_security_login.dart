@@ -9,6 +9,7 @@ import 'package:fluxer_app/features/settings/presentation/sheets/account_delete_
 import 'package:fluxer_app/features/settings/presentation/sheets/account_disable_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/backup_codes_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/claim_account_sheet.dart';
+import 'package:fluxer_app/features/settings/presentation/sheets/e2ee_backup_create_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/e2ee_backup_restore_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/email_change_sheet.dart';
 import 'package:fluxer_app/features/settings/presentation/sheets/passkey_name_sheet.dart';
@@ -98,6 +99,18 @@ class _UserSecurityLoginState extends ConsumerState<UserSecurityLogin> {
             title: l10n.e2eeSectionTitle,
             description: l10n.e2eeSectionDescription,
             children: [
+              FluxerSettingsSubsection(
+                title: l10n.e2eeBackupCreateTitle,
+                description: l10n.e2eeBackupCreateSubsectionDescription,
+                children: [
+                  FluxerButton.primary(
+                    onPressedAsync: () =>
+                        E2eeBackupCreateSheet.show(context, ref),
+                    label: l10n.e2eeBackupCreateOpenButton,
+                    size: FluxerButtonSize.small,
+                  ),
+                ],
+              ),
               FluxerSettingsSubsection(
                 title: l10n.e2eeRestoreTitle,
                 description: l10n.e2eeRestoreSubsectionDescription,

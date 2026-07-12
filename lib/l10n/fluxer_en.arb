@@ -2248,6 +2248,54 @@
   "@e2eeSectionDescription": {
     "description": "Settings section description for end-to-end encryption."
   },
+  "e2eeBackupCreateTitle": "Create encrypted backup",
+  "@e2eeBackupCreateTitle": {
+    "description": "Title of the create-encrypted-backup sheet and subsection."
+  },
+  "e2eeBackupCreateSubsectionDescription": "Save an encrypted backup of your keys so you can restore them on another Flutter device.",
+  "@e2eeBackupCreateSubsectionDescription": {
+    "description": "Subsection description for creating an encrypted backup."
+  },
+  "e2eeBackupCreateOpenButton": "Create backup",
+  "@e2eeBackupCreateOpenButton": {
+    "description": "Button that opens the create-backup sheet."
+  },
+  "e2eeBackupCreateDescription": "Choose a strong passphrase. You'll need it to restore your keys — it can't be recovered for you, and anyone who has it can decrypt your backup.",
+  "@e2eeBackupCreateDescription": {
+    "description": "Explanatory text at the top of the create-backup sheet."
+  },
+  "e2eeBackupPassphraseLabel": "Backup passphrase",
+  "@e2eeBackupPassphraseLabel": {
+    "description": "Label for the backup passphrase input in the create sheet."
+  },
+  "e2eeBackupConfirmLabel": "Confirm passphrase",
+  "@e2eeBackupConfirmLabel": {
+    "description": "Label for the confirm-passphrase input in the create sheet."
+  },
+  "e2eeBackupCreateButton": "Create backup",
+  "@e2eeBackupCreateButton": {
+    "description": "Confirm button in the create-backup sheet."
+  },
+  "e2eeBackupTooShort": "Use at least 8 characters.",
+  "@e2eeBackupTooShort": {
+    "description": "Validation error when the backup passphrase is too short."
+  },
+  "e2eeBackupMismatch": "Passphrases don't match.",
+  "@e2eeBackupMismatch": {
+    "description": "Validation error when the two passphrases differ."
+  },
+  "e2eeBackupNotReady": "Encryption isn't set up yet on this device.",
+  "@e2eeBackupNotReady": {
+    "description": "Error when E2EE is not initialised and a backup can't be built."
+  },
+  "e2eeBackupCreateSuccess": "Encrypted backup uploaded.",
+  "@e2eeBackupCreateSuccess": {
+    "description": "Toast shown after a backup is created and uploaded."
+  },
+  "e2eeBackupCreateFailed": "Couldn't create the backup. Please try again.",
+  "@e2eeBackupCreateFailed": {
+    "description": "Error shown when creating the backup fails."
+  },
   "e2eeRestoreTitle": "Restore encrypted backup",
   "@e2eeRestoreTitle": {
     "description": "Title of the restore-encrypted-backup sheet and subsection."

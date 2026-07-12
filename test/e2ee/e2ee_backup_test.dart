@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fluxer_app/e2ee/e2ee_backup.dart';
@@ -20,6 +21,8 @@ void main() {
     test('decrypts a real web-format v2 backup and parses every artifact', () {
       final payload = decryptBackupBlob(_blob(), _passphrase);
       expect(payload.version, 2);
+      // A web/RN backup carries no pickle_format field -> libolm.
+      expect(payload.pickleFormat, E2eeBackupPickleFormat.libolm);
       expect(payload.pickleKey, isNotNull);
       expect(payload.account, isNotNull);
       expect(payload.account!.userId, '1234567890');
@@ -72,6 +75,72 @@ void main() {
       ct[0] ^= 0xFF;
       b['ciphertext'] = base64Encode(ct);
       expect(() => decryptBackupBlob(b, _passphrase),
+          throwsA(isA<E2eeBackupWrongPassphrase>()));
+    });
+  });
+
+  group('encryptBackupPayload (produce path)', () {
+    final salt = Uint8List.fromList(List<int>.generate(16, (i) => i));
+    final iv = Uint8List.fromList(List<int>.generate(12, (i) => i + 1));
+    final payload = <String, Object?>{
+      'v': 2,
+      'pickle_format': 'vodozemac',
+      'pickle_key':
+          base64Encode(Uint8List.fromList(List<int>.generate(32, (i) => i))),
+      'account': {'user_id': 'u1', 'device_id': 'd1', 'pickle': 'acct-pickle'},
+      'sessions': [
+        {
+          'remote_user_id': 'ru',
+          'remote_device_id': 'rd',
+          'session_id': 'sid',
+          'pickle': 'sess-pickle',
+          'created_at': 100,
+          'last_used_at': 200,
+        }
+      ],
+      'inbound_group_sessions': <Object?>[],
+      'outbound_group_sessions': <Object?>[],
+      'verifications': [
+        {
+          'remote_user_id': 'ru',
+          'remote_device_id': 'rd',
+          'identity_key': 'ik',
+          'verified_at': 300,
+          'source': 'manual',
+        }
+      ],
+    };
+
+    test('produces a web-shaped envelope', () {
+      final blob = encryptBackupPayload(
+          payload: payload, passphrase: 'passphrase', salt: salt, iv: iv);
+      expect(blob['version'], 2);
+      expect(blob['algorithm'], 'AES-GCM');
+      expect(blob['kdf'], 'PBKDF2-SHA256');
+      expect(blob['iterations'], 600000);
+      expect(blob['salt'], base64Encode(salt));
+      expect(blob['iv'], base64Encode(iv));
+      expect(blob['ciphertext'], isA<String>());
+    });
+
+    test('round-trips back through decryptBackupBlob as vodozemac format', () {
+      final blob = encryptBackupPayload(
+          payload: payload, passphrase: 'passphrase', salt: salt, iv: iv);
+      final parsed = decryptBackupBlob(blob.cast<String, dynamic>(), 'passphrase');
+      expect(parsed.version, 2);
+      expect(parsed.pickleFormat, E2eeBackupPickleFormat.vodozemac);
+      expect(parsed.account!.userId, 'u1');
+      expect(parsed.account!.deviceId, 'd1');
+      expect(parsed.account!.pickle, 'acct-pickle');
+      expect(parsed.sessions.single.remoteUserId, 'ru');
+      expect(parsed.sessions.single.pickle, 'sess-pickle');
+      expect(parsed.verifications.single.identityKey, 'ik');
+    });
+
+    test('wrong passphrase on a produced blob is rejected', () {
+      final blob = encryptBackupPayload(
+          payload: payload, passphrase: 'passphrase', salt: salt, iv: iv);
+      expect(() => decryptBackupBlob(blob.cast<String, dynamic>(), 'nope'),
           throwsA(isA<E2eeBackupWrongPassphrase>()));
     });
   });

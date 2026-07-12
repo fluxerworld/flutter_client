@@ -3241,6 +3241,78 @@ abstract class FluxerLocalizations {
   /// **'Manage the encryption keys that let this device read your encrypted messages.'**
   String get e2eeSectionDescription;
 
+  /// Title of the create-encrypted-backup sheet and subsection.
+  ///
+  /// In en, this message translates to:
+  /// **'Create encrypted backup'**
+  String get e2eeBackupCreateTitle;
+
+  /// Subsection description for creating an encrypted backup.
+  ///
+  /// In en, this message translates to:
+  /// **'Save an encrypted backup of your keys so you can restore them on another Flutter device.'**
+  String get e2eeBackupCreateSubsectionDescription;
+
+  /// Button that opens the create-backup sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Create backup'**
+  String get e2eeBackupCreateOpenButton;
+
+  /// Explanatory text at the top of the create-backup sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a strong passphrase. You\'ll need it to restore your keys — it can\'t be recovered for you, and anyone who has it can decrypt your backup.'**
+  String get e2eeBackupCreateDescription;
+
+  /// Label for the backup passphrase input in the create sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup passphrase'**
+  String get e2eeBackupPassphraseLabel;
+
+  /// Label for the confirm-passphrase input in the create sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm passphrase'**
+  String get e2eeBackupConfirmLabel;
+
+  /// Confirm button in the create-backup sheet.
+  ///
+  /// In en, this message translates to:
+  /// **'Create backup'**
+  String get e2eeBackupCreateButton;
+
+  /// Validation error when the backup passphrase is too short.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 8 characters.'**
+  String get e2eeBackupTooShort;
+
+  /// Validation error when the two passphrases differ.
+  ///
+  /// In en, this message translates to:
+  /// **'Passphrases don\'t match.'**
+  String get e2eeBackupMismatch;
+
+  /// Error when E2EE is not initialised and a backup can't be built.
+  ///
+  /// In en, this message translates to:
+  /// **'Encryption isn\'t set up yet on this device.'**
+  String get e2eeBackupNotReady;
+
+  /// Toast shown after a backup is created and uploaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Encrypted backup uploaded.'**
+  String get e2eeBackupCreateSuccess;
+
+  /// Error shown when creating the backup fails.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t create the backup. Please try again.'**
+  String get e2eeBackupCreateFailed;
+
   /// Title of the restore-encrypted-backup sheet and subsection.
   ///
   /// In en, this message translates to:

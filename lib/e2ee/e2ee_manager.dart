@@ -471,15 +471,37 @@ class E2eeManager {
       // Never write another user's identity under this session.
       return const E2eeRestoreResult(E2eeRestoreOutcome.wrongUser);
     }
-    // The backup pickle key is the UTF-8 bytes of the pickle-key STRING (libolm
-    // key material), NOT a base64-decoded 32-byte key.
-    final backupPickleKey =
-        Uint8List.fromList(utf8.encode(backupPickleKeyString));
+    // 3b. The pickle-key encoding + import path depend on the pickle format.
+    // libolm (web/RN backups): the key string is used verbatim as UTF-8 bytes,
+    // pickles imported via fromOlmPickleEncrypted. vodozemac (a Flutter-made
+    // backup): the key string is base64 of a 32-byte key, pickles imported via
+    // the native fromPickleEncrypted.
+    final isVodozemac =
+        payload.pickleFormat == E2eeBackupPickleFormat.vodozemac;
+    final Uint8List backupPickleKey;
+    if (isVodozemac) {
+      try {
+        backupPickleKey = base64Decode(backupPickleKeyString);
+      } on FormatException {
+        return const E2eeRestoreResult(E2eeRestoreOutcome.corruptBackup);
+      }
+    } else {
+      backupPickleKey = Uint8List.fromList(utf8.encode(backupPickleKeyString));
+    }
+    E2eeAccount importAccount(String pickle) => isVodozemac
+        ? E2eeAccount.fromPickle(pickle, backupPickleKey)
+        : E2eeAccount.fromLibolmPickle(pickle, backupPickleKey);
+    E2eeOlmSession importSession(String pickle) => isVodozemac
+        ? E2eeOlmSession.fromPickle(pickle, backupPickleKey)
+        : E2eeOlmSession.fromLibolmPickle(pickle, backupPickleKey);
+    E2eeInboundGroupSession importInbound(String pickle) => isVodozemac
+        ? E2eeInboundGroupSession.fromPickle(pickle, backupPickleKey)
+        : E2eeInboundGroupSession.fromLibolmPickle(pickle, backupPickleKey);
 
     // 4. Import the account. A broken account = no restorable identity (fatal).
     final E2eeAccount restored;
     try {
-      restored = E2eeAccount.fromLibolmPickle(account.pickle, backupPickleKey);
+      restored = importAccount(account.pickle);
     } on Object {
       return const E2eeRestoreResult(E2eeRestoreOutcome.corruptBackup);
     }
@@ -526,7 +548,7 @@ class E2eeManager {
     var sessionsRestored = 0;
     for (final s in payload.sessions) {
       try {
-        final sess = E2eeOlmSession.fromLibolmPickle(s.pickle, backupPickleKey);
+        final sess = importSession(s.pickle);
         await _store.writeSession(
           E2eeOlmSessionsCompanion.insert(
             remoteUserId: s.remoteUserId,
@@ -551,8 +573,7 @@ class E2eeManager {
     var inboundRestored = 0;
     for (final ig in payload.inboundGroupSessions) {
       try {
-        final inbound =
-            E2eeInboundGroupSession.fromLibolmPickle(ig.pickle, backupPickleKey);
+        final inbound = importInbound(ig.pickle);
         await _store.writeInboundGroupSessionIfAbsent(
           E2eeInboundGroupSessionsCompanion.insert(
             channelId: ig.channelId,
@@ -614,6 +635,112 @@ class E2eeManager {
       inboundGroupSessionsRestored: inboundRestored,
       verificationsRestored: verificationsRestored,
     );
+  }
+
+  /// Build an encrypted backup of this device's E2EE state and upload it to the
+  /// server, so it can later be restored (on this or another Flutter install)
+  /// with [passphrase]. The backup uses vodozemac-native pickles plus a
+  /// `pickle_format: "vodozemac"` marker so [restoreFromBackup] round-trips it.
+  /// The web/RN clients can read the (standard PBKDF2+AES-GCM) envelope but not
+  /// the vodozemac-native inner pickles — those clients use libolm and remain
+  /// the cross-client backup authority; a Flutter-made backup is Flutter-restore.
+  ///
+  /// Requires E2EE to be initialised (call only when [isReady]). Throws
+  /// [StateError] if not initialised; network failures propagate.
+  Future<void> buildAndUploadBackup({
+    required String userId,
+    required String passphrase,
+  }) async {
+    final account = _account;
+    final deviceId = _deviceId;
+    final localPickleKey = _pickleKey;
+    if (account == null || deviceId == null || localPickleKey == null) {
+      throw StateError('E2EE is not initialised; cannot build a backup.');
+    }
+
+    // A fresh per-backup pickle key protects the artifacts inside the envelope;
+    // it travels (base64) inside the encrypted payload, never in the clear.
+    final backupKey = _generatePickleKey();
+
+    // Account: re-pickle the LIVE identity under the backup key.
+    final accountEntry = <String, Object?>{
+      'user_id': userId,
+      'device_id': deviceId,
+      'pickle': account.toPickle(backupKey),
+    };
+
+    // 1:1 Olm sessions: unpickle each under the local key, re-pickle under the
+    // backup key. A row that fails to load is skipped (never abort a backup).
+    final sessions = <Map<String, Object?>>[];
+    for (final row in await _store.allOlmSessions()) {
+      try {
+        final s = E2eeOlmSession.fromPickle(row.sessionPickle, localPickleKey);
+        sessions.add(<String, Object?>{
+          'remote_user_id': row.remoteUserId,
+          'remote_device_id': row.remoteDeviceId,
+          'session_id': row.sessionId,
+          'pickle': s.toPickle(backupKey),
+          'created_at': row.createdAt.millisecondsSinceEpoch,
+          'last_used_at': row.lastUsedAt.millisecondsSinceEpoch,
+        });
+      } on Object catch (_) {
+        // Skip an unreadable session pickle.
+      }
+    }
+
+    // Inbound Megolm sessions: unpickle -> re-pickle. Safe because we never
+    // decrypt here, so the stored ratchet position (first_known_index) is
+    // preserved — the same reason restore's re-pickle-after-import is safe.
+    final inbound = <Map<String, Object?>>[];
+    for (final row in await _store.allInboundGroupSessions()) {
+      try {
+        final ig = E2eeInboundGroupSession.fromPickle(
+            row.sessionPickle, localPickleKey);
+        inbound.add(<String, Object?>{
+          'channel_id': row.channelId,
+          'sender_user_id': row.senderUserId,
+          'sender_device_id': row.senderDeviceId,
+          'session_id': row.sessionId,
+          'pickle': ig.toPickle(backupKey),
+          'sender_identity_key': row.senderIdentityKey,
+          'created_at': row.createdAt.millisecondsSinceEpoch,
+        });
+      } on Object catch (_) {
+        // Skip an unreadable inbound-group pickle.
+      }
+    }
+
+    // Verifications: metadata only (no pickle).
+    final verifications = <Map<String, Object?>>[];
+    for (final row in await _store.allVerifications()) {
+      verifications.add(<String, Object?>{
+        'remote_user_id': row.remoteUserId,
+        'remote_device_id': row.remoteDeviceId,
+        'identity_key': row.identityKey,
+        'verified_at': row.verifiedAt.millisecondsSinceEpoch,
+        'source': row.source,
+      });
+    }
+
+    final payload = <String, Object?>{
+      'v': 2,
+      'pickle_format': 'vodozemac',
+      'pickle_key': base64Encode(backupKey),
+      'account': accountEntry,
+      'sessions': sessions,
+      // Outbound Megolm is minted fresh on restore, so it isn't backed up.
+      'outbound_group_sessions': <Object?>[],
+      'inbound_group_sessions': inbound,
+      'verifications': verifications,
+    };
+
+    final blob = encryptBackupPayload(
+      payload: payload,
+      passphrase: passphrase,
+      salt: _randomBytes(16),
+      iv: _randomBytes(12),
+    );
+    await _api.uploadBackup(blob);
   }
 
   // ───────────────────────────────────────────────────────────────────────────
@@ -1741,8 +1868,10 @@ class E2eeManager {
     return const [];
   }
 
-  Uint8List _generatePickleKey() =>
-      Uint8List.fromList(List<int>.generate(32, (_) => _random.nextInt(256)));
+  Uint8List _randomBytes(int n) =>
+      Uint8List.fromList(List<int>.generate(n, (_) => _random.nextInt(256)));
+
+  Uint8List _generatePickleKey() => _randomBytes(32);
 
   String _generateDeviceId() {
     final bytes = List<int>.generate(16, (_) => _random.nextInt(256));

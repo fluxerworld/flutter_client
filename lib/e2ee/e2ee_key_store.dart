@@ -192,6 +192,10 @@ class E2eeKeyStore extends _$E2eeKeyStore {
             ..orderBy([(t) => OrderingTerm.desc(t.lastUsedAt)]))
           .get();
 
+  /// Every stored Olm session (all peers/devices). Used to build a backup.
+  Future<List<StoredOlmSession>> allOlmSessions() =>
+      select(e2eeOlmSessions).get();
+
   Future<void> writeSession(E2eeOlmSessionsCompanion session) =>
       into(e2eeOlmSessions).insertOnConflictUpdate(session);
 
@@ -252,6 +256,10 @@ class E2eeKeyStore extends _$E2eeKeyStore {
       (select(e2eeVerifications)
             ..where((t) => t.remoteUserId.equals(remoteUserId)))
           .get();
+
+  /// Every stored verification (all peers). Used to build a backup.
+  Future<List<StoredE2eeVerification>> allVerifications() =>
+      select(e2eeVerifications).get();
 
   Future<void> writeVerification(E2eeVerificationsCompanion verification) =>
       into(e2eeVerifications).insertOnConflictUpdate(verification);
@@ -319,6 +327,10 @@ class E2eeKeyStore extends _$E2eeKeyStore {
   /// insertOnConflictUpdate): an already-imported session must never be
   /// overwritten with a higher first-known-index copy, which would lose the
   /// ability to decrypt earlier history.
+  /// Every stored inbound group session. Used to build a backup.
+  Future<List<StoredInboundGroupSession>> allInboundGroupSessions() =>
+      select(e2eeInboundGroupSessions).get();
+
   Future<void> writeInboundGroupSessionIfAbsent(
     E2eeInboundGroupSessionsCompanion session,
   ) =>
