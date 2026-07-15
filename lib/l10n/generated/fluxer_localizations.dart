@@ -379,6 +379,12 @@ abstract class FluxerLocalizations {
   /// **'Try Turnstile instead'**
   String get captchaSwitchToTurnstile;
 
+  /// Shown in the captcha modal when the captcha widget fails to load (e.g. a network/DNS blocker prevents reaching challenges.cloudflare.com).
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the captcha. Check your connection — some networks or DNS blockers block Cloudflare\'s verification domain — then retry.'**
+  String get captchaLoadError;
+
   /// Generic cancel button label.
   ///
   /// In en, this message translates to:

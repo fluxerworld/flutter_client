@@ -127,6 +127,10 @@ class FluxerLocalizationsGa extends FluxerLocalizations {
       'Bain triail as Turnstile ina ionad sin';
 
   @override
+  String get captchaLoadError =>
+      'Couldn\'t load the captcha. Check your connection — some networks or DNS blockers block Cloudflare\'s verification domain — then retry.';
+
+  @override
   String get cancel => 'Cealaigh';
 
   @override

@@ -121,6 +121,10 @@ class FluxerLocalizationsKo extends FluxerLocalizations {
   String get captchaSwitchToTurnstile => '대신 Turnstile을 사용해보세요';
 
   @override
+  String get captchaLoadError =>
+      'Couldn\'t load the captcha. Check your connection — some networks or DNS blockers block Cloudflare\'s verification domain — then retry.';
+
+  @override
   String get cancel => '취소';
 
   @override

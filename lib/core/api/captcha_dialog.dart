@@ -91,6 +91,7 @@ class _CaptchaDialogContent extends StatefulWidget {
 class _CaptchaDialogContentState extends State<_CaptchaDialogContent> {
   late CaptchaProvider _currentProvider;
   String? _error;
+  int _retryNonce = 0;
 
   @override
   void initState() {
@@ -164,10 +165,19 @@ class _CaptchaDialogContentState extends State<_CaptchaDialogContent> {
             ),
           ),
           SizedBox(height: layout.s3),
+          FluxerButton.secondary(
+            onPressed: () => setState(() {
+              _error = null;
+              _retryNonce++;
+            }),
+            label: l10n.retry,
+            fitContent: true,
+          ),
+          SizedBox(height: layout.s3),
         ],
         if (siteKey != null)
           FluxerCaptcha(
-            key: ValueKey(_currentProvider),
+            key: ValueKey('${_currentProvider}_$_retryNonce'),
             provider: _currentProvider,
             siteKey: siteKey,
             baseUrl: widget.baseUrl,
@@ -176,9 +186,24 @@ class _CaptchaDialogContentState extends State<_CaptchaDialogContent> {
               widget.onVerified(token, _currentProvider);
             },
             onError: (error) {
+              if (!mounted) {
+                return;
+              }
+              // A raw WebView load failure (e.g. a DNS/ad-blocker eating
+              // challenges.cloudflare.com) arrives as an unmapped exception
+              // with code '-1'; show the actionable message instead of the
+              // cryptic "net::ERR_NAME_NOT_RESOLVED" description.
               setState(() {
-                _error = error.message;
+                _error = error.code == '-1' ? l10n.captchaLoadError : error.message;
               });
+            },
+            onTimeout: () {
+              // The provider script never rendered — most often because the
+              // challenge domain couldn't be reached. Surface a retryable
+              // error rather than leaving an invisible, stuck widget.
+              if (mounted && _error == null) {
+                setState(() => _error = l10n.captchaLoadError);
+              }
             },
           ),
         if (_canSwitch) ...[

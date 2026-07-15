@@ -155,6 +155,10 @@
   "@captchaSwitchToTurnstile": {
     "description": "Link to switch from hCaptcha to Turnstile provider."
   },
+  "captchaLoadError": "Couldn't load the captcha. Check your connection — some networks or DNS blockers block Cloudflare's verification domain — then retry.",
+  "@captchaLoadError": {
+    "description": "Shown in the captcha modal when the captcha widget fails to load (e.g. a network/DNS blocker prevents reaching challenges.cloudflare.com)."
+  },
   "cancel": "Cancel",
   "@cancel": {
     "description": "Generic cancel button label."

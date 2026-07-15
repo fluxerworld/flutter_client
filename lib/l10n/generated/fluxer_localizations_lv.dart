@@ -124,6 +124,10 @@ class FluxerLocalizationsLv extends FluxerLocalizations {
   String get captchaSwitchToTurnstile => 'Mēģiniet Turnstile vietā';
 
   @override
+  String get captchaLoadError =>
+      'Couldn\'t load the captcha. Check your connection — some networks or DNS blockers block Cloudflare\'s verification domain — then retry.';
+
+  @override
   String get cancel => 'Atcelt';
 
   @override
